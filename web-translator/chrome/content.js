@@ -1116,8 +1116,14 @@
     // 加载配置
     config = await ConfigManager.getConfig();
     
-    if (!config.api.apiKey) {
-      showError('请先设置 API Key');
+    // 检查必要的配置项
+    const missingConfig = [];
+    if (!config.api.apiKey) missingConfig.push('API Key');
+    if (!config.api.baseUrl) missingConfig.push('API URL');
+    if (!config.api.model) missingConfig.push('模型');
+    
+    if (missingConfig.length > 0) {
+      showError(`请先完成设置: ${missingConfig.join(', ')}`);
       showSettingsPanel();
       return;
     }

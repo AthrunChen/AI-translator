@@ -32,9 +32,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 更新 UI
   function updateUI(cfg) {
-    // 检查 API Key
-    if (!cfg.api.apiKey) {
+    // 检查 API Key 和 API URL
+    const missingConfig = [];
+    if (!cfg.api.apiKey) missingConfig.push('API Key');
+    if (!cfg.api.baseUrl) missingConfig.push('API URL');
+    if (!cfg.api.model) missingConfig.push('模型');
+    
+    if (missingConfig.length > 0) {
       apiStatus.classList.add('show');
+      apiStatus.querySelector('.api-status-text').textContent = 
+        `未配置: ${missingConfig.join(', ')}`;
       btnTranslate.disabled = true;
     } else {
       apiStatus.classList.remove('show');
@@ -43,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // 更新 provider、模型和并发数
     providerName.textContent = cfg.api.provider === 'anthropic-messages' ? 'Anthropic' : 'OpenAI';
-    modelName.textContent = cfg.api.model;
+    modelName.textContent = cfg.api.model || '-';
     concurrencyValue.textContent = (cfg.behavior?.concurrency || 10) + '线程';
   }
 

@@ -1,0 +1,7 @@
+# 环境变量和密钥
+.env
+.env.*
+*.key
+*.pem
+.DS_Store
+node_modules/

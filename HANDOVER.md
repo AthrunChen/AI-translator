@@ -10,8 +10,12 @@
 
 ### 核心功能
 1. **段落级翻译** - 以段落为单位进行翻译，保持上下文完整
-2. **AI 词汇对应** - 利用 AI 返回原文与译文的词汇映射表
-3. **双向高亮** - 鼠标悬停实现原文↔译文词汇对应高亮
+2. **✨ 双向词汇高亮** - **核心特色功能**：
+   - 鼠标悬停任意词汇，AI 自动识别对应关系
+   - 🟢 悬停英文 → 高亮对应中文（黄色）
+   - 🟡 悬停中文 → 高亮对应英文（绿色）
+   - 支持多词短语（如 "US Army Secretary" ↔ "美国陆军部长"）
+3. **AI 词汇对应** - 利用 AI 返回原文与译文的词汇映射表
 4. **并行翻译** - 支持 10 线程并行处理，提升翻译速度
 5. **原文/译文切换** - 支持三种显示模式（双语对照/只看原文/只看译文）
 6. **翻译缓存** - 缓存翻译结果，切换显示模式无需重新请求
@@ -105,9 +109,9 @@ batchTranslate(blocks, concurrency)    // 批量翻译
 {
   api: {
     provider: 'openai-compatible'|'anthropic-messages',
-    baseUrl: string,
-    apiKey: string,
-    model: string
+    baseUrl: string,    // ⚠️ 必须配置，如 'https://api.moonshot.cn/v1'
+    apiKey: string,     // ⚠️ 必须配置
+    model: string       // ⚠️ 必须配置，如 'kimi-latest'
   },
   prompt: string,  // 翻译提示词模板
   behavior: {
@@ -115,6 +119,8 @@ batchTranslate(blocks, concurrency)    // 批量翻译
   }
 }
 ```
+
+**注意**：默认配置中 `baseUrl` 和 `model` 为空字符串，**首次使用必须在设置面板中配置**。
 
 ### 4. popup.js - 弹出窗口控制层
 **职责**：

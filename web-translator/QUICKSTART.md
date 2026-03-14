@@ -17,7 +17,7 @@ cd web-translator/chrome
 4. 选择 `web-translator/chrome` 文件夹
 5. 看到 🌐 图标出现在工具栏即安装成功
 
-### 2. 配置 API Key（2分钟）
+### 2. 配置 API（2分钟）
 
 1. 访问 [Moonshot AI 开放平台](https://platform.moonshot.cn/)
 2. 注册/登录账号
@@ -29,7 +29,10 @@ cd web-translator/chrome
 
 1. 点击工具栏的 🌐 图标
 2. 点击「设置」
-3. 粘贴 API Key
+3. 填写以下配置：
+   - **API Base URL**: `https://api.moonshot.cn/v1`
+   - **API Key**: 粘贴你复制的 Key
+   - **模型**: `kimi-latest`
 4. 点击「保存设置」
 
 ### 3. 开始使用（1分钟）
@@ -39,66 +42,6 @@ cd web-translator/chrome
 3. 或点击页面右下角的 🌐 浮动按钮
 4. 等待翻译完成，享受双语阅读！
 
-## 环境变量配置（高级）
-
-### OpenClaw 格式（推荐）
-
-支持标准的 OpenClaw 配置，特别适用于 `anthropic-messages` provider：
-
-```javascript
-// 方式 1: 直接设置 window.openclaw
-window.openclaw = {
-  provider: "anthropic-messages",
-  baseUrl: "https://api.kimi.com/coding",
-  apiKey: "sk-kimi-your-api-key",
-  model: "kimi-for-coding"
-};
-
-// 方式 2: 使用 KIMI_CODING_API_CONFIG 包装
-window.KIMI_CODING_API_CONFIG = {
-  openclaw: {
-    provider: "anthropic-messages",
-    baseUrl: "https://api.kimi.com/coding",
-    apiKey: "sk-kimi-your-api-key",
-    model: "kimi-for-coding"
-  }
-};
-
-// 方式 3: localStorage
-localStorage.setItem('openclaw', JSON.stringify({
-  provider: "anthropic-messages",
-  baseUrl: "https://api.kimi.com/coding",
-  apiKey: "sk-kimi-your-api-key",
-  model: "kimi-for-coding"
-}));
-```
-
-### 标准格式
-
-如果你使用 OpenAI 兼容格式（Kimi/OpenAI）：
-
-```javascript
-window.KIMI_CODING_API_CONFIG = {
-  api_key: 'your-api-key-here',
-  base_url: 'https://api.moonshot.cn/v1',
-  model: 'kimi-latest'
-};
-```
-
-### 修改配置文件
-
-编辑 `chrome/config.js` 中的 DEFAULT_CONFIG：
-
-```javascript
-const DEFAULT_CONFIG = {
-  api: {
-    baseUrl: 'https://api.moonshot.cn/v1',
-    apiKey: 'your-api-key-here',  // 填入你的 Key
-    model: 'kimi-latest'
-  },
-  // ...
-};
-```
 
 ## Safari 安装（可选）
 
@@ -118,30 +61,32 @@ open safari/AI\ Web\ Translator/AI\ Web\ Translator.xcodeproj
 
 ## 功能特性
 
-### AI 词汇对应（新功能）
-利用 AI 的语义理解能力，实现精准的词汇级高亮：
+### 双向词汇高亮（核心功能）
+**本项目最独特的功能！** 利用 AI 的语义理解能力，实现精准的原文↔译文双向词汇高亮：
+
+**使用方法**：
+- 将鼠标悬停在**任意词汇**上
+- 🟢 **悬停英文** → 自动高亮对应的中文翻译（黄色）
+- 🟡 **悬停中文** → 自动高亮对应的英文原文（绿色）
+
+**支持多词短语**：
+```
+原文：US Army Secretary
+译文：美国陆军部长
+悬停 "US Army Secretary" 任意一词 → 高亮整个 "美国陆军部长"
+悬停 "美国陆军部长" → 高亮 "US"、"Army"、"Secretary" 三个词
+```
 
 **工作原理**：
-1. 翻译时，AI 同时返回词汇对应表（如：network → 网络）
-2. 脚本解析对应表，建立精确的词汇映射
-3. 悬停时，根据 AI 提供的对应关系高亮相关词汇
-
-**高亮效果**：
-- 悬停原文英文单词 → 译文中对应的中文词汇高亮黄色
-- 悬停译文中文词汇 → 原文中对应的英文单词高亮绿色
-- 同时整段获得浅色系背景高亮
+1. 翻译时，AI 返回词汇对应表（如：US Army Secretary | 美国陆军部长）
+2. 智能解析对应关系，建立双向映射
+3. 悬停时即时高亮，无需等待
 
 **优势**：
-- 语义准确：AI 理解上下文，对应关系更精准
-- 支持意译：即使译文结构调整，仍能正确对应
-- 处理一词多义：根据语境选择正确对应
-
-示例：
-```
-原文：The network provides connectivity.
-AI 返回：network | 网络, provides | 提供, connectivity | 连接
-悬停 "network" → 译文 "网络" 高亮
-```
+- ✅ 语义准确：AI 理解上下文，对应关系精准
+- ✅ 支持意译：即使译文结构调整，仍能正确对应
+- ✅ 处理一词多义：根据语境选择正确对应
+- ✅ 多词短语：支持 "US Army Secretary" 这类复合词汇
 
 ### 原文/译文切换
 - 翻译完成后，点击右下角 👁 按钮切换显示模式

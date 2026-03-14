@@ -1,10 +1,11 @@
 // 默认配置
 const DEFAULT_CONFIG = {
   // API 配置 - 从环境变量或这里配置
+  // ⚠️ 注意：默认 API URL 为空，必须在设置面板中配置或注入配置
   api: {
-    baseUrl: 'https://api.moonshot.cn/v1',
+    baseUrl: '', // 默认空，需在设置中配置，如: 'https://api.moonshot.cn/v1'
     apiKey: '', // 留空，从存储中读取
-    model: 'kimi-latest',
+    model: '',  // 默认空，需在设置中配置，如: 'kimi-latest'
     provider: 'openai-compatible' // 可选: 'openai-compatible', 'anthropic-messages'
   },
   
