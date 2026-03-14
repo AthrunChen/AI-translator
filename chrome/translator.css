@@ -1,0 +1,364 @@
+/* AI 网页翻译器样式 - 简洁版，与原文保持一致 */
+
+/* 翻译容器 */
+.ai-translator-wrapper {
+  display: block !important;
+}
+
+/* 翻译文本样式 - 与原文保持一致 */
+.ai-translator-translation {
+  display: block !important;
+  color: inherit !important;
+  background: none !important;
+  padding: 0 !important;
+  margin: 8px 0 16px 0 !important;
+  border: none !important;
+  border-left: 2px solid #cbd5e0 !important;
+  padding-left: 12px !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  word-spacing: inherit !important;
+  text-align: inherit !important;
+  clear: both !important;
+}
+
+/* 词汇高亮样式（鼠标悬停时） */
+.ai-translator-word {
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+  padding: 1px 2px !important;
+  border-radius: 2px !important;
+}
+
+.ai-translator-word:hover {
+  background-color: rgba(251, 211, 141, 0.5) !important; /* 浅黄色 */
+}
+
+.ai-translator-word.highlight-source {
+  background-color: rgba(246, 173, 85, 0.6) !important; /* 深黄色 */
+}
+
+/* 原文词汇高亮 */
+.ai-source-word {
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+  padding: 1px 2px !important;
+  border-radius: 2px !important;
+}
+
+.ai-source-word:hover {
+  background-color: rgba(154, 230, 180, 0.5) !important; /* 浅绿色 */
+}
+
+.ai-source-word.highlight-translation {
+  background-color: rgba(72, 187, 120, 0.6) !important; /* 深绿色 */
+}
+
+/* 段落级高亮样式 - 更 subtle */
+.ai-translator-translation.highlight-source {
+  background-color: rgba(251, 211, 141, 0.1); /* 更浅的黄色 */
+  border-left-color: #f6ad55;
+}
+
+.ai-source-text.highlight-translation {
+  background-color: rgba(154, 230, 180, 0.1); /* 更浅的绿色 */
+}
+
+/* 词汇级高亮 - 更醒目 */
+.ai-translator-word.highlight-source {
+  background-color: rgba(246, 173, 85, 0.7) !important; /* 深黄色 */
+  border-radius: 3px;
+}
+
+.ai-source-word.highlight-translation {
+  background-color: rgba(72, 187, 120, 0.7) !important; /* 深绿色 */
+  border-radius: 3px;
+}
+
+/* 控制栏样式 */
+.ai-translator-controls {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  display: flex !important;
+  gap: 8px !important;
+  z-index: 2147483647 !important;
+  background: white !important;
+  padding: 8px 12px !important;
+  border-radius: 20px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+}
+
+.ai-translator-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: #4299e1 !important;
+  color: white !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.ai-translator-btn:hover {
+  background: #3182ce !important;
+  transform: scale(1.05) !important;
+}
+
+.ai-translator-btn.active {
+  background: #48bb78 !important;
+}
+
+.ai-translator-btn:disabled {
+  background: #a0aec0 !important;
+  cursor: not-allowed !important;
+}
+
+/* 状态指示器 */
+.ai-translator-status {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 8px !important;
+  color: #4a5568 !important;
+  font-size: 12px !important;
+}
+
+/* 加载动画 */
+.ai-translator-loading {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 20px !important;
+  background: white !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: 13px !important;
+  color: #4a5568 !important;
+}
+
+.ai-translator-loading::before {
+  content: '' !important;
+  width: 14px !important;
+  height: 14px !important;
+  border: 2px solid #e2e8f0 !important;
+  border-top-color: #4299e1 !important;
+  border-radius: 50% !important;
+  animation: spin 0.8s linear infinite !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 进度条 */
+.ai-translator-progress {
+  position: fixed !important;
+  bottom: 75px !important;
+  right: 20px !important;
+  width: 200px !important;
+  background: white !important;
+  padding: 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+  z-index: 2147483646 !important;
+}
+
+.ai-translator-progress-bar {
+  width: 100% !important;
+  height: 4px !important;
+  background: #e2e8f0 !important;
+  border-radius: 2px !important;
+  overflow: hidden !important;
+  margin-top: 8px !important;
+}
+
+.ai-translator-progress-fill {
+  height: 100% !important;
+  background: #4299e1 !important;
+  border-radius: 2px !important;
+  transition: width 0.3s ease !important;
+}
+
+/* 错误提示 */
+.ai-translator-error {
+  position: fixed !important;
+  bottom: 80px !important;
+  right: 20px !important;
+  background: #fed7d7 !important;
+  color: #c53030 !important;
+  padding: 10px 14px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  z-index: 2147483646 !important;
+  font-size: 13px !important;
+  max-width: 280px !important;
+}
+
+/* 设置面板 */
+.ai-translator-settings {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 480px !important;
+  max-height: 85vh !important;
+  background: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  z-index: 2147483647 !important;
+  overflow: hidden !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.ai-translator-settings-header {
+  background: #4299e1 !important;
+  color: white !important;
+  padding: 16px 20px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.ai-translator-settings-close {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 4px !important;
+}
+
+.ai-translator-settings-close:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.ai-translator-settings-body {
+  padding: 20px !important;
+  overflow-y: auto !important;
+  max-height: calc(85vh - 60px) !important;
+}
+
+.ai-translator-settings-group {
+  margin-bottom: 16px !important;
+}
+
+.ai-translator-settings-label {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #2d3748 !important;
+  margin-bottom: 6px !important;
+}
+
+.ai-translator-settings-input,
+.ai-translator-settings-textarea,
+.ai-translator-settings-select {
+  width: 100% !important;
+  padding: 8px 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  box-sizing: border-box !important;
+}
+
+.ai-translator-settings-input:focus,
+.ai-translator-settings-textarea:focus,
+.ai-translator-settings-select:focus {
+  outline: none !important;
+  border-color: #4299e1 !important;
+}
+
+.ai-translator-settings-textarea {
+  min-height: 120px !important;
+  resize: vertical !important;
+  font-family: "Consolas", "Monaco", monospace !important;
+}
+
+.ai-translator-settings-save {
+  background: #48bb78 !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  width: 100% !important;
+}
+
+.ai-translator-settings-save:hover {
+  background: #38a169 !important;
+}
+
+/* 遮罩层 */
+.ai-translator-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 2147483646 !important;
+}
+
+/* 原文隐藏模式 */
+.ai-translator-original-hidden .ai-source-text {
+  display: none !important;
+}
+
+/* 翻译隐藏模式 */
+.ai-translator-translation-hidden .ai-translator-translation {
+  display: none !important;
+}
+
+/* 夜间模式适配 */
+@media (prefers-color-scheme: dark) {
+  .ai-translator-controls {
+    background: #2d3748 !important;
+  }
+  
+  .ai-translator-status {
+    color: #e2e8f0 !important;
+  }
+  
+  .ai-translator-loading,
+  .ai-translator-progress,
+  .ai-translator-settings {
+    background: #1a202c !important;
+    color: #e2e8f0 !important;
+  }
+  
+  .ai-translator-settings-input,
+  .ai-translator-settings-textarea,
+  .ai-translator-settings-select {
+    background: #2d3748 !important;
+    border-color: #4a5568 !important;
+    color: #e2e8f0 !important;
+  }
+  
+  .ai-translator-settings-label {
+    color: #e2e8f0 !important;
+  }
+}

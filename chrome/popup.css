@@ -1,0 +1,320 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 320px;
+  min-height: 420px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f7fafc;
+  color: #2d3748;
+}
+
+/* 头部 */
+.header {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 内容区 */
+.content {
+  padding: 16px;
+}
+
+/* 状态指示器 */
+.status-section {
+  margin-bottom: 16px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #48bb78;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-text {
+  font-size: 14px;
+  color: #4a5568;
+}
+
+/* 按钮 */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  background: #cbd5e0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background: white;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.btn-secondary:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+/* 切换按钮组 */
+.toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggle-status {
+  text-align: center;
+  font-size: 12px;
+  color: #718096;
+  padding: 4px;
+  background: #edf2f7;
+  border-radius: 4px;
+}
+
+/* API 状态 */
+.api-status {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fef5e7;
+  border-left: 3px solid #f6ad55;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.api-status.show {
+  display: flex;
+}
+
+.api-status-icon {
+  font-size: 16px;
+}
+
+.api-status-text {
+  font-size: 13px;
+  color: #744210;
+}
+
+/* 信息区域 */
+.info-section {
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 13px;
+  color: #718096;
+}
+
+.info-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* 提示 */
+.tips {
+  background: #ebf8ff;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.tips h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2b6cb0;
+  margin-bottom: 8px;
+}
+
+.tips ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.tips li {
+  font-size: 12px;
+  color: #2c5282;
+  padding: 4px 0;
+  padding-left: 16px;
+  position: relative;
+}
+
+.tips li::before {
+  content: "•";
+  position: absolute;
+  left: 6px;
+  color: #4299e1;
+}
+
+/* 底部 */
+.footer {
+  text-align: center;
+  padding: 12px;
+  font-size: 12px;
+  color: #a0aec0;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* 加载动画 */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e2e8f0;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 夜间模式 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #1a202c;
+    color: #e2e8f0;
+  }
+  
+  .header {
+    background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+  }
+  
+  .status-indicator,
+  .info-section,
+  .tips,
+  .footer {
+    background: #2d3748;
+    color: #e2e8f0;
+  }
+  
+  .status-text,
+  .info-label {
+    color: #a0aec0;
+  }
+  
+  .info-value {
+    color: #e2e8f0;
+  }
+  
+  .tips h3 {
+    color: #90cdf4;
+  }
+  
+  .tips li {
+    color: #e2e8f0;
+  }
+  
+  .btn-secondary {
+    background: #4a5568;
+    color: #e2e8f0;
+    border-color: #4a5568;
+  }
+  
+  .btn-secondary:hover {
+    background: #4a5568;
+    border-color: #718096;
+  }
+  
+  .info-item {
+    border-bottom-color: #4a5568;
+  }
+  
+  .footer {
+    border-top-color: #4a5568;
+  }
+  
+  .toggle-status {
+    background: #4a5568;
+    color: #e2e8f0;
+  }
+}
