@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 词汇对应测试框架</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #2d3748;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      text-align: center;
+      color: #718096;
+      margin-bottom: 30px;
+    }
+    
+    .input-section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: vertical;
+      font-family: inherit;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: #4299e1;
+    }
+    
+    .config-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    
+    .config-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .config-item label {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 4px;
+    }
+    
+    .config-item input,
+    .config-item select {
+      padding: 8px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: transform 0.2s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+    
+    .btn:disabled {
+      background: #a0aec0;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .btn-secondary {
+      background: #48bb78;
+      margin-left: 10px;
+    }
+    
+    .result-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .result-panel {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .panel-title {
+      font-weight: 600;
+      color: #2d3748;
+    }
+    
+    .panel-badge {
+      background: #ebf8ff;
+      color: #2b6cb0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    
+    .text-display {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #2d3748;
+      min-height: 100px;
+    }
+    
+    .word {
+      cursor: pointer;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      display: inline-block;
+      margin: 1px;
+    }
+    
+    .word:hover {
+      background-color: rgba(66, 153, 225, 0.2);
+    }
+    
+    .word.highlight {
+      background-color: rgba(246, 173, 85, 0.6) !important;
+    }
+    
+    .word.highlight-source {
+      background-color: rgba(72, 187, 120, 0.6) !important;
+    }
+    
+    .mapping-section {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .mapping-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    
+    .mapping-table th,
+    .mapping-table td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .mapping-table th {
+      background: #f7fafc;
+      font-weight: 600;
+      color: #4a5568;
+      font-size: 13px;
+    }
+    
+    .mapping-table td {
+      font-size: 14px;
+    }
+    
+    .mapping-table tr:hover {
+      background: #f7fafc;
+    }
+    
+    .mapping-table .english {
+      color: #2b6cb0;
+      font-weight: 500;
+    }
+    
+    .mapping-table .chinese {
+      color: #2d3748;
+    }
+    
+    .status {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+    
+    .status.loading {
+      background: #ebf8ff;
+      color: #2b6cb0;
+    }
+    
+    .status.success {
+      background: #c6f6d5;
+      color: #22543d;
+    }
+    
+    .status.error {
+      background: #fed7d7;
+      color: #c53030;
+    }
+    
+    .raw-response {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 16px;
+      border-radius: 8px;
+      font-family: "Consolas", "Monaco", monospace;
+      font-size: 13px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      margin-top: 20px;
+    }
+    
+    .section-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #4299e1;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .test-cases {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    
+    .test-case-btn {
+      background: #edf2f7;
+      border: 1px solid #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .test-case-btn:hover {
+      background: #e2e8f0;
+    }
+    
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #718096;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 AI 词汇对应测试框架</h1>
+    <p class="subtitle">测试翻译质量和词汇对应表的准确性</p>
+    
+    <div class="input-section">
+      <div class="section-title">
+        <span>📝</span>
+        <span>输入英文文本</span>
+      </div>
+      <textarea id="input-text" placeholder="请输入要翻译的英文文本...">The network provides connectivity for fans at sports events.</textarea>
+      
+      <div class="test-cases">
+        <span style="font-size: 12px; color: #718096;">快速测试：</span>
+        <button class="test-case-btn" onclick="loadTestCase(1)">简单句</button>
+        <button class="test-case-btn" onclick="loadTestCase(2)">专业术语</button>
+        <button class="test-case-btn" onclick="loadTestCase(3)">多句段落</button>
+        <button class="test-case-btn" onclick="loadTestCase(4)">意译测试</button>
+      </div>
+      
+      <div class="config-row">
+        <div class="config-item">
+          <label>API Key</label>
+          <input type="password" id="api-key" placeholder="sk-...">
+        </div>
+        <div class="config-item">
+          <label>API Base URL</label>
+          <input type="text" id="api-url" value="https://api.moonshot.cn/v1">
+        </div>
+        <div class="config-item">
+          <label>模型</label>
+          <select id="api-model">
+            <option value="kimi-latest">kimi-latest</option>
+            <option value="kimi-for-coding">kimi-for-coding</option>
+            <option value="moonshot-v1-8k">moonshot-v1-8k</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="btn" id="translate-btn" onclick="startTranslation()">开始翻译测试</button>
+      <button class="btn btn-secondary" onclick="clearAll()">清空</button>
+      
+      <div id="status" class="status hidden"></div>
+    </div>
+    
+    <div class="result-section" id="result-section" style="display: none;">
+      <div class="result-panel">
+        <div class="panel-header">
+          <span class="panel-title">🇺🇸 原文</span>
+          <span class="panel-badge">悬停查看对应</span>
+        </div>
+        <div class="text-display" id="source-display"></div>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background: rgba(72, 187, 120, 0.6);"></div>
+            <span>对应高亮</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="result-panel">
+        <div class="panel-header">
+          <span class="panel-title">🇨🇳 译文</span>
+          <span class="panel-badge">悬停查看对应</span>
+        </div>
+        <div class="text-display" id="translation-display"></div>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-color" style="background: rgba(246, 173, 85, 0.6);"></div>
+            <span>对应高亮</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mapping-section" id="mapping-section" style="display: none;">
+      <div class="section-title">
+        <span>📊</span>
+        <span>AI 返回的词汇对应表</span>
+      </div>
+      <table class="mapping-table">
+        <thead>
+          <tr>
+            <th>英文原文</th>
+            <th>中文对应</th>
+            <th>测试</th>
+          </tr>
+        </thead>
+        <tbody id="mapping-tbody">
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="section-toggle" onclick="toggleRawResponse()">
+      <span>🔍</span>
+      <span>查看 AI 原始响应</span>
+    </div>
+    <div class="raw-response hidden" id="raw-response"></div>
+  </div>
+
+  <script>
+    const testCases = {
+      1: "The cat sat on the mat.",
+      2: "GPS jamming affects navigation systems and mobile networks.",
+      3: "The stadium provides high-speed connectivity for thousands of fans. Mobile operators deploy 5G networks to handle the traffic.",
+      4: "It's raining cats and dogs outside. We need to take shelter immediately."
+    };
+    
+    let wordMapping = new Map();
+    
+    function loadTestCase(id) {
+      document.getElementById('input-text').value = testCases[id];
+    }
+    
+    function showStatus(message, type) {
+      const status = document.getElementById('status');
+      status.textContent = message;
+      status.className = `status ${type}`;
+      status.classList.remove('hidden');
+    }
+    
+    function hideStatus() {
+      document.getElementById('status').classList.add('hidden');
+    }
+    
+    function buildPrompt(text) {
+      return `你是一位专业的网页翻译助手。请将以下文本翻译成中文。
+
+【翻译要求】
+1. 保留所有英文专业术语、技术词汇、专有名词不翻译
+2. 中文翻译应该通顺、自然、专业
+3. 输出格式：翻译结果 + 词汇对应表
+
+【待翻译内容】
+${text}
+
+【输出格式要求】
+请按以下格式输出：
+
+原文 | 中文翻译
+
+[词汇对应]
+英文单词1 | 对应中文1
+英文单词2 | 对应中文2
+...
+[/词汇对应]
+
+重要提示：
+- 只输出翻译结果和词汇对应表
+- 词汇对应表只包含实词（名词、动词、形容词等）
+- 每个英文单词对应最准确的中文翻译`;
+    }
+    
+    async function startTranslation() {
+      const text = document.getElementById('input-text').value.trim();
+      const apiKey = document.getElementById('api-key').value.trim();
+      const baseUrl = document.getElementById('api-url').value.trim();
+      const model = document.getElementById('api-model').value;
+      
+      if (!text) {
+        showStatus('请输入要翻译的文本', 'error');
+        return;
+      }
+      
+      if (!apiKey) {
+        showStatus('请输入 API Key', 'error');
+        return;
+      }
+      
+      const btn = document.getElementById('translate-btn');
+      btn.disabled = true;
+      showStatus('正在翻译，请稍候...', 'loading');
+      
+      try {
+        const response = await fetch(`${baseUrl}/chat/completions`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              { role: 'system', content: '你是专业的翻译助手，擅长中英互译并提供准确的词汇对应关系。' },
+              { role: 'user', content: buildPrompt(text) }
+            ],
+            temperature: 0.3,
+            max_tokens: 2000
+          })
+        });
+        
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error?.message || `HTTP ${response.status}`);
+        }
+        
+        const data = await response.json();
+        const result = data.choices[0].message.content;
+        
+        document.getElementById('raw-response').textContent = result;
+        parseAndDisplay(result, text);
+        showStatus('翻译完成！', 'success');
+        
+      } catch (error) {
+        showStatus(`翻译失败: ${error.message}`, 'error');
+        console.error(error);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+    
+    function parseAndDisplay(result, sourceText) {
+      wordMapping = new Map();
+      const mappingMatch = result.match(/\[词汇对应\]([\s\S]*?)\[\/词汇对应\]/);
+      
+      if (mappingMatch) {
+        const mappingText = mappingMatch[1].trim();
+        const lines = mappingText.split('\n');
+        
+        for (const line of lines) {
+          const parts = line.split('|').map(p => p.trim());
+          if (parts.length >= 2 && parts[0] && parts[1]) {
+            const english = parts[0].toLowerCase().replace(/[^a-z]/g, '');
+            const chinese = parts[1];
+            if (english.length >= 2) {
+              if (!wordMapping.has(english)) {
+                wordMapping.set(english, []);
+              }
+              wordMapping.get(english).push(chinese);
+            }
+          }
+        }
+      }
+      
+      let translation = result;
+      const mappingIndex = result.indexOf('[词汇对应]');
+      if (mappingIndex > 0) {
+        translation = result.substring(0, mappingIndex).trim();
+        const pipeIndex = translation.indexOf('|');
+        if (pipeIndex > 0) {
+          translation = translation.substring(pipeIndex + 1).trim();
+        }
+      } else {
+        const pipeIndex = result.indexOf('|');
+        if (pipeIndex > 0) {
+          translation = result.substring(pipeIndex + 1).trim();
+        }
+      }
+      
+      displaySourceText(sourceText);
+      displayTranslationText(translation);
+      displayMappingTable();
+      
+      document.getElementById('result-section').style.display = 'grid';
+      document.getElementById('mapping-section').style.display = 'block';
+    }
+    
+    function displaySourceText(text) {
+      const container = document.getElementById('source-display');
+      container.innerHTML = '';
+      const tokens = text.split(/(\s+|[.,!?;:()""''\[\]{}])/);
+      
+      tokens.forEach(token => {
+        if (!token) return;
+        const span = document.createElement('span');
+        span.textContent = token;
+        
+        if (/\b[a-zA-Z]{2,}\b/.test(token)) {
+          span.className = 'word';
+          span.dataset.word = token.toLowerCase().replace(/[^a-z]/g, '');
+          
+          span.addEventListener('mouseenter', () => {
+            highlightTranslationWord(span.dataset.word);
+          });
+          span.addEventListener('mouseleave', () => {
+            clearHighlight();
+          });
+        }
+        container.appendChild(span);
+      });
+    }
+    
+    function displayTranslationText(text) {
+      const container = document.getElementById('translation-display');
+      container.innerHTML = '';
+      const tokens = text.split(/([\u4e00-\u9fa5]+|\s+|[，。！？；：()""''【】、])/);
+      
+      tokens.forEach(token => {
+        if (!token) return;
+        const span = document.createElement('span');
+        span.textContent = token;
+        
+        if (/[\u4e00-\u9fa5]/.test(token) || /\b[a-zA-Z]{2,}\b/.test(token)) {
+          span.className = 'word';
+          
+          span.addEventListener('mouseenter', () => {
+            span.classList.add('highlight');
+            highlightSourceWord(token);
+          });
+          span.addEventListener('mouseleave', () => {
+            span.classList.remove('highlight');
+            clearHighlight();
+          });
+        }
+        container.appendChild(span);
+      });
+    }
+    
+    function displayMappingTable() {
+      const tbody = document.getElementById('mapping-tbody');
+      tbody.innerHTML = '';
+      
+      if (wordMapping.size === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" style="text-align: center; color: #a0aec0;">未解析到词汇对应表</td></tr>';
+        return;
+      }
+      
+      wordMapping.forEach((chineseList, english) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="english">${english}</td>
+          <td class="chinese">${chineseList.join(', ')}</td>
+          <td><button class="test-case-btn" onclick="testMapping('${english}')">测试</button></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+    
+    function highlightTranslationWord(word) {
+      const targetWords = wordMapping.get(word);
+      if (!targetWords) return;
+      
+      const transWords = document.querySelectorAll('#translation-display .word');
+      transWords.forEach(el => {
+        const text = el.textContent;
+        for (const target of targetWords) {
+          if (text.includes(target)) {
+            el.classList.add('highlight');
+            break;
+          }
+        }
+      });
+    }
+    
+    function highlightSourceWord(word) {
+      for (const [eng, chns] of wordMapping.entries()) {
+        for (const chn of chns) {
+          if (word.includes(chn) || chn.includes(word)) {
+            const sourceWords = document.querySelectorAll('#source-display .word');
+            sourceWords.forEach(el => {
+              if (el.dataset.word === eng) {
+                el.classList.add('highlight-source');
+              }
+            });
+            return;
+          }
+        }
+      }
+    }
+    
+    function clearHighlight() {
+      document.querySelectorAll('.word.highlight, .word.highlight-source').forEach(el => {
+        el.classList.remove('highlight', 'highlight-source');
+      });
+    }
+    
+    function testMapping(english) {
+      const sourceWords = document.querySelectorAll('#source-display .word');
+      sourceWords.forEach(el => {
+        if (el.dataset.word === english.toLowerCase()) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight-source');
+          setTimeout(() => el.classList.remove('highlight-source'), 2000);
+          highlightTranslationWord(english.toLowerCase());
+          setTimeout(clearHighlight, 2000);
+        }
+      });
+    }
+    
+    function toggleRawResponse() {
+      document.getElementById('raw-response').classList.toggle('hidden');
+    }
+    
+    function clearAll() {
+      document.getElementById('input-text').value = '';
+      document.getElementById('source-display').innerHTML = '';
+      document.getElementById('translation-display').innerHTML = '';
+      document.getElementById('mapping-tbody').innerHTML = '';
+      document.getElementById('raw-response').textContent = '';
+      document.getElementById('result-section').style.display = 'none';
+      document.getElementById('mapping-section').style.display = 'none';
+      hideStatus();
+      wordMapping.clear();
+    }
+  </script>
+</body>
+</html>

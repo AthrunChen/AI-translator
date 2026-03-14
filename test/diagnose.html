@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API 连接诊断工具</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f7fa;
+    }
+    h1 { color: #2d3748; }
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      background: #4299e1;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover { background: #3182ce; }
+    .log {
+      background: #1a202c;
+      color: #e2e8f0;
+      padding: 15px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 13px;
+      max-height: 400px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+    .success { color: #48bb78; }
+    .error { color: #fc8181; }
+    .warning { color: #f6ad55; }
+  </style>
+</head>
+<body>
+  <h1>🔧 API 连接诊断工具</h1>
+  
+  <div class="section">
+    <h3>配置信息</h3>
+    <input type="text" id="api-url" placeholder="API URL" value="https://api.moonshot.cn/v1">
+    <input type="password" id="api-key" placeholder="API Key (sk-...)">
+    <select id="api-provider">
+      <option value="kimi">Kimi (Moonshot)</option>
+      <option value="openai">OpenAI</option>
+      <option value="custom">自定义</option>
+    </select>
+    <button onclick="startDiagnosis()">开始诊断</button>
+  </div>
+
+  <div class="section">
+    <h3>诊断日志</h3>
+    <div class="log" id="log">点击"开始诊断"按钮...</div>
+    <button onclick="clearLog()" style="margin-top: 10px; width: auto;">清空日志</button>
+  </div>
+
+  <script>
+    function log(message, type = 'info') {
+      const logEl = document.getElementById('log');
+      const timestamp = new Date().toLocaleTimeString();
+      const colorClass = type === 'success' ? 'success' : type === 'error' ? 'error' : type === 'warning' ? 'warning' : '';
+      logEl.innerHTML += `[${timestamp}] <span class="${colorClass}">${message}</span>\n`;
+      logEl.scrollTop = logEl.scrollHeight;
+      console.log(`[${type}] ${message}`);
+    }
+
+    function clearLog() {
+      document.getElementById('log').innerHTML = '';
+    }
+
+    async function startDiagnosis() {
+      clearLog();
+      
+      const url = document.getElementById('api-url').value.trim();
+      const key = document.getElementById('api-key').value.trim();
+      const provider = document.getElementById('api-provider').value;
+      
+      if (!url || !key) {
+        log('❌ 请填写 API URL 和 Key', 'error');
+        return;
+      }
+
+      log('🚀 开始诊断...');
+      log(`📋 配置: ${provider}`);
+      log(`🔗 URL: ${url}`);
+      log(`🔑 Key: ${key.substring(0, 10)}...`);
+
+      // 测试1: 网络连通性
+      log('\n--- 测试1: 网络连通性 ---');
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        
+        const testUrl = url.endsWith('/v1') ? `${url}/models` : url;
+        log(`🌐 测试连接: ${testUrl}`);
+        
+        const response = await fetch(testUrl, {
+          method: 'GET',
+          headers: { 'Authorization': `Bearer ${key}` },
+          signal: controller.signal
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (response.ok) {
+          log('✅ 网络连接正常', 'success');
+          try {
+            const data = await response.json();
+            if (data.data) {
+              log(`✅ 获取到 ${data.data.length} 个可用模型`, 'success');
+            }
+          } catch (e) {
+            log('⚠️ 响应不是 JSON 格式', 'warning');
+          }
+        } else {
+          log(`❌ HTTP 错误: ${response.status} ${response.statusText}`, 'error');
+          const text = await response.text();
+          log(`错误详情: ${text.substring(0, 200)}`, 'error');
+        }
+      } catch (error) {
+        log(`❌ 连接失败: ${error.name}: ${error.message}`, 'error');
+        
+        if (error.name === 'TypeError') {
+          log('💡 提示: 这可能是 CORS 错误或网络连接问题', 'warning');
+        } else if (error.name === 'AbortError') {
+          log('💡 提示: 请求超时，检查网络连接', 'warning');
+        }
+      }
+
+      // 测试2: 简单的翻译请求
+      log('\n--- 测试2: 翻译请求 ---');
+      try {
+        const chatUrl = url.endsWith('/v1') ? `${url}/chat/completions` : `${url}/v1/chat/completions`;
+        log(`🌐 发送翻译请求: ${chatUrl}`);
+        
+        const model = provider === 'kimi' ? 'kimi-latest' : 'gpt-3.5-turbo';
+        
+        const response = await fetch(chatUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${key}`
+          },
+          body: JSON.stringify({
+            model: model,
+            messages: [
+              { role: 'user', content: 'Translate "Hello world" to Chinese.' }
+            ],
+            max_tokens: 100
+          })
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          const result = data.choices?.[0]?.message?.content;
+          log('✅ 翻译请求成功', 'success');
+          log(`📝 结果: ${result}`);
+        } else {
+          log(`❌ 翻译失败: ${response.status} ${response.statusText}`, 'error');
+          const text = await response.text();
+          log(`错误详情: ${text.substring(0, 500)}`, 'error');
+        }
+      } catch (error) {
+        log(`❌ 翻译请求失败: ${error.name}: ${error.message}`, 'error');
+      }
+
+      // 测试3: 浏览器信息
+      log('\n--- 测试3: 浏览器环境 ---');
+      log(`🌐 协议: ${window.location.protocol}`);
+      log(`🖥️  主机: ${window.location.host}`);
+      log(`📱 UserAgent: ${navigator.userAgent.substring(0, 50)}...`);
+      
+      if (window.location.protocol === 'file:') {
+        log('⚠️ 警告: 通过 file:// 协议打开，这可能是 CORS 问题的原因！', 'warning');
+        log('💡 解决方案:');
+        log('   1. 使用 HTTP 服务器: python3 -m http.server 8000');
+        log('   2. 在浏览器扩展中运行（无 CORS 限制）');
+      }
+
+      log('\n✅ 诊断完成');
+    }
+  </script>
+</body>
+</html>
