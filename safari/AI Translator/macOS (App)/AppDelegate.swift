@@ -1,21 +1,17 @@
-//
-//  AppDelegate.swift
-//  macOS (App)
-//
-//  Created by 陈昱帆 on 2026/3/15.
-//
-
 import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // Override point for customization after application launch.
+        // 禁用 Metal 渲染
+        UserDefaults.standard.set(true, forKey: "NSAppKitDisableMetal")
     }
 
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    func applicationWillTerminate(_ notification: Notification) {
+    }
+
+    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
     }
-
 }

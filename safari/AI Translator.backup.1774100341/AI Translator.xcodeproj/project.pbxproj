@@ -1,0 +1,1053 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		916872BF2F66BDC8007DEBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */; };
+		916872C12F66BDC8007DEBE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */; };
+		916872C42F66BDC8007DEBE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */; };
+		916872C72F66BDC8007DEBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872C52F66BDC8007DEBE0 /* Main.storyboard */; };
+		916872D02F66BDC8007DEBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */; };
+		916872D32F66BDC8007DEBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872D12F66BDC8007DEBE0 /* Main.storyboard */; };
+		916872DA2F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		916872E42F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		916872E92F66BDC8007DEBE0 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 916872AE2F66BDC7007DEBE0 /* Main.html */; };
+		916872EA2F66BDC8007DEBE0 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 916872AE2F66BDC7007DEBE0 /* Main.html */; };
+		916872EB2F66BDC8007DEBE0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 916872B02F66BDC7007DEBE0 /* Icon.png */; };
+		916872EC2F66BDC8007DEBE0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 916872B02F66BDC7007DEBE0 /* Icon.png */; };
+		916872ED2F66BDC8007DEBE0 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 916872B12F66BDC7007DEBE0 /* Style.css */; };
+		916872EE2F66BDC8007DEBE0 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 916872B12F66BDC7007DEBE0 /* Style.css */; };
+		916872EF2F66BDC8007DEBE0 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 916872B22F66BDC7007DEBE0 /* Script.js */; };
+		916872F02F66BDC8007DEBE0 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 916872B22F66BDC7007DEBE0 /* Script.js */; };
+		916872F12F66BDC8007DEBE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B32F66BDC7007DEBE0 /* ViewController.swift */; };
+		916872F22F66BDC8007DEBE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B32F66BDC7007DEBE0 /* ViewController.swift */; };
+		916872F32F66BDC8007DEBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 916872B42F66BDC8007DEBE0 /* Assets.xcassets */; };
+		916872F42F66BDC8007DEBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 916872B42F66BDC8007DEBE0 /* Assets.xcassets */; };
+		916872F52F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */; };
+		916872F62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */; };
+		916873142F66BDCA007DEBE0 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873082F66BDCA007DEBE0 /* api-adapter.js */; };
+		916873152F66BDCA007DEBE0 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873092F66BDCA007DEBE0 /* translator.css */; };
+		916873162F66BDCA007DEBE0 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730A2F66BDCA007DEBE0 /* popup.js */; };
+		916873172F66BDCA007DEBE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730B2F66BDCA007DEBE0 /* background.js */; };
+		916873182F66BDCA007DEBE0 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730C2F66BDCA007DEBE0 /* popup.html */; };
+		916873192F66BDCA007DEBE0 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730D2F66BDCA007DEBE0 /* config.js */; };
+		9168731A2F66BDCA007DEBE0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9168730E2F66BDCA007DEBE0 /* icons */; };
+		9168731B2F66BDCA007DEBE0 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730F2F66BDCA007DEBE0 /* welcome.html */; };
+		9168731C2F66BDCA007DEBE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 916873102F66BDCA007DEBE0 /* manifest.json */; };
+		9168731D2F66BDCA007DEBE0 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873112F66BDCA007DEBE0 /* popup.css */; };
+		9168731E2F66BDCA007DEBE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873122F66BDCA007DEBE0 /* content.js */; };
+		9168731F2F66BDCA007DEBE0 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873132F66BDCA007DEBE0 /* view-mapping.js */; };
+		916873202F66BDCA007DEBE0 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873082F66BDCA007DEBE0 /* api-adapter.js */; };
+		916873212F66BDCA007DEBE0 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873092F66BDCA007DEBE0 /* translator.css */; };
+		916873222F66BDCA007DEBE0 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730A2F66BDCA007DEBE0 /* popup.js */; };
+		916873232F66BDCA007DEBE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730B2F66BDCA007DEBE0 /* background.js */; };
+		916873242F66BDCA007DEBE0 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730C2F66BDCA007DEBE0 /* popup.html */; };
+		916873252F66BDCA007DEBE0 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730D2F66BDCA007DEBE0 /* config.js */; };
+		916873262F66BDCA007DEBE0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9168730E2F66BDCA007DEBE0 /* icons */; };
+		916873272F66BDCA007DEBE0 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730F2F66BDCA007DEBE0 /* welcome.html */; };
+		916873282F66BDCA007DEBE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 916873102F66BDCA007DEBE0 /* manifest.json */; };
+		916873292F66BDCA007DEBE0 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873112F66BDCA007DEBE0 /* popup.css */; };
+		9168732A2F66BDCA007DEBE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873122F66BDCA007DEBE0 /* content.js */; };
+		9168732B2F66BDCA007DEBE0 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873132F66BDCA007DEBE0 /* view-mapping.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		916872DB2F66BDC8007DEBE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 916872A82F66BDC7007DEBE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 916872D82F66BDC8007DEBE0;
+			remoteInfo = "AI Translator Extension (iOS)";
+		};
+		916872E52F66BDC8007DEBE0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 916872A82F66BDC7007DEBE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 916872E22F66BDC8007DEBE0;
+			remoteInfo = "AI Translator Extension (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		916872FC2F66BDC8007DEBE0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				916872DA2F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916873032F66BDC8007DEBE0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				916872E42F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		916872AF2F66BDC7007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		916872B02F66BDC7007DEBE0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		916872B12F66BDC7007DEBE0 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		916872B22F66BDC7007DEBE0 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		916872B32F66BDC7007DEBE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		916872B42F66BDC8007DEBE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		916872BB2F66BDC8007DEBE0 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		916872C32F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		916872C62F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		916872C82F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		916872CD2F66BDC8007DEBE0 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		916872D22F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		916872D42F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		916872DE2F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		916872E82F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		916873082F66BDCA007DEBE0 /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "Resources/api-adapter.js"; sourceTree = "<group>"; };
+		916873092F66BDCA007DEBE0 /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = Resources/translator.css; sourceTree = "<group>"; };
+		9168730A2F66BDCA007DEBE0 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = Resources/popup.js; sourceTree = "<group>"; };
+		9168730B2F66BDCA007DEBE0 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
+		9168730C2F66BDCA007DEBE0 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
+		9168730D2F66BDCA007DEBE0 /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = Resources/config.js; sourceTree = "<group>"; };
+		9168730E2F66BDCA007DEBE0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
+		9168730F2F66BDCA007DEBE0 /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = Resources/welcome.html; sourceTree = "<group>"; };
+		916873102F66BDCA007DEBE0 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		916873112F66BDCA007DEBE0 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = Resources/popup.css; sourceTree = "<group>"; };
+		916873122F66BDCA007DEBE0 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = Resources/content.js; sourceTree = "<group>"; };
+		916873132F66BDCA007DEBE0 /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "Resources/view-mapping.js"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		916872B82F66BDC8007DEBE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872CA2F66BDC8007DEBE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872D62F66BDC8007DEBE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872E02F66BDC8007DEBE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		916872A72F66BDC7007DEBE0 = {
+			isa = PBXGroup;
+			children = (
+				916872AC2F66BDC7007DEBE0 /* Shared (App) */,
+				916872B52F66BDC8007DEBE0 /* Shared (Extension) */,
+				916872BD2F66BDC8007DEBE0 /* iOS (App) */,
+				916872CE2F66BDC8007DEBE0 /* macOS (App) */,
+				916872DD2F66BDC8007DEBE0 /* iOS (Extension) */,
+				916872E72F66BDC8007DEBE0 /* macOS (Extension) */,
+				916872BC2F66BDC8007DEBE0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		916872AC2F66BDC7007DEBE0 /* Shared (App) */ = {
+			isa = PBXGroup;
+			children = (
+				916872B32F66BDC7007DEBE0 /* ViewController.swift */,
+				916872B42F66BDC8007DEBE0 /* Assets.xcassets */,
+				916872AD2F66BDC7007DEBE0 /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		916872AD2F66BDC7007DEBE0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				916872AE2F66BDC7007DEBE0 /* Main.html */,
+				916872B02F66BDC7007DEBE0 /* Icon.png */,
+				916872B12F66BDC7007DEBE0 /* Style.css */,
+				916872B22F66BDC7007DEBE0 /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		916872B52F66BDC8007DEBE0 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				916873072F66BDCA007DEBE0 /* Resources */,
+				916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		916872BC2F66BDC8007DEBE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				916872BB2F66BDC8007DEBE0 /* AI Translator.app */,
+				916872CD2F66BDC8007DEBE0 /* AI Translator.app */,
+				916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */,
+				916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		916872BD2F66BDC8007DEBE0 /* iOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */,
+				916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */,
+				916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */,
+				916872C52F66BDC8007DEBE0 /* Main.storyboard */,
+				916872C82F66BDC8007DEBE0 /* Info.plist */,
+			);
+			path = "iOS (App)";
+			sourceTree = "<group>";
+		};
+		916872CE2F66BDC8007DEBE0 /* macOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */,
+				916872D12F66BDC8007DEBE0 /* Main.storyboard */,
+				916872D42F66BDC8007DEBE0 /* Info.plist */,
+			);
+			path = "macOS (App)";
+			sourceTree = "<group>";
+		};
+		916872DD2F66BDC8007DEBE0 /* iOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				916872DE2F66BDC8007DEBE0 /* Info.plist */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		916872E72F66BDC8007DEBE0 /* macOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				916872E82F66BDC8007DEBE0 /* Info.plist */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		916873072F66BDCA007DEBE0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				916873082F66BDCA007DEBE0 /* api-adapter.js */,
+				916873092F66BDCA007DEBE0 /* translator.css */,
+				9168730A2F66BDCA007DEBE0 /* popup.js */,
+				9168730B2F66BDCA007DEBE0 /* background.js */,
+				9168730C2F66BDCA007DEBE0 /* popup.html */,
+				9168730D2F66BDCA007DEBE0 /* config.js */,
+				9168730E2F66BDCA007DEBE0 /* icons */,
+				9168730F2F66BDCA007DEBE0 /* welcome.html */,
+				916873102F66BDCA007DEBE0 /* manifest.json */,
+				916873112F66BDCA007DEBE0 /* popup.css */,
+				916873122F66BDCA007DEBE0 /* content.js */,
+				916873132F66BDCA007DEBE0 /* view-mapping.js */,
+			);
+			name = Resources;
+			path = "Shared (Extension)";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		916872BA2F66BDC8007DEBE0 /* AI Translator (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 916872FD2F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */;
+			buildPhases = (
+				916872B72F66BDC8007DEBE0 /* Sources */,
+				916872B82F66BDC8007DEBE0 /* Frameworks */,
+				916872B92F66BDC8007DEBE0 /* Resources */,
+				916872FC2F66BDC8007DEBE0 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				916872DC2F66BDC8007DEBE0 /* PBXTargetDependency */,
+			);
+			name = "AI Translator (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Translator (iOS)";
+			productReference = 916872BB2F66BDC8007DEBE0 /* AI Translator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		916872CC2F66BDC8007DEBE0 /* AI Translator (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 916873042F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */;
+			buildPhases = (
+				916872C92F66BDC8007DEBE0 /* Sources */,
+				916872CA2F66BDC8007DEBE0 /* Frameworks */,
+				916872CB2F66BDC8007DEBE0 /* Resources */,
+				916873032F66BDC8007DEBE0 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				916872E62F66BDC8007DEBE0 /* PBXTargetDependency */,
+			);
+			name = "AI Translator (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Translator (macOS)";
+			productReference = 916872CD2F66BDC8007DEBE0 /* AI Translator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 916872F92F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */;
+			buildPhases = (
+				916872D52F66BDC8007DEBE0 /* Sources */,
+				916872D62F66BDC8007DEBE0 /* Frameworks */,
+				916872D72F66BDC8007DEBE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AI Translator Extension (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Translator Extension (iOS)";
+			productReference = 916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 916873002F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */;
+			buildPhases = (
+				916872DF2F66BDC8007DEBE0 /* Sources */,
+				916872E02F66BDC8007DEBE0 /* Frameworks */,
+				916872E12F66BDC8007DEBE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AI Translator Extension (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Translator Extension (macOS)";
+			productReference = 916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		916872A82F66BDC7007DEBE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					916872BA2F66BDC8007DEBE0 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					916872CC2F66BDC8007DEBE0 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					916872D82F66BDC8007DEBE0 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					916872E22F66BDC8007DEBE0 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+				};
+			};
+			buildConfigurationList = 916872AB2F66BDC7007DEBE0 /* Build configuration list for PBXProject "AI Translator" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 916872A72F66BDC7007DEBE0;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 916872BC2F66BDC8007DEBE0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				916872BA2F66BDC8007DEBE0 /* AI Translator (iOS) */,
+				916872CC2F66BDC8007DEBE0 /* AI Translator (macOS) */,
+				916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */,
+				916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		916872B92F66BDC8007DEBE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872EB2F66BDC8007DEBE0 /* Icon.png in Resources */,
+				916872C42F66BDC8007DEBE0 /* LaunchScreen.storyboard in Resources */,
+				916872E92F66BDC8007DEBE0 /* Main.html in Resources */,
+				916872EF2F66BDC8007DEBE0 /* Script.js in Resources */,
+				916872F32F66BDC8007DEBE0 /* Assets.xcassets in Resources */,
+				916872C72F66BDC8007DEBE0 /* Main.storyboard in Resources */,
+				916872ED2F66BDC8007DEBE0 /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872CB2F66BDC8007DEBE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872EC2F66BDC8007DEBE0 /* Icon.png in Resources */,
+				916872EE2F66BDC8007DEBE0 /* Style.css in Resources */,
+				916872D32F66BDC8007DEBE0 /* Main.storyboard in Resources */,
+				916872F02F66BDC8007DEBE0 /* Script.js in Resources */,
+				916872F42F66BDC8007DEBE0 /* Assets.xcassets in Resources */,
+				916872EA2F66BDC8007DEBE0 /* Main.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872D72F66BDC8007DEBE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916873292F66BDCA007DEBE0 /* popup.css in Resources */,
+				9168732A2F66BDCA007DEBE0 /* content.js in Resources */,
+				916873252F66BDCA007DEBE0 /* config.js in Resources */,
+				916873232F66BDCA007DEBE0 /* background.js in Resources */,
+				916873242F66BDCA007DEBE0 /* popup.html in Resources */,
+				916873272F66BDCA007DEBE0 /* welcome.html in Resources */,
+				916873282F66BDCA007DEBE0 /* manifest.json in Resources */,
+				916873202F66BDCA007DEBE0 /* api-adapter.js in Resources */,
+				916873222F66BDCA007DEBE0 /* popup.js in Resources */,
+				916873262F66BDCA007DEBE0 /* icons in Resources */,
+				9168732B2F66BDCA007DEBE0 /* view-mapping.js in Resources */,
+				916873212F66BDCA007DEBE0 /* translator.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872E12F66BDC8007DEBE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9168731D2F66BDCA007DEBE0 /* popup.css in Resources */,
+				9168731E2F66BDCA007DEBE0 /* content.js in Resources */,
+				916873192F66BDCA007DEBE0 /* config.js in Resources */,
+				916873172F66BDCA007DEBE0 /* background.js in Resources */,
+				916873182F66BDCA007DEBE0 /* popup.html in Resources */,
+				9168731B2F66BDCA007DEBE0 /* welcome.html in Resources */,
+				9168731C2F66BDCA007DEBE0 /* manifest.json in Resources */,
+				916873142F66BDCA007DEBE0 /* api-adapter.js in Resources */,
+				916873162F66BDCA007DEBE0 /* popup.js in Resources */,
+				9168731A2F66BDCA007DEBE0 /* icons in Resources */,
+				9168731F2F66BDCA007DEBE0 /* view-mapping.js in Resources */,
+				916873152F66BDCA007DEBE0 /* translator.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		916872B72F66BDC8007DEBE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872F12F66BDC8007DEBE0 /* ViewController.swift in Sources */,
+				916872BF2F66BDC8007DEBE0 /* AppDelegate.swift in Sources */,
+				916872C12F66BDC8007DEBE0 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872C92F66BDC8007DEBE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872F22F66BDC8007DEBE0 /* ViewController.swift in Sources */,
+				916872D02F66BDC8007DEBE0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872D52F66BDC8007DEBE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872F52F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		916872DF2F66BDC8007DEBE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				916872F62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		916872DC2F66BDC8007DEBE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */;
+			targetProxy = 916872DB2F66BDC8007DEBE0 /* PBXContainerItemProxy */;
+		};
+		916872E62F66BDC8007DEBE0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */;
+			targetProxy = 916872E52F66BDC8007DEBE0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		916872AE2F66BDC7007DEBE0 /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				916872AF2F66BDC7007DEBE0 /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				916872C32F66BDC8007DEBE0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		916872C52F66BDC8007DEBE0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				916872C62F66BDC8007DEBE0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		916872D12F66BDC8007DEBE0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				916872D22F66BDC8007DEBE0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		916872F72F66BDC8007DEBE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		916872F82F66BDC8007DEBE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		916872FA2F66BDC8007DEBE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
+				PRODUCT_NAME = "AI Translator Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		916872FB2F66BDC8007DEBE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
+				PRODUCT_NAME = "AI Translator Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		916872FE2F66BDC8007DEBE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
+				PRODUCT_NAME = "AI Translator";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		916872FF2F66BDC8007DEBE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
+				PRODUCT_NAME = "AI Translator";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		916873012F66BDC8007DEBE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+					PREFERS_CUSTOM_DRAWING = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+					ARCHS = x86_64;
+					VALID_ARCHS = x86_64;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
+				PRODUCT_NAME = "AI Translator Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		916873022F66BDC8007DEBE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+					PREFERS_CUSTOM_DRAWING = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+					ARCHS = x86_64;
+					VALID_ARCHS = x86_64;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
+				PRODUCT_NAME = "AI Translator Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		916873052F66BDC8007DEBE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "-";
+					DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+					PREFERS_CUSTOM_DRAWING = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+					MTL_ENABLE_DEBUG_INFO = NO;
+					MTL_FAST_MATH = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+					ARCHS = x86_64;
+					VALID_ARCHS = x86_64;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
+				PRODUCT_NAME = "AI Translator";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		916873062F66BDC8007DEBE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "-";
+					DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+					PREFERS_CUSTOM_DRAWING = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+					MTL_ENABLE_DEBUG_INFO = NO;
+					MTL_FAST_MATH = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Translator";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+					ARCHS = x86_64;
+					VALID_ARCHS = x86_64;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
+				PRODUCT_NAME = "AI Translator";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		916872AB2F66BDC7007DEBE0 /* Build configuration list for PBXProject "AI Translator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916872F72F66BDC8007DEBE0 /* Debug */,
+				916872F82F66BDC8007DEBE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		916872F92F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916872FA2F66BDC8007DEBE0 /* Debug */,
+				916872FB2F66BDC8007DEBE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		916872FD2F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916872FE2F66BDC8007DEBE0 /* Debug */,
+				916872FF2F66BDC8007DEBE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		916873002F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916873012F66BDC8007DEBE0 /* Debug */,
+				916873022F66BDC8007DEBE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		916873042F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916873052F66BDC8007DEBE0 /* Debug */,
+				916873062F66BDC8007DEBE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 916872A82F66BDC7007DEBE0 /* Project object */;
+}

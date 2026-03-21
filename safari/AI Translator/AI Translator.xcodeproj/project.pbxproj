@@ -7,90 +7,90 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		916872BF2F66BDC8007DEBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */; };
-		916872C12F66BDC8007DEBE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */; };
-		916872C42F66BDC8007DEBE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */; };
-		916872C72F66BDC8007DEBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872C52F66BDC8007DEBE0 /* Main.storyboard */; };
-		916872D02F66BDC8007DEBE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */; };
-		916872D32F66BDC8007DEBE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 916872D12F66BDC8007DEBE0 /* Main.storyboard */; };
-		916872DA2F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		916872E42F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		916872E92F66BDC8007DEBE0 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 916872AE2F66BDC7007DEBE0 /* Main.html */; };
-		916872EA2F66BDC8007DEBE0 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 916872AE2F66BDC7007DEBE0 /* Main.html */; };
-		916872EB2F66BDC8007DEBE0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 916872B02F66BDC7007DEBE0 /* Icon.png */; };
-		916872EC2F66BDC8007DEBE0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 916872B02F66BDC7007DEBE0 /* Icon.png */; };
-		916872ED2F66BDC8007DEBE0 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 916872B12F66BDC7007DEBE0 /* Style.css */; };
-		916872EE2F66BDC8007DEBE0 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 916872B12F66BDC7007DEBE0 /* Style.css */; };
-		916872EF2F66BDC8007DEBE0 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 916872B22F66BDC7007DEBE0 /* Script.js */; };
-		916872F02F66BDC8007DEBE0 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 916872B22F66BDC7007DEBE0 /* Script.js */; };
-		916872F12F66BDC8007DEBE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B32F66BDC7007DEBE0 /* ViewController.swift */; };
-		916872F22F66BDC8007DEBE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B32F66BDC7007DEBE0 /* ViewController.swift */; };
-		916872F32F66BDC8007DEBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 916872B42F66BDC8007DEBE0 /* Assets.xcassets */; };
-		916872F42F66BDC8007DEBE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 916872B42F66BDC8007DEBE0 /* Assets.xcassets */; };
-		916872F52F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */; };
-		916872F62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */; };
-		916873142F66BDCA007DEBE0 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873082F66BDCA007DEBE0 /* api-adapter.js */; };
-		916873152F66BDCA007DEBE0 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873092F66BDCA007DEBE0 /* translator.css */; };
-		916873162F66BDCA007DEBE0 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730A2F66BDCA007DEBE0 /* popup.js */; };
-		916873172F66BDCA007DEBE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730B2F66BDCA007DEBE0 /* background.js */; };
-		916873182F66BDCA007DEBE0 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730C2F66BDCA007DEBE0 /* popup.html */; };
-		916873192F66BDCA007DEBE0 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730D2F66BDCA007DEBE0 /* config.js */; };
-		9168731A2F66BDCA007DEBE0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9168730E2F66BDCA007DEBE0 /* icons */; };
-		9168731B2F66BDCA007DEBE0 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730F2F66BDCA007DEBE0 /* welcome.html */; };
-		9168731C2F66BDCA007DEBE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 916873102F66BDCA007DEBE0 /* manifest.json */; };
-		9168731D2F66BDCA007DEBE0 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873112F66BDCA007DEBE0 /* popup.css */; };
-		9168731E2F66BDCA007DEBE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873122F66BDCA007DEBE0 /* content.js */; };
-		9168731F2F66BDCA007DEBE0 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873132F66BDCA007DEBE0 /* view-mapping.js */; };
-		916873202F66BDCA007DEBE0 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873082F66BDCA007DEBE0 /* api-adapter.js */; };
-		916873212F66BDCA007DEBE0 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873092F66BDCA007DEBE0 /* translator.css */; };
-		916873222F66BDCA007DEBE0 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730A2F66BDCA007DEBE0 /* popup.js */; };
-		916873232F66BDCA007DEBE0 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730B2F66BDCA007DEBE0 /* background.js */; };
-		916873242F66BDCA007DEBE0 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730C2F66BDCA007DEBE0 /* popup.html */; };
-		916873252F66BDCA007DEBE0 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 9168730D2F66BDCA007DEBE0 /* config.js */; };
-		916873262F66BDCA007DEBE0 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 9168730E2F66BDCA007DEBE0 /* icons */; };
-		916873272F66BDCA007DEBE0 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 9168730F2F66BDCA007DEBE0 /* welcome.html */; };
-		916873282F66BDCA007DEBE0 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 916873102F66BDCA007DEBE0 /* manifest.json */; };
-		916873292F66BDCA007DEBE0 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 916873112F66BDCA007DEBE0 /* popup.css */; };
-		9168732A2F66BDCA007DEBE0 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873122F66BDCA007DEBE0 /* content.js */; };
-		9168732B2F66BDCA007DEBE0 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 916873132F66BDCA007DEBE0 /* view-mapping.js */; };
+		91E722A82F6ED6F700607892 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E722A72F6ED6F700607892 /* AppDelegate.swift */; };
+		91E722AA2F6ED6F700607892 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E722A92F6ED6F700607892 /* SceneDelegate.swift */; };
+		91E722AD2F6ED6F700607892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E722AB2F6ED6F700607892 /* LaunchScreen.storyboard */; };
+		91E722B02F6ED6F700607892 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E722AE2F6ED6F700607892 /* Main.storyboard */; };
+		91E722B92F6ED6F700607892 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E722B82F6ED6F700607892 /* AppDelegate.swift */; };
+		91E722BC2F6ED6F700607892 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E722BA2F6ED6F700607892 /* Main.storyboard */; };
+		91E722C32F6ED6F700607892 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 91E722C22F6ED6F700607892 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		91E722CD2F6ED6F700607892 /* AI Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 91E722CC2F6ED6F700607892 /* AI Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		91E722D22F6ED6F700607892 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722972F6ED6F600607892 /* Main.html */; };
+		91E722D32F6ED6F700607892 /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722972F6ED6F600607892 /* Main.html */; };
+		91E722D42F6ED6F700607892 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E722992F6ED6F600607892 /* Icon.png */; };
+		91E722D52F6ED6F700607892 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91E722992F6ED6F600607892 /* Icon.png */; };
+		91E722D62F6ED6F700607892 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229A2F6ED6F600607892 /* Style.css */; };
+		91E722D72F6ED6F700607892 /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229A2F6ED6F600607892 /* Style.css */; };
+		91E722D82F6ED6F700607892 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229B2F6ED6F600607892 /* Script.js */; };
+		91E722D92F6ED6F700607892 /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229B2F6ED6F600607892 /* Script.js */; };
+		91E722DA2F6ED6F700607892 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E7229C2F6ED6F600607892 /* ViewController.swift */; };
+		91E722DB2F6ED6F700607892 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E7229C2F6ED6F600607892 /* ViewController.swift */; };
+		91E722DC2F6ED6F700607892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229D2F6ED6F600607892 /* Assets.xcassets */; };
+		91E722DD2F6ED6F700607892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91E7229D2F6ED6F600607892 /* Assets.xcassets */; };
+		91E722DE2F6ED6F700607892 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E7229F2F6ED6F600607892 /* SafariWebExtensionHandler.swift */; };
+		91E722DF2F6ED6F700607892 /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E7229F2F6ED6F600607892 /* SafariWebExtensionHandler.swift */; };
+		91E722FD2F6ED6F700607892 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F12F6ED6F700607892 /* api-adapter.js */; };
+		91E722FE2F6ED6F700607892 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F22F6ED6F700607892 /* translator.css */; };
+		91E722FF2F6ED6F700607892 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F32F6ED6F700607892 /* popup.js */; };
+		91E723002F6ED6F700607892 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F42F6ED6F700607892 /* background.js */; };
+		91E723012F6ED6F700607892 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F52F6ED6F700607892 /* popup.html */; };
+		91E723022F6ED6F700607892 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F62F6ED6F700607892 /* config.js */; };
+		91E723032F6ED6F700607892 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F72F6ED6F700607892 /* icons */; };
+		91E723042F6ED6F700607892 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F82F6ED6F700607892 /* welcome.html */; };
+		91E723052F6ED6F700607892 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F92F6ED6F700607892 /* manifest.json */; };
+		91E723062F6ED6F700607892 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FA2F6ED6F700607892 /* popup.css */; };
+		91E723072F6ED6F700607892 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FB2F6ED6F700607892 /* content.js */; };
+		91E723082F6ED6F700607892 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FC2F6ED6F700607892 /* view-mapping.js */; };
+		91E723092F6ED6F700607892 /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F12F6ED6F700607892 /* api-adapter.js */; };
+		91E7230A2F6ED6F700607892 /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F22F6ED6F700607892 /* translator.css */; };
+		91E7230B2F6ED6F700607892 /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F32F6ED6F700607892 /* popup.js */; };
+		91E7230C2F6ED6F700607892 /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F42F6ED6F700607892 /* background.js */; };
+		91E7230D2F6ED6F700607892 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F52F6ED6F700607892 /* popup.html */; };
+		91E7230E2F6ED6F700607892 /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F62F6ED6F700607892 /* config.js */; };
+		91E7230F2F6ED6F700607892 /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F72F6ED6F700607892 /* icons */; };
+		91E723102F6ED6F700607892 /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F82F6ED6F700607892 /* welcome.html */; };
+		91E723112F6ED6F700607892 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 91E722F92F6ED6F700607892 /* manifest.json */; };
+		91E723122F6ED6F700607892 /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FA2F6ED6F700607892 /* popup.css */; };
+		91E723132F6ED6F700607892 /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FB2F6ED6F700607892 /* content.js */; };
+		91E723142F6ED6F700607892 /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 91E722FC2F6ED6F700607892 /* view-mapping.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		916872DB2F66BDC8007DEBE0 /* PBXContainerItemProxy */ = {
+		91E722C42F6ED6F700607892 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 916872A82F66BDC7007DEBE0 /* Project object */;
+			containerPortal = 91E722912F6ED6F600607892 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 916872D82F66BDC8007DEBE0;
+			remoteGlobalIDString = 91E722C12F6ED6F700607892;
 			remoteInfo = "AI Translator Extension (iOS)";
 		};
-		916872E52F66BDC8007DEBE0 /* PBXContainerItemProxy */ = {
+		91E722CE2F6ED6F700607892 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 916872A82F66BDC7007DEBE0 /* Project object */;
+			containerPortal = 91E722912F6ED6F600607892 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 916872E22F66BDC8007DEBE0;
+			remoteGlobalIDString = 91E722CB2F6ED6F700607892;
 			remoteInfo = "AI Translator Extension (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		916872FC2F66BDC8007DEBE0 /* Embed Foundation Extensions */ = {
+		91E722E52F6ED6F700607892 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				916872DA2F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */,
+				91E722C32F6ED6F700607892 /* AI Translator Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916873032F66BDC8007DEBE0 /* Embed Foundation Extensions */ = {
+		91E722EC2F6ED6F700607892 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				916872E42F66BDC8007DEBE0 /* AI Translator Extension.appex in Embed Foundation Extensions */,
+				91E722CD2F6ED6F700607892 /* AI Translator Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,64 +98,64 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		916872AF2F66BDC7007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
-		916872B02F66BDC7007DEBE0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		916872B12F66BDC7007DEBE0 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
-		916872B22F66BDC7007DEBE0 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
-		916872B32F66BDC7007DEBE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		916872B42F66BDC8007DEBE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
-		916872BB2F66BDC8007DEBE0 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		916872C32F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		916872C62F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		916872C82F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916872CD2F66BDC8007DEBE0 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		916872D22F66BDC8007DEBE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		916872D42F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		916872DE2F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		916872E82F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916873082F66BDCA007DEBE0 /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "Resources/api-adapter.js"; sourceTree = "<group>"; };
-		916873092F66BDCA007DEBE0 /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = Resources/translator.css; sourceTree = "<group>"; };
-		9168730A2F66BDCA007DEBE0 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = Resources/popup.js; sourceTree = "<group>"; };
-		9168730B2F66BDCA007DEBE0 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
-		9168730C2F66BDCA007DEBE0 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
-		9168730D2F66BDCA007DEBE0 /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = Resources/config.js; sourceTree = "<group>"; };
-		9168730E2F66BDCA007DEBE0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
-		9168730F2F66BDCA007DEBE0 /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = Resources/welcome.html; sourceTree = "<group>"; };
-		916873102F66BDCA007DEBE0 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
-		916873112F66BDCA007DEBE0 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = Resources/popup.css; sourceTree = "<group>"; };
-		916873122F66BDCA007DEBE0 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = Resources/content.js; sourceTree = "<group>"; };
-		916873132F66BDCA007DEBE0 /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "Resources/view-mapping.js"; sourceTree = "<group>"; };
+		91E722982F6ED6F600607892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		91E722992F6ED6F600607892 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		91E7229A2F6ED6F600607892 /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		91E7229B2F6ED6F600607892 /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		91E7229C2F6ED6F600607892 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		91E7229D2F6ED6F600607892 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		91E7229F2F6ED6F600607892 /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		91E722A42F6ED6F700607892 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E722A72F6ED6F700607892 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91E722A92F6ED6F700607892 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		91E722AC2F6ED6F700607892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		91E722AF2F6ED6F700607892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91E722B12F6ED6F700607892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91E722B62F6ED6F700607892 /* AI Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E722B82F6ED6F700607892 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91E722BB2F6ED6F700607892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91E722BD2F6ED6F700607892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91E722C22F6ED6F700607892 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E722C72F6ED6F700607892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91E722CC2F6ED6F700607892 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E722D12F6ED6F700607892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91E722F12F6ED6F700607892 /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "../../../chrome/api-adapter.js"; sourceTree = "<group>"; };
+		91E722F22F6ED6F700607892 /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = ../../../chrome/translator.css; sourceTree = "<group>"; };
+		91E722F32F6ED6F700607892 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = ../../../chrome/popup.js; sourceTree = "<group>"; };
+		91E722F42F6ED6F700607892 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../chrome/background.js; sourceTree = "<group>"; };
+		91E722F52F6ED6F700607892 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../../chrome/popup.html; sourceTree = "<group>"; };
+		91E722F62F6ED6F700607892 /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = ../../../chrome/config.js; sourceTree = "<group>"; };
+		91E722F72F6ED6F700607892 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../chrome/icons; sourceTree = "<group>"; };
+		91E722F82F6ED6F700607892 /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = ../../../chrome/welcome.html; sourceTree = "<group>"; };
+		91E722F92F6ED6F700607892 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../chrome/manifest.json; sourceTree = "<group>"; };
+		91E722FA2F6ED6F700607892 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = ../../../chrome/popup.css; sourceTree = "<group>"; };
+		91E722FB2F6ED6F700607892 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../chrome/content.js; sourceTree = "<group>"; };
+		91E722FC2F6ED6F700607892 /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "../../../chrome/view-mapping.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		916872B82F66BDC8007DEBE0 /* Frameworks */ = {
+		91E722A12F6ED6F700607892 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872CA2F66BDC8007DEBE0 /* Frameworks */ = {
+		91E722B32F6ED6F700607892 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872D62F66BDC8007DEBE0 /* Frameworks */ = {
+		91E722BF2F6ED6F700607892 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872E02F66BDC8007DEBE0 /* Frameworks */ = {
+		91E722C92F6ED6F700607892 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -165,113 +165,113 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		916872A72F66BDC7007DEBE0 = {
+		91E722902F6ED6F600607892 = {
 			isa = PBXGroup;
 			children = (
-				916872AC2F66BDC7007DEBE0 /* Shared (App) */,
-				916872B52F66BDC8007DEBE0 /* Shared (Extension) */,
-				916872BD2F66BDC8007DEBE0 /* iOS (App) */,
-				916872CE2F66BDC8007DEBE0 /* macOS (App) */,
-				916872DD2F66BDC8007DEBE0 /* iOS (Extension) */,
-				916872E72F66BDC8007DEBE0 /* macOS (Extension) */,
-				916872BC2F66BDC8007DEBE0 /* Products */,
+				91E722952F6ED6F600607892 /* Shared (App) */,
+				91E7229E2F6ED6F600607892 /* Shared (Extension) */,
+				91E722A62F6ED6F700607892 /* iOS (App) */,
+				91E722B72F6ED6F700607892 /* macOS (App) */,
+				91E722C62F6ED6F700607892 /* iOS (Extension) */,
+				91E722D02F6ED6F700607892 /* macOS (Extension) */,
+				91E722A52F6ED6F700607892 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		916872AC2F66BDC7007DEBE0 /* Shared (App) */ = {
+		91E722952F6ED6F600607892 /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
-				916872B32F66BDC7007DEBE0 /* ViewController.swift */,
-				916872B42F66BDC8007DEBE0 /* Assets.xcassets */,
-				916872AD2F66BDC7007DEBE0 /* Resources */,
+				91E7229C2F6ED6F600607892 /* ViewController.swift */,
+				91E7229D2F6ED6F600607892 /* Assets.xcassets */,
+				91E722962F6ED6F600607892 /* Resources */,
 			);
 			path = "Shared (App)";
 			sourceTree = "<group>";
 		};
-		916872AD2F66BDC7007DEBE0 /* Resources */ = {
+		91E722962F6ED6F600607892 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				916872AE2F66BDC7007DEBE0 /* Main.html */,
-				916872B02F66BDC7007DEBE0 /* Icon.png */,
-				916872B12F66BDC7007DEBE0 /* Style.css */,
-				916872B22F66BDC7007DEBE0 /* Script.js */,
+				91E722972F6ED6F600607892 /* Main.html */,
+				91E722992F6ED6F600607892 /* Icon.png */,
+				91E7229A2F6ED6F600607892 /* Style.css */,
+				91E7229B2F6ED6F600607892 /* Script.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		916872B52F66BDC8007DEBE0 /* Shared (Extension) */ = {
+		91E7229E2F6ED6F600607892 /* Shared (Extension) */ = {
 			isa = PBXGroup;
 			children = (
-				916873072F66BDCA007DEBE0 /* Resources */,
-				916872B62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift */,
+				91E722F02F6ED6F700607892 /* Resources */,
+				91E7229F2F6ED6F600607892 /* SafariWebExtensionHandler.swift */,
 			);
 			path = "Shared (Extension)";
 			sourceTree = "<group>";
 		};
-		916872BC2F66BDC8007DEBE0 /* Products */ = {
+		91E722A52F6ED6F700607892 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				916872BB2F66BDC8007DEBE0 /* AI Translator.app */,
-				916872CD2F66BDC8007DEBE0 /* AI Translator.app */,
-				916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */,
-				916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */,
+				91E722A42F6ED6F700607892 /* AI Translator.app */,
+				91E722B62F6ED6F700607892 /* AI Translator.app */,
+				91E722C22F6ED6F700607892 /* AI Translator Extension.appex */,
+				91E722CC2F6ED6F700607892 /* AI Translator Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		916872BD2F66BDC8007DEBE0 /* iOS (App) */ = {
+		91E722A62F6ED6F700607892 /* iOS (App) */ = {
 			isa = PBXGroup;
 			children = (
-				916872BE2F66BDC8007DEBE0 /* AppDelegate.swift */,
-				916872C02F66BDC8007DEBE0 /* SceneDelegate.swift */,
-				916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */,
-				916872C52F66BDC8007DEBE0 /* Main.storyboard */,
-				916872C82F66BDC8007DEBE0 /* Info.plist */,
+				91E722A72F6ED6F700607892 /* AppDelegate.swift */,
+				91E722A92F6ED6F700607892 /* SceneDelegate.swift */,
+				91E722AB2F6ED6F700607892 /* LaunchScreen.storyboard */,
+				91E722AE2F6ED6F700607892 /* Main.storyboard */,
+				91E722B12F6ED6F700607892 /* Info.plist */,
 			);
 			path = "iOS (App)";
 			sourceTree = "<group>";
 		};
-		916872CE2F66BDC8007DEBE0 /* macOS (App) */ = {
+		91E722B72F6ED6F700607892 /* macOS (App) */ = {
 			isa = PBXGroup;
 			children = (
-				916872CF2F66BDC8007DEBE0 /* AppDelegate.swift */,
-				916872D12F66BDC8007DEBE0 /* Main.storyboard */,
-				916872D42F66BDC8007DEBE0 /* Info.plist */,
+				91E722B82F6ED6F700607892 /* AppDelegate.swift */,
+				91E722BA2F6ED6F700607892 /* Main.storyboard */,
+				91E722BD2F6ED6F700607892 /* Info.plist */,
 			);
 			path = "macOS (App)";
 			sourceTree = "<group>";
 		};
-		916872DD2F66BDC8007DEBE0 /* iOS (Extension) */ = {
+		91E722C62F6ED6F700607892 /* iOS (Extension) */ = {
 			isa = PBXGroup;
 			children = (
-				916872DE2F66BDC8007DEBE0 /* Info.plist */,
+				91E722C72F6ED6F700607892 /* Info.plist */,
 			);
 			path = "iOS (Extension)";
 			sourceTree = "<group>";
 		};
-		916872E72F66BDC8007DEBE0 /* macOS (Extension) */ = {
+		91E722D02F6ED6F700607892 /* macOS (Extension) */ = {
 			isa = PBXGroup;
 			children = (
-				916872E82F66BDC8007DEBE0 /* Info.plist */,
+				91E722D12F6ED6F700607892 /* Info.plist */,
 			);
 			path = "macOS (Extension)";
 			sourceTree = "<group>";
 		};
-		916873072F66BDCA007DEBE0 /* Resources */ = {
+		91E722F02F6ED6F700607892 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				916873082F66BDCA007DEBE0 /* api-adapter.js */,
-				916873092F66BDCA007DEBE0 /* translator.css */,
-				9168730A2F66BDCA007DEBE0 /* popup.js */,
-				9168730B2F66BDCA007DEBE0 /* background.js */,
-				9168730C2F66BDCA007DEBE0 /* popup.html */,
-				9168730D2F66BDCA007DEBE0 /* config.js */,
-				9168730E2F66BDCA007DEBE0 /* icons */,
-				9168730F2F66BDCA007DEBE0 /* welcome.html */,
-				916873102F66BDCA007DEBE0 /* manifest.json */,
-				916873112F66BDCA007DEBE0 /* popup.css */,
-				916873122F66BDCA007DEBE0 /* content.js */,
-				916873132F66BDCA007DEBE0 /* view-mapping.js */,
+				91E722F12F6ED6F700607892 /* api-adapter.js */,
+				91E722F22F6ED6F700607892 /* translator.css */,
+				91E722F32F6ED6F700607892 /* popup.js */,
+				91E722F42F6ED6F700607892 /* background.js */,
+				91E722F52F6ED6F700607892 /* popup.html */,
+				91E722F62F6ED6F700607892 /* config.js */,
+				91E722F72F6ED6F700607892 /* icons */,
+				91E722F82F6ED6F700607892 /* welcome.html */,
+				91E722F92F6ED6F700607892 /* manifest.json */,
+				91E722FA2F6ED6F700607892 /* popup.css */,
+				91E722FB2F6ED6F700607892 /* content.js */,
+				91E722FC2F6ED6F700607892 /* view-mapping.js */,
 			);
 			name = Resources;
 			path = "Shared (Extension)";
@@ -280,55 +280,55 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		916872BA2F66BDC8007DEBE0 /* AI Translator (iOS) */ = {
+		91E722A32F6ED6F700607892 /* AI Translator (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 916872FD2F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */;
+			buildConfigurationList = 91E722E62F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */;
 			buildPhases = (
-				916872B72F66BDC8007DEBE0 /* Sources */,
-				916872B82F66BDC8007DEBE0 /* Frameworks */,
-				916872B92F66BDC8007DEBE0 /* Resources */,
-				916872FC2F66BDC8007DEBE0 /* Embed Foundation Extensions */,
+				91E722A02F6ED6F700607892 /* Sources */,
+				91E722A12F6ED6F700607892 /* Frameworks */,
+				91E722A22F6ED6F700607892 /* Resources */,
+				91E722E52F6ED6F700607892 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				916872DC2F66BDC8007DEBE0 /* PBXTargetDependency */,
+				91E722C52F6ED6F700607892 /* PBXTargetDependency */,
 			);
 			name = "AI Translator (iOS)";
 			packageProductDependencies = (
 			);
 			productName = "AI Translator (iOS)";
-			productReference = 916872BB2F66BDC8007DEBE0 /* AI Translator.app */;
+			productReference = 91E722A42F6ED6F700607892 /* AI Translator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		916872CC2F66BDC8007DEBE0 /* AI Translator (macOS) */ = {
+		91E722B52F6ED6F700607892 /* AI Translator (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 916873042F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */;
+			buildConfigurationList = 91E722ED2F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */;
 			buildPhases = (
-				916872C92F66BDC8007DEBE0 /* Sources */,
-				916872CA2F66BDC8007DEBE0 /* Frameworks */,
-				916872CB2F66BDC8007DEBE0 /* Resources */,
-				916873032F66BDC8007DEBE0 /* Embed Foundation Extensions */,
+				91E722B22F6ED6F700607892 /* Sources */,
+				91E722B32F6ED6F700607892 /* Frameworks */,
+				91E722B42F6ED6F700607892 /* Resources */,
+				91E722EC2F6ED6F700607892 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				916872E62F66BDC8007DEBE0 /* PBXTargetDependency */,
+				91E722CF2F6ED6F700607892 /* PBXTargetDependency */,
 			);
 			name = "AI Translator (macOS)";
 			packageProductDependencies = (
 			);
 			productName = "AI Translator (macOS)";
-			productReference = 916872CD2F66BDC8007DEBE0 /* AI Translator.app */;
+			productReference = 91E722B62F6ED6F700607892 /* AI Translator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */ = {
+		91E722C12F6ED6F700607892 /* AI Translator Extension (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 916872F92F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */;
+			buildConfigurationList = 91E722E22F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */;
 			buildPhases = (
-				916872D52F66BDC8007DEBE0 /* Sources */,
-				916872D62F66BDC8007DEBE0 /* Frameworks */,
-				916872D72F66BDC8007DEBE0 /* Resources */,
+				91E722BE2F6ED6F700607892 /* Sources */,
+				91E722BF2F6ED6F700607892 /* Frameworks */,
+				91E722C02F6ED6F700607892 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -338,16 +338,16 @@
 			packageProductDependencies = (
 			);
 			productName = "AI Translator Extension (iOS)";
-			productReference = 916872D92F66BDC8007DEBE0 /* AI Translator Extension.appex */;
+			productReference = 91E722C22F6ED6F700607892 /* AI Translator Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */ = {
+		91E722CB2F6ED6F700607892 /* AI Translator Extension (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 916873002F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */;
+			buildConfigurationList = 91E722E92F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */;
 			buildPhases = (
-				916872DF2F66BDC8007DEBE0 /* Sources */,
-				916872E02F66BDC8007DEBE0 /* Frameworks */,
-				916872E12F66BDC8007DEBE0 /* Resources */,
+				91E722C82F6ED6F700607892 /* Sources */,
+				91E722C92F6ED6F700607892 /* Frameworks */,
+				91E722CA2F6ED6F700607892 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -357,203 +357,203 @@
 			packageProductDependencies = (
 			);
 			productName = "AI Translator Extension (macOS)";
-			productReference = 916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */;
+			productReference = 91E722CC2F6ED6F700607892 /* AI Translator Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		916872A82F66BDC7007DEBE0 /* Project object */ = {
+		91E722912F6ED6F600607892 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2620;
-				LastUpgradeCheck = 2620;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
 				TargetAttributes = {
-					916872BA2F66BDC8007DEBE0 = {
-						CreatedOnToolsVersion = 26.2;
+					91E722A32F6ED6F700607892 = {
+						CreatedOnToolsVersion = 26.3;
 					};
-					916872CC2F66BDC8007DEBE0 = {
-						CreatedOnToolsVersion = 26.2;
+					91E722B52F6ED6F700607892 = {
+						CreatedOnToolsVersion = 26.3;
 					};
-					916872D82F66BDC8007DEBE0 = {
-						CreatedOnToolsVersion = 26.2;
+					91E722C12F6ED6F700607892 = {
+						CreatedOnToolsVersion = 26.3;
 					};
-					916872E22F66BDC8007DEBE0 = {
-						CreatedOnToolsVersion = 26.2;
+					91E722CB2F6ED6F700607892 = {
+						CreatedOnToolsVersion = 26.3;
 					};
 				};
 			};
-			buildConfigurationList = 916872AB2F66BDC7007DEBE0 /* Build configuration list for PBXProject "AI Translator" */;
+			buildConfigurationList = 91E722942F6ED6F600607892 /* Build configuration list for PBXProject "AI Translator" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 916872A72F66BDC7007DEBE0;
+			mainGroup = 91E722902F6ED6F600607892;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 916872BC2F66BDC8007DEBE0 /* Products */;
+			productRefGroup = 91E722A52F6ED6F700607892 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				916872BA2F66BDC8007DEBE0 /* AI Translator (iOS) */,
-				916872CC2F66BDC8007DEBE0 /* AI Translator (macOS) */,
-				916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */,
-				916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */,
+				91E722A32F6ED6F700607892 /* AI Translator (iOS) */,
+				91E722B52F6ED6F700607892 /* AI Translator (macOS) */,
+				91E722C12F6ED6F700607892 /* AI Translator Extension (iOS) */,
+				91E722CB2F6ED6F700607892 /* AI Translator Extension (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		916872B92F66BDC8007DEBE0 /* Resources */ = {
+		91E722A22F6ED6F700607892 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872EB2F66BDC8007DEBE0 /* Icon.png in Resources */,
-				916872C42F66BDC8007DEBE0 /* LaunchScreen.storyboard in Resources */,
-				916872E92F66BDC8007DEBE0 /* Main.html in Resources */,
-				916872EF2F66BDC8007DEBE0 /* Script.js in Resources */,
-				916872F32F66BDC8007DEBE0 /* Assets.xcassets in Resources */,
-				916872C72F66BDC8007DEBE0 /* Main.storyboard in Resources */,
-				916872ED2F66BDC8007DEBE0 /* Style.css in Resources */,
+				91E722D42F6ED6F700607892 /* Icon.png in Resources */,
+				91E722AD2F6ED6F700607892 /* LaunchScreen.storyboard in Resources */,
+				91E722D22F6ED6F700607892 /* Main.html in Resources */,
+				91E722D82F6ED6F700607892 /* Script.js in Resources */,
+				91E722DC2F6ED6F700607892 /* Assets.xcassets in Resources */,
+				91E722B02F6ED6F700607892 /* Main.storyboard in Resources */,
+				91E722D62F6ED6F700607892 /* Style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872CB2F66BDC8007DEBE0 /* Resources */ = {
+		91E722B42F6ED6F700607892 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872EC2F66BDC8007DEBE0 /* Icon.png in Resources */,
-				916872EE2F66BDC8007DEBE0 /* Style.css in Resources */,
-				916872D32F66BDC8007DEBE0 /* Main.storyboard in Resources */,
-				916872F02F66BDC8007DEBE0 /* Script.js in Resources */,
-				916872F42F66BDC8007DEBE0 /* Assets.xcassets in Resources */,
-				916872EA2F66BDC8007DEBE0 /* Main.html in Resources */,
+				91E722D52F6ED6F700607892 /* Icon.png in Resources */,
+				91E722D72F6ED6F700607892 /* Style.css in Resources */,
+				91E722BC2F6ED6F700607892 /* Main.storyboard in Resources */,
+				91E722D92F6ED6F700607892 /* Script.js in Resources */,
+				91E722DD2F6ED6F700607892 /* Assets.xcassets in Resources */,
+				91E722D32F6ED6F700607892 /* Main.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872D72F66BDC8007DEBE0 /* Resources */ = {
+		91E722C02F6ED6F700607892 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916873292F66BDCA007DEBE0 /* popup.css in Resources */,
-				9168732A2F66BDCA007DEBE0 /* content.js in Resources */,
-				916873252F66BDCA007DEBE0 /* config.js in Resources */,
-				916873232F66BDCA007DEBE0 /* background.js in Resources */,
-				916873242F66BDCA007DEBE0 /* popup.html in Resources */,
-				916873272F66BDCA007DEBE0 /* welcome.html in Resources */,
-				916873282F66BDCA007DEBE0 /* manifest.json in Resources */,
-				916873202F66BDCA007DEBE0 /* api-adapter.js in Resources */,
-				916873222F66BDCA007DEBE0 /* popup.js in Resources */,
-				916873262F66BDCA007DEBE0 /* icons in Resources */,
-				9168732B2F66BDCA007DEBE0 /* view-mapping.js in Resources */,
-				916873212F66BDCA007DEBE0 /* translator.css in Resources */,
+				91E723122F6ED6F700607892 /* popup.css in Resources */,
+				91E723132F6ED6F700607892 /* content.js in Resources */,
+				91E7230E2F6ED6F700607892 /* config.js in Resources */,
+				91E7230C2F6ED6F700607892 /* background.js in Resources */,
+				91E7230D2F6ED6F700607892 /* popup.html in Resources */,
+				91E723102F6ED6F700607892 /* welcome.html in Resources */,
+				91E723112F6ED6F700607892 /* manifest.json in Resources */,
+				91E723092F6ED6F700607892 /* api-adapter.js in Resources */,
+				91E7230B2F6ED6F700607892 /* popup.js in Resources */,
+				91E7230F2F6ED6F700607892 /* icons in Resources */,
+				91E723142F6ED6F700607892 /* view-mapping.js in Resources */,
+				91E7230A2F6ED6F700607892 /* translator.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872E12F66BDC8007DEBE0 /* Resources */ = {
+		91E722CA2F6ED6F700607892 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9168731D2F66BDCA007DEBE0 /* popup.css in Resources */,
-				9168731E2F66BDCA007DEBE0 /* content.js in Resources */,
-				916873192F66BDCA007DEBE0 /* config.js in Resources */,
-				916873172F66BDCA007DEBE0 /* background.js in Resources */,
-				916873182F66BDCA007DEBE0 /* popup.html in Resources */,
-				9168731B2F66BDCA007DEBE0 /* welcome.html in Resources */,
-				9168731C2F66BDCA007DEBE0 /* manifest.json in Resources */,
-				916873142F66BDCA007DEBE0 /* api-adapter.js in Resources */,
-				916873162F66BDCA007DEBE0 /* popup.js in Resources */,
-				9168731A2F66BDCA007DEBE0 /* icons in Resources */,
-				9168731F2F66BDCA007DEBE0 /* view-mapping.js in Resources */,
-				916873152F66BDCA007DEBE0 /* translator.css in Resources */,
+				91E723062F6ED6F700607892 /* popup.css in Resources */,
+				91E723072F6ED6F700607892 /* content.js in Resources */,
+				91E723022F6ED6F700607892 /* config.js in Resources */,
+				91E723002F6ED6F700607892 /* background.js in Resources */,
+				91E723012F6ED6F700607892 /* popup.html in Resources */,
+				91E723042F6ED6F700607892 /* welcome.html in Resources */,
+				91E723052F6ED6F700607892 /* manifest.json in Resources */,
+				91E722FD2F6ED6F700607892 /* api-adapter.js in Resources */,
+				91E722FF2F6ED6F700607892 /* popup.js in Resources */,
+				91E723032F6ED6F700607892 /* icons in Resources */,
+				91E723082F6ED6F700607892 /* view-mapping.js in Resources */,
+				91E722FE2F6ED6F700607892 /* translator.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		916872B72F66BDC8007DEBE0 /* Sources */ = {
+		91E722A02F6ED6F700607892 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872F12F66BDC8007DEBE0 /* ViewController.swift in Sources */,
-				916872BF2F66BDC8007DEBE0 /* AppDelegate.swift in Sources */,
-				916872C12F66BDC8007DEBE0 /* SceneDelegate.swift in Sources */,
+				91E722DA2F6ED6F700607892 /* ViewController.swift in Sources */,
+				91E722A82F6ED6F700607892 /* AppDelegate.swift in Sources */,
+				91E722AA2F6ED6F700607892 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872C92F66BDC8007DEBE0 /* Sources */ = {
+		91E722B22F6ED6F700607892 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872F22F66BDC8007DEBE0 /* ViewController.swift in Sources */,
-				916872D02F66BDC8007DEBE0 /* AppDelegate.swift in Sources */,
+				91E722DB2F6ED6F700607892 /* ViewController.swift in Sources */,
+				91E722B92F6ED6F700607892 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872D52F66BDC8007DEBE0 /* Sources */ = {
+		91E722BE2F6ED6F700607892 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872F52F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */,
+				91E722DE2F6ED6F700607892 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		916872DF2F66BDC8007DEBE0 /* Sources */ = {
+		91E722C82F6ED6F700607892 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				916872F62F66BDC8007DEBE0 /* SafariWebExtensionHandler.swift in Sources */,
+				91E722DF2F6ED6F700607892 /* SafariWebExtensionHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		916872DC2F66BDC8007DEBE0 /* PBXTargetDependency */ = {
+		91E722C52F6ED6F700607892 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 916872D82F66BDC8007DEBE0 /* AI Translator Extension (iOS) */;
-			targetProxy = 916872DB2F66BDC8007DEBE0 /* PBXContainerItemProxy */;
+			target = 91E722C12F6ED6F700607892 /* AI Translator Extension (iOS) */;
+			targetProxy = 91E722C42F6ED6F700607892 /* PBXContainerItemProxy */;
 		};
-		916872E62F66BDC8007DEBE0 /* PBXTargetDependency */ = {
+		91E722CF2F6ED6F700607892 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 916872E22F66BDC8007DEBE0 /* AI Translator Extension (macOS) */;
-			targetProxy = 916872E52F66BDC8007DEBE0 /* PBXContainerItemProxy */;
+			target = 91E722CB2F6ED6F700607892 /* AI Translator Extension (macOS) */;
+			targetProxy = 91E722CE2F6ED6F700607892 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		916872AE2F66BDC7007DEBE0 /* Main.html */ = {
+		91E722972F6ED6F600607892 /* Main.html */ = {
 			isa = PBXVariantGroup;
 			children = (
-				916872AF2F66BDC7007DEBE0 /* Base */,
+				91E722982F6ED6F600607892 /* Base */,
 			);
 			name = Main.html;
 			sourceTree = "<group>";
 		};
-		916872C22F66BDC8007DEBE0 /* LaunchScreen.storyboard */ = {
+		91E722AB2F6ED6F700607892 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				916872C32F66BDC8007DEBE0 /* Base */,
+				91E722AC2F6ED6F700607892 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		916872C52F66BDC8007DEBE0 /* Main.storyboard */ = {
+		91E722AE2F6ED6F700607892 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				916872C62F66BDC8007DEBE0 /* Base */,
+				91E722AF2F6ED6F700607892 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		916872D12F66BDC8007DEBE0 /* Main.storyboard */ = {
+		91E722BA2F6ED6F700607892 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				916872D22F66BDC8007DEBE0 /* Base */,
+				91E722BB2F6ED6F700607892 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -561,7 +561,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		916872F72F66BDC8007DEBE0 /* Debug */ = {
+		91E722E02F6ED6F700607892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -622,7 +622,7 @@
 			};
 			name = Debug;
 		};
-		916872F82F66BDC8007DEBE0 /* Release */ = {
+		91E722E12F6ED6F700607892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -675,7 +675,7 @@
 			};
 			name = Release;
 		};
-		916872FA2F66BDC8007DEBE0 /* Debug */ = {
+		91E722E32F6ED6F700607892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
@@ -708,7 +708,7 @@
 			};
 			name = Debug;
 		};
-		916872FB2F66BDC8007DEBE0 /* Release */ = {
+		91E722E42F6ED6F700607892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
@@ -742,11 +742,10 @@
 			};
 			name = Release;
 		};
-		916872FE2F66BDC8007DEBE0 /* Debug */ = {
+		91E722E72F6ED6F700607892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -783,11 +782,10 @@
 			};
 			name = Debug;
 		};
-		916872FF2F66BDC8007DEBE0 /* Release */ = {
+		91E722E82F6ED6F700607892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -825,13 +823,12 @@
 			};
 			name = Release;
 		};
-		916873012F66BDC8007DEBE0 /* Debug */ = {
+		91E722EA2F6ED6F700607892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
-					PREFERS_CUSTOM_DRAWING = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -844,8 +841,6 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-					ARCHS = x86_64;
-					VALID_ARCHS = x86_64;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -863,13 +858,12 @@
 			};
 			name = Debug;
 		};
-		916873022F66BDC8007DEBE0 /* Release */ = {
+		91E722EB2F6ED6F700607892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
-					PREFERS_CUSTOM_DRAWING = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -882,8 +876,6 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-					ARCHS = x86_64;
-					VALID_ARCHS = x86_64;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -901,18 +893,14 @@
 			};
 			name = Release;
 		};
-		916873052F66BDC8007DEBE0 /* Debug */ = {
+		91E722EE2F6ED6F700607892 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				CODE_SIGN_IDENTITY = "-";
-					DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
-					PREFERS_CUSTOM_DRAWING = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -926,8 +914,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-					ARCHS = x86_64;
-					VALID_ARCHS = x86_64;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -948,18 +934,14 @@
 			};
 			name = Debug;
 		};
-		916873062F66BDC8007DEBE0 /* Release */ = {
+		91E722EF2F6ED6F700607892 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-					ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				CODE_SIGN_IDENTITY = "-";
-					DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
-					PREFERS_CUSTOM_DRAWING = NO;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
@@ -973,8 +955,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-					ARCHS = x86_64;
-					VALID_ARCHS = x86_64;
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -998,52 +978,52 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		916872AB2F66BDC7007DEBE0 /* Build configuration list for PBXProject "AI Translator" */ = {
+		91E722942F6ED6F600607892 /* Build configuration list for PBXProject "AI Translator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916872F72F66BDC8007DEBE0 /* Debug */,
-				916872F82F66BDC8007DEBE0 /* Release */,
+				91E722E02F6ED6F700607892 /* Debug */,
+				91E722E12F6ED6F700607892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		916872F92F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */ = {
+		91E722E22F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator Extension (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916872FA2F66BDC8007DEBE0 /* Debug */,
-				916872FB2F66BDC8007DEBE0 /* Release */,
+				91E722E32F6ED6F700607892 /* Debug */,
+				91E722E42F6ED6F700607892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		916872FD2F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */ = {
+		91E722E62F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916872FE2F66BDC8007DEBE0 /* Debug */,
-				916872FF2F66BDC8007DEBE0 /* Release */,
+				91E722E72F6ED6F700607892 /* Debug */,
+				91E722E82F6ED6F700607892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		916873002F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */ = {
+		91E722E92F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator Extension (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916873012F66BDC8007DEBE0 /* Debug */,
-				916873022F66BDC8007DEBE0 /* Release */,
+				91E722EA2F6ED6F700607892 /* Debug */,
+				91E722EB2F6ED6F700607892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		916873042F66BDC8007DEBE0 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */ = {
+		91E722ED2F6ED6F700607892 /* Build configuration list for PBXNativeTarget "AI Translator (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				916873052F66BDC8007DEBE0 /* Debug */,
-				916873062F66BDC8007DEBE0 /* Release */,
+				91E722EE2F6ED6F700607892 /* Debug */,
+				91E722EF2F6ED6F700607892 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 916872A82F66BDC7007DEBE0 /* Project object */;
+	rootObject = 91E722912F6ED6F600607892 /* Project object */;
 }

@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Shared (App)
 //
-//  Created by 陈昱帆 on 2026/3/21.
+//  Created by 陈昱帆 on 2026/3/15.
 //
 
 import WebKit
@@ -16,7 +16,7 @@ import SafariServices
 typealias PlatformViewController = NSViewController
 #endif
 
-let extensionBundleIdentifier = "com.chenyufan.ai-translator.Extension"
+let extensionBundleIdentifier = "com.athrun.ai-translator.Extension"
 
 class ViewController: PlatformViewController, WKNavigationDelegate, WKScriptMessageHandler {
 

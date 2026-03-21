@@ -1,18 +1,16 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "AI 网页翻译器",
   "version": "1.0.0",
   "description": "使用 AI 智能翻译网页内容，保留英文原文，中文显示在下方",
   "permissions": [
     "activeTab",
     "storage",
-    "scripting"
-  ],
-  "host_permissions": [
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -22,7 +20,7 @@
       "run_at": "document_end"
     }
   ],
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -35,10 +33,5 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["translator.css"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  "web_accessible_resources": ["translator.css"]
 }
