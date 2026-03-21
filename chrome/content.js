@@ -45,21 +45,43 @@ const _chrome = isSafari ? browser : chrome;
   
   // 创建控制栏
   function createControls() {
+    console.log('[AI Translator] createControls() 被调用');
+    
+    // 检查是否已存在
+    if (document.getElementById('ai-translator-controls')) {
+      console.log('[AI Translator] 控制栏已存在，跳过创建');
+      return;
+    }
+    
     const controls = document.createElement('div');
     controls.className = 'ai-translator-controls';
     controls.id = 'ai-translator-controls';
+    // 添加内联样式确保可见
+    controls.style.cssText = 'position:fixed !important;bottom:20px !important;right:20px !important;z-index:2147483647 !important;display:flex !important;gap:8px !important;background:white !important;padding:8px 12px !important;border-radius:20px !important;box-shadow:0 2px 10px rgba(0,0,0,0.1) !important;';
     controls.innerHTML = `
-      <button class="ai-translator-btn" id="ai-translator-translate-btn" title="翻译页面">🌐</button>
-      <button class="ai-translator-btn" id="ai-translator-toggle-btn" title="切换原文/翻译" style="display:none;">👁</button>
-      <button class="ai-translator-btn" id="ai-translator-settings-btn" title="设置">⚙️</button>
-      <div class="ai-translator-status" id="ai-translator-status"></div>
+      <button class="ai-translator-btn" id="ai-translator-translate-btn" title="翻译页面" style="width:36px;height:36px;border-radius:50%;border:none;background:#4299e1;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;">🌐</button>
+      <button class="ai-translator-btn" id="ai-translator-toggle-btn" title="切换原文/翻译" style="display:none;width:36px;height:36px;border-radius:50%;border:none;background:#4299e1;color:white;cursor:pointer;align-items:center;justify-content:center;font-size:16px;">👁</button>
+      <button class="ai-translator-btn" id="ai-translator-settings-btn" title="设置" style="width:36px;height:36px;border-radius:50%;border:none;background:#4299e1;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;">⚙️</button>
     `;
     document.body.appendChild(controls);
+    console.log('[AI Translator] 控制栏已添加到 DOM');
     
     // 绑定事件
-    document.getElementById('ai-translator-translate-btn').onclick = handleTranslateClick;
-    document.getElementById('ai-translator-toggle-btn').onclick = toggleDisplayMode;
-    document.getElementById('ai-translator-settings-btn').onclick = showSettingsPanel;
+    const translateBtn = document.getElementById('ai-translator-translate-btn');
+    const toggleBtn = document.getElementById('ai-translator-toggle-btn');
+    const settingsBtn = document.getElementById('ai-translator-settings-btn');
+    
+    if (translateBtn) {
+      translateBtn.onclick = handleTranslateClick;
+      console.log('[AI Translator] 翻译按钮事件已绑定');
+    }
+    if (toggleBtn) {
+      toggleBtn.onclick = toggleDisplayMode;
+    }
+    if (settingsBtn) {
+      settingsBtn.onclick = showSettingsPanel;
+      console.log('[AI Translator] 设置按钮事件已绑定');
+    }
     
     return controls;
   }
