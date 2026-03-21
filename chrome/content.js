@@ -4,6 +4,9 @@
  * 功能：词汇高亮对应、原文/翻译切换、缓存翻译结果
  */
 
+// 立即执行的标记
+console.log('[AI Translator] content.js 开始加载');
+
 // Safari 兼容性
 const isSafari = typeof browser !== 'undefined' && browser.runtime;
 const _chrome = isSafari ? browser : chrome;
@@ -12,8 +15,12 @@ const _chrome = isSafari ? browser : chrome;
   'use strict';
 
   // 防止重复注入
-  if (window.aiTranslatorInjected) return;
+  if (window.aiTranslatorInjected) {
+    console.log('[AI Translator] 已经注入，跳过');
+    return;
+  }
   window.aiTranslatorInjected = true;
+  console.log('[AI Translator] content.js 注入成功');
 
   // ============ 全局状态 ============
   let isTranslating = false;
@@ -1112,13 +1119,17 @@ const _chrome = isSafari ? browser : chrome;
   // ============ 事件处理 ============
   
   async function handleTranslateClick() {
+    console.log('[AI Translator] handleTranslateClick 被调用');
+    
     if (isTranslating) {
       showError('翻译正在进行中...');
       return;
     }
     
     // 加载配置
+    console.log('[AI Translator] 正在加载配置...');
     config = await ConfigManager.getConfig();
+    console.log('[AI Translator] 配置加载完成:', config);
     
     // 检查必要的配置项
     const missingConfig = [];
@@ -1345,23 +1356,48 @@ const _chrome = isSafari ? browser : chrome;
   // ============ 初始化 ============
   
   function init() {
+    console.log('[AI Translator] init() 被调用，readyState:', document.readyState);
+    
     // 等待页面加载完成
     if (document.readyState === 'loading') {
+      console.log('[AI Translator] 页面还在加载中，等待 DOMContentLoaded...');
       document.addEventListener('DOMContentLoaded', init);
       return;
     }
     
+    // 确保 document.body 存在
+    if (!document.body) {
+      console.error('[AI Translator] document.body 不存在！');
+      // 稍后重试
+      setTimeout(init, 100);
+      return;
+    }
+    
+    console.log('[AI Translator] 创建控制栏...');
     // 创建控制栏
     createControls();
     
-    console.log('AI 网页翻译器已加载');
+    console.log('[AI Translator] AI 网页翻译器已加载，悬浮球应该已创建');
+    
+    // 验证悬浮球是否创建成功
+    setTimeout(() => {
+      const controls = document.getElementById('ai-translator-controls');
+      if (controls) {
+        console.log('[AI Translator] ✅ 悬浮球创建成功');
+      } else {
+        console.error('[AI Translator] ❌ 悬浮球未找到！');
+      }
+    }, 100);
   }
 
   // 启动
   init();
+  
+  console.log('[AI Translator] content.js 已加载，等待消息...');
 
   // 监听来自 popup 的消息
   _chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log('[AI Translator] 收到消息:', request);
     if (request.action === 'startTranslation') {
       handleTranslateClick();
       sendResponse({ success: true });
