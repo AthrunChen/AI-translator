@@ -6,12 +6,13 @@
 // 检测运行环境
 const isSafari = typeof browser !== 'undefined' && browser.runtime;
 const browserAPI = isSafari ? browser : chrome;
+const storageArea = isSafari ? browserAPI.storage.local : browserAPI.storage.sync;
 
 // 统一的存储 API
 const StorageAPI = {
   async get(keys) {
     if (isSafari) {
-      return await browserAPI.storage.sync.get(keys);
+      return await storageArea.get(keys);
     } else {
       return new Promise((resolve) => {
         browserAPI.storage.sync.get(keys, resolve);
@@ -21,7 +22,7 @@ const StorageAPI = {
 
   async set(items) {
     if (isSafari) {
-      return await browserAPI.storage.sync.set(items);
+      return await storageArea.set(items);
     } else {
       return new Promise((resolve) => {
         browserAPI.storage.sync.set(items, resolve);
@@ -62,6 +63,51 @@ const RuntimeAPI = {
   }
 };
 
+// 统一的 Tabs API
+const TabsAPI = {
+  async query(queryInfo) {
+    if (isSafari) {
+      return await browserAPI.tabs.query(queryInfo);
+    } else {
+      return new Promise((resolve) => {
+        browserAPI.tabs.query(queryInfo, resolve);
+      });
+    }
+  },
+
+  async sendMessage(tabId, message) {
+    if (isSafari) {
+      return await browserAPI.tabs.sendMessage(tabId, message);
+    } else {
+      return new Promise((resolve, reject) => {
+        browserAPI.tabs.sendMessage(tabId, message, (response) => {
+          if (browserAPI.runtime.lastError) {
+            reject(new Error(browserAPI.runtime.lastError.message));
+          } else {
+            resolve(response);
+          }
+        });
+      });
+    }
+  },
+
+  async executeScript(tabId, details) {
+    if (isSafari) {
+      return await browserAPI.scripting.executeScript({
+        target: { tabId: tabId },
+        files: details.files
+      });
+    } else {
+      return new Promise((resolve) => {
+        browserAPI.scripting.executeScript({
+          target: { tabId: tabId },
+          files: details.files
+        }, resolve);
+      });
+    }
+  }
+};
+
 // 从环境变量加载配置（如果可用）
 async function loadConfigFromEnv() {
   // 尝试从不同的来源获取配置
@@ -95,5 +141,5 @@ async function loadConfigFromEnv() {
 
 // 导出
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { StorageAPI, RuntimeAPI, loadConfigFromEnv, isSafari };
+  module.exports = { StorageAPI, RuntimeAPI, TabsAPI, loadConfigFromEnv, isSafari };
 }

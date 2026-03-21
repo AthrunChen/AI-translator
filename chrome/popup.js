@@ -2,6 +2,85 @@
  * AI 网页翻译器 - Popup 脚本
  */
 
+// Safari 兼容性：使用 browser API 作为 chrome 的替代
+const isSafari = typeof browser !== 'undefined' && browser.runtime;
+const _chrome = isSafari ? browser : chrome;
+
+// 包装 tabs API 以支持 Promise
+const chromeTabs = {
+  query: (queryInfo) => {
+    return new Promise((resolve) => {
+      _chrome.tabs.query(queryInfo, resolve);
+    });
+  },
+  sendMessage: (tabId, message) => {
+    return new Promise((resolve, reject) => {
+      _chrome.tabs.sendMessage(tabId, message, (response) => {
+        if (_chrome.runtime.lastError) {
+          reject(new Error(_chrome.runtime.lastError.message));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  }
+};
+
+// 包装 scripting API
+const chromeScripting = {
+  executeScript: (details) => {
+    return new Promise((resolve) => {
+      if (isSafari) {
+        // Safari 使用不同的 API
+        _chrome.scripting.executeScript({
+          target: { tabId: details.target?.tabId },
+          files: details.files
+        }, resolve);
+      } else {
+        _chrome.scripting.executeScript(details, resolve);
+      }
+    });
+  },
+  insertCSS: (details) => {
+    return new Promise((resolve) => {
+      if (isSafari) {
+        _chrome.scripting.insertCSS({
+          target: { tabId: details.target?.tabId },
+          files: details.files
+        }, resolve);
+      } else {
+        _chrome.scripting.insertCSS(details, resolve);
+      }
+    });
+  }
+};
+
+// 包装 storage API
+const chromeStorage = {
+  sync: {
+    get: (keys) => {
+      return new Promise((resolve) => {
+        _chrome.storage.sync.get(keys, resolve);
+      });
+    }
+  }
+};
+
+// 包装 runtime API
+const chromeRuntime = {
+  sendMessage: (message) => {
+    return new Promise((resolve, reject) => {
+      _chrome.runtime.sendMessage(message, (response) => {
+        if (_chrome.runtime.lastError) {
+          reject(new Error(_chrome.runtime.lastError.message));
+        } else {
+          resolve(response);
+        }
+      });
+    });
+  }
+};
+
 document.addEventListener('DOMContentLoaded', async () => {
   // 获取 DOM 元素
   const btnTranslate = document.getElementById('btn-translate');
@@ -56,7 +135,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 获取当前标签页
   async function getCurrentTab() {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await chromeTabs.query({ active: true, currentWindow: true });
     return tab;
   }
 
@@ -64,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function checkTranslationStatus() {
     const tab = await getCurrentTab();
     try {
-      const response = await chrome.tabs.sendMessage(tab.id, { action: 'getStatus' });
+      const response = await chromeTabs.sendMessage(tab.id, { action: 'getStatus' });
       if (response) {
         hasTranslation = response.translatedCount > 0;
         currentDisplayMode = response.displayMode || 'both';
@@ -109,7 +188,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     try {
       // 发送消息给 content script
-      await chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' });
+      await chromeTabs.sendMessage(tab.id, { action: 'startTranslation' });
       
       // 等待一段时间后检查状态
       setTimeout(async () => {
@@ -121,12 +200,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       // 如果 content script 未加载，先注入
       if (error.message.includes('Receiving end does not exist')) {
         try {
-          await chrome.scripting.executeScript({
+          await chromeScripting.executeScript({
             target: { tabId: tab.id },
             files: ['api-adapter.js', 'config.js', 'content.js']
           });
           
-          await chrome.scripting.insertCSS({
+          await chromeScripting.insertCSS({
             target: { tabId: tab.id },
             files: ['translator.css']
           });
@@ -134,7 +213,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           // 等待脚本加载
           setTimeout(async () => {
             try {
-              await chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' });
+              await chromeTabs.sendMessage(tab.id, { action: 'startTranslation' });
               setTimeout(() => window.close(), 500);
             } catch (e) {
               showError('无法在当前页面运行翻译器');
@@ -164,7 +243,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tab = await getCurrentTab();
     
     try {
-      const response = await chrome.tabs.sendMessage(tab.id, { action: 'toggleDisplay' });
+      const response = await chromeTabs.sendMessage(tab.id, { action: 'toggleDisplay' });
       if (response) {
         currentDisplayMode = response.displayMode;
         updateToggleStatus();
@@ -185,7 +264,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       
       try {
         // 直接从 storage 读取配置（popup.js 无法访问 ConfigManager）
-        const result = await chrome.storage.sync.get(['translatorConfig']);
+        const result = await chromeStorage.sync.get(['translatorConfig']);
         const config = result.translatorConfig || {
           api: {
             baseUrl: 'https://api.moonshot.cn/v1',
@@ -203,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         
         // 发送到后台测试
-        const response = await chrome.runtime.sendMessage({
+        const response = await chromeRuntime.sendMessage({
           action: 'testConnection',
           apiConfig: config.api
         });
@@ -231,24 +310,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tab = await getCurrentTab();
     
     try {
-      await chrome.tabs.sendMessage(tab.id, { action: 'openSettings' });
+      await chromeTabs.sendMessage(tab.id, { action: 'openSettings' });
       window.close();
     } catch (error) {
       // 如果 content script 未加载
       try {
-        await chrome.scripting.executeScript({
+        await chromeScripting.executeScript({
           target: { tabId: tab.id },
           files: ['api-adapter.js', 'config.js', 'content.js']
         });
         
-        await chrome.scripting.insertCSS({
+        await chromeScripting.insertCSS({
           target: { tabId: tab.id },
           files: ['translator.css']
         });
         
         setTimeout(async () => {
           try {
-            await chrome.tabs.sendMessage(tab.id, { action: 'openSettings' });
+            await chromeTabs.sendMessage(tab.id, { action: 'openSettings' });
             window.close();
           } catch (e) {
             showError('无法打开设置');

@@ -3,8 +3,12 @@
  * 处理 API 调用和跨域请求
  */
 
+// Safari 兼容性
+const isSafari = typeof browser !== 'undefined' && browser.runtime;
+const _chrome = isSafari ? browser : chrome;
+
 // 处理来自 content script 的消息
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+_chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'translate') {
     handleTranslation(request.prompt, request.apiConfig)
       .then(result => {
@@ -202,12 +206,12 @@ async function callAnthropicAPI(prompt, config) {
 }
 
 // 安装/更新时的处理
-chrome.runtime.onInstalled.addListener((details) => {
+_chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
     console.log('AI 网页翻译器已安装');
     // 打开欢迎页面或设置页面
-    chrome.tabs.create({
-      url: chrome.runtime.getURL('welcome.html')
+    _chrome.tabs.create({
+      url: _chrome.runtime.getURL('welcome.html')
     });
   } else if (details.reason === 'update') {
     console.log('AI 网页翻译器已更新');
@@ -215,28 +219,32 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 
 // 处理图标点击
-chrome.action.onClicked.addListener((tab) => {
+// Safari 兼容性：使用 browserAction 或 command
+const browserActionAPI = _chrome.browserAction || _chrome.action;
+if (browserActionAPI && browserActionAPI.onClicked) {
+  browserActionAPI.onClicked.addListener((tab) => {
   // 发送消息给 content script 开始翻译
-  chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' }, (response) => {
-    if (chrome.runtime.lastError) {
+  _chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' }, (response) => {
+    if (_chrome.runtime.lastError) {
       // 如果 content script 未加载，先注入
-      chrome.scripting.executeScript({
+      _chrome.scripting.executeScript({
         target: { tabId: tab.id },
         files: ['api-adapter.js', 'config.js', 'content.js']
       }, () => {
         // 注入 CSS
-        chrome.scripting.insertCSS({
+        _chrome.scripting.insertCSS({
           target: { tabId: tab.id },
           files: ['translator.css']
         });
         // 再次发送消息
         setTimeout(() => {
-          chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' });
+          _chrome.tabs.sendMessage(tab.id, { action: 'startTranslation' });
         }, 100);
       });
     }
   });
-});
+  });
+}
 
 
 // 测试 API 连接

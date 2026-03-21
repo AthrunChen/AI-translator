@@ -4,6 +4,10 @@
  * 功能：词汇高亮对应、原文/翻译切换、缓存翻译结果
  */
 
+// Safari 兼容性
+const isSafari = typeof browser !== 'undefined' && browser.runtime;
+const _chrome = isSafari ? browser : chrome;
+
 (function() {
   'use strict';
 
@@ -317,13 +321,13 @@
       .replace('{text}', text);
 
     return new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage({
+      _chrome.runtime.sendMessage({
         action: 'translate',
         prompt: prompt,
         apiConfig: config.api
       }, response => {
-        if (chrome.runtime.lastError) {
-          reject(new Error(chrome.runtime.lastError.message));
+        if (_chrome.runtime.lastError) {
+          reject(new Error(_chrome.runtime.lastError.message));
           return;
         }
         if (response.error) {
@@ -1192,13 +1196,26 @@
   // ============ 设置面板 ============
   
   function showSettingsPanel() {
+    console.log('[AI Translator] 打开设置面板');
+    
     // 移除已存在的面板
     const existing = document.querySelector('.ai-translator-settings');
     if (existing) {
+      console.log('[AI Translator] 移除已存在的面板');
       existing.remove();
       document.querySelector('.ai-translator-overlay')?.remove();
       return;
     }
+    
+    try {
+      console.log('[AI Translator] 创建新面板');
+      
+      // 确保 document.body 存在
+      if (!document.body) {
+        console.error('[AI Translator] document.body 不存在');
+        alert('页面尚未加载完成，请稍后重试');
+        return;
+      }
     
     // 创建遮罩层
     const overlay = document.createElement('div');
@@ -1208,6 +1225,7 @@
       document.querySelector('.ai-translator-settings')?.remove();
     };
     document.body.appendChild(overlay);
+    console.log('[AI Translator] 遮罩层已添加');
     
     // 创建设置面板
     const panel = document.createElement('div');
@@ -1265,6 +1283,16 @@
     `;
     
     document.body.appendChild(panel);
+    console.log('[AI Translator] 设置面板已添加到 DOM');
+    
+    // 验证面板是否真的在 DOM 中
+    const checkPanel = document.querySelector('.ai-translator-settings');
+    if (checkPanel) {
+      console.log('[AI Translator] 面板验证成功，显示状态:', checkPanel.style.display);
+      console.log('[AI Translator] 面板位置:', checkPanel.getBoundingClientRect());
+    } else {
+      console.error('[AI Translator] 面板未找到在 DOM 中');
+    }
     
     // 加载当前配置
     ConfigManager.getConfig().then(cfg => {
@@ -1308,6 +1336,10 @@
         showError('保存失败');
       }
     };
+    } catch (e) {
+      console.error('[AI Translator] 设置面板错误:', e);
+      alert('设置面板加载失败: ' + e.message);
+    }
   }
 
   // ============ 初始化 ============
@@ -1329,7 +1361,7 @@
   init();
 
   // 监听来自 popup 的消息
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  _chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'startTranslation') {
       handleTranslateClick();
       sendResponse({ success: true });
@@ -1350,3 +1382,72 @@
   });
 
 })();
+
+// ============ 测试函数 ============
+// 简化的设置面板测试
+window.showTestSettings = function() {
+  console.log('[AI Translator] 打开测试设置面板');
+  
+  // 移除已存在的
+  document.querySelector('.ai-translator-settings')?.remove();
+  document.querySelector('.ai-translator-overlay')?.remove();
+  
+  // 创建遮罩
+  const overlay = document.createElement('div');
+  overlay.className = 'ai-translator-overlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:2147483646;';
+  overlay.onclick = () => { overlay.remove(); panel.remove(); };
+  document.body.appendChild(overlay);
+  
+  // 创建面板
+  const panel = document.createElement('div');
+  panel.className = 'ai-translator-settings';
+  panel.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;background:white;padding:20px;border-radius:8px;z-index:2147483647;box-shadow:0 4px 20px rgba(0,0,0,0.3);font-family:-apple-system,sans-serif;';
+  panel.innerHTML = `
+    <h3 style="margin:0 0 15px 0;color:#333;">AI 翻译器设置</h3>
+    <label style="display:block;margin:10px 0 5px;color:#555;font-size:14px;">API Key</label>
+    <input type="password" id="test-api-key" placeholder="输入 API Key" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;"><br>
+    <label style="display:block;margin:10px 0 5px;color:#555;font-size:14px;">API Base URL</label>
+    <input type="text" id="test-api-url" placeholder="https://api.openai.com/v1" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;"><br>
+    <label style="display:block;margin:10px 0 5px;color:#555;font-size:14px;">模型</label>
+    <input type="text" id="test-model" placeholder="gpt-3.5-turbo" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;"><br>
+    <div style="margin-top:20px;text-align:right;">
+      <button id="test-close" style="padding:8px 16px;border:none;background:#e0e0e0;border-radius:4px;cursor:pointer;margin-right:8px;">取消</button>
+      <button id="test-save" style="padding:8px 16px;border:none;background:#4299e1;color:white;border-radius:4px;cursor:pointer;">保存</button>
+    </div>
+  `;
+  document.body.appendChild(panel);
+  
+  // 加载现有配置
+  try {
+    const saved = localStorage.getItem('translatorConfig');
+    if (saved) {
+      const cfg = JSON.parse(saved);
+      document.getElementById('test-api-key').value = cfg.api?.apiKey || '';
+      document.getElementById('test-api-url').value = cfg.api?.baseUrl || '';
+      document.getElementById('test-model').value = cfg.api?.model || '';
+    }
+  } catch(e) {}
+  
+  // 绑定事件
+  document.getElementById('test-close').onclick = () => { overlay.remove(); panel.remove(); };
+  document.getElementById('test-save').onclick = () => {
+    const config = {
+      api: {
+        provider: 'openai-compatible',
+        apiKey: document.getElementById('test-api-key').value.trim(),
+        baseUrl: document.getElementById('test-api-url').value.trim() || 'https://api.openai.com/v1',
+        model: document.getElementById('test-model').value.trim() || 'gpt-3.5-turbo'
+      },
+      behavior: { concurrency: 10 },
+      prompt: DEFAULT_CONFIG.prompt
+    };
+    localStorage.setItem('translatorConfig', JSON.stringify(config));
+    console.log('[AI Translator] 配置已保存:', config);
+    alert('设置已保存！');
+    overlay.remove();
+    panel.remove();
+  };
+  
+  console.log('[AI Translator] 测试面板已创建');
+};

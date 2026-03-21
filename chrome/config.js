@@ -1,3 +1,51 @@
+// Safari 兼容性
+const isSafari = typeof browser !== 'undefined' && browser.runtime;
+const _chrome = isSafari ? browser : chrome;
+
+// Safari 使用 localStorage 作为主要存储
+const storageAPI = {
+  async get(keys) {
+    if (isSafari) {
+      // Safari: 使用 localStorage
+      const result = {};
+      if (typeof keys === 'string') {
+        keys = [keys];
+      }
+      if (Array.isArray(keys)) {
+        keys.forEach(key => {
+          const value = localStorage.getItem(key);
+          result[key] = value ? JSON.parse(value) : undefined;
+        });
+      } else if (typeof keys === 'object') {
+        Object.keys(keys).forEach(key => {
+          const value = localStorage.getItem(key);
+          result[key] = value ? JSON.parse(value) : keys[key];
+        });
+      }
+      return result;
+    } else {
+      // Chrome: 使用 chrome.storage.sync
+      return new Promise((resolve) => {
+        _chrome.storage.sync.get(keys, resolve);
+      });
+    }
+  },
+  
+  async set(items) {
+    if (isSafari) {
+      // Safari: 使用 localStorage
+      Object.keys(items).forEach(key => {
+        localStorage.setItem(key, JSON.stringify(items[key]));
+      });
+    } else {
+      // Chrome: 使用 chrome.storage.sync
+      return new Promise((resolve) => {
+        _chrome.storage.sync.set(items, resolve);
+      });
+    }
+  }
+};
+
 // 默认配置
 const DEFAULT_CONFIG = {
   // API 配置 - 从环境变量或这里配置
@@ -24,54 +72,25 @@ const DEFAULT_CONFIG = {
 页面URL: {url}
 页面摘要: {summary}
 
-【待翻译内容】
+【要翻译的文本】
 {text}
 
-【输出格式要求】
-请按以下格式输出：
+请直接输出翻译结果，不要添加额外说明。`,
 
-原文段落 | 中文翻译
-
-[词汇对应]
-英文单词1 | 对应中文1
-英文单词2 | 对应中文2
-...
-[/词汇对应]
-
-【示例】
-The network provides connectivity for fans. | 网络为粉丝提供连接。
-
-[词汇对应]
-network | 网络
-provides | 提供
-connectivity | 连接
-fans | 粉丝
-[/词汇对应]
-
-重要提示：
-- 只输出翻译结果和词汇对应表，不要添加额外说明
-- 词汇对应表只包含实词（名词、动词、形容词等），跳过虚词
-- 如果原文已经是中文，直接返回原文 | 原文，词汇对应表为空`,
-
-  // 界面设置
-  ui: {
-    translationColor: '#2c5282',
-    translationBackground: '#ebf8ff',
-    showOriginal: true,
-    fontSize: '14px'
+  // 显示设置
+  display: {
+    showOriginal: true,  // 是否显示原文
+    highlightTerms: true // 是否高亮专业术语
   },
   
   // 行为设置
   behavior: {
-    autoTranslate: false,
-    translateOnLoad: false,
-    skipCodeBlocks: true,
-    skipPreBlocks: true,
-    concurrency: 10  // 并行翻译线程数
+    concurrency: 10,     // 并行翻译请求数
+    cacheResults: true,  // 是否缓存翻译结果
+    autoTranslate: false // 是否自动翻译（默认关闭）
   }
 };
 
-// 配置管理器
 const ConfigManager = {
   // 获取配置
   async getConfig() {
@@ -89,7 +108,7 @@ const ConfigManager = {
     
     // 2. 从存储中加载用户配置（覆盖环境变量）
     try {
-      const result = await chrome.storage.sync.get(['translatorConfig']);
+      const result = await storageAPI.get(['translatorConfig']);
       if (result.translatorConfig) {
         config = this.mergeConfig(config, result.translatorConfig);
       }
@@ -178,9 +197,9 @@ const ConfigManager = {
     
     for (const source of sources) {
       try {
-        const result = source();
-        if (result && result.apiKey) {
-          return result;
+        const config = source();
+        if (config) {
+          return config;
         }
       } catch (e) {
         // 继续下一个来源
@@ -192,41 +211,35 @@ const ConfigManager = {
   
   // 解析 OpenClaw 格式配置
   parseOpenClawConfig(config) {
-    if (!config) return null;
-    
     return {
-      apiKey: config.apiKey,
-      baseUrl: config.baseUrl || DEFAULT_CONFIG.api.baseUrl,
-      model: config.model || DEFAULT_CONFIG.api.model,
+      baseUrl: config.baseUrl || config.apiUrl || '',
+      apiKey: config.apiKey || '',
+      model: config.model || '',
       provider: config.provider || 'openai-compatible'
     };
   },
   
   // 解析标准格式配置
   parseStandardConfig(config) {
-    if (!config) return null;
-    if (config.api_key || config.apiKey) {
-      return {
-        apiKey: config.api_key || config.apiKey,
-        baseUrl: config.base_url || config.baseUrl || DEFAULT_CONFIG.api.baseUrl,
-        model: config.model || DEFAULT_CONFIG.api.model,
-        provider: config.provider || 'openai-compatible'
-      };
-    }
-    return null;
+    return {
+      baseUrl: config.baseUrl || config.apiUrl || '',
+      apiKey: config.apiKey || '',
+      model: config.model || '',
+      provider: config.provider || 'openai-compatible'
+    };
   },
-
+  
   // 保存配置
   async saveConfig(config) {
     try {
-      await chrome.storage.sync.set({ translatorConfig: config });
+      await storageAPI.set({ translatorConfig: config });
       return true;
     } catch (e) {
       console.error('保存配置失败:', e);
       return false;
     }
   },
-
+  
   // 合并配置
   mergeConfig(defaults, saved) {
     const merged = { ...defaults };
@@ -238,17 +251,10 @@ const ConfigManager = {
       }
     }
     return merged;
-  },
-
-  // 从环境变量加载 API 配置 (如果在扩展环境中可用)
-  async loadFromEnv() {
-    // 在实际部署时，可以通过外部消息传递或其他方式注入
-    // 这里提供一个扩展点
-    return this.getConfig();
   }
 };
 
-// 导出配置
+// 导出
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { ConfigManager, DEFAULT_CONFIG };
 }
