@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 网页翻译器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🌐</div>
+    <h1>AI 网页翻译器</h1>
+  </div>
+
+  <div class="content">
+    <div class="status-section">
+      <div class="status-indicator" id="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">准备就绪</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-translate">
+        <span class="btn-icon">📝</span>
+        <span class="btn-text">翻译当前页面</span>
+      </button>
+      
+      <div class="toggle-group" id="toggle-group" style="display: none;">
+        <button class="btn btn-secondary" id="btn-toggle">
+          <span class="btn-icon">👁</span>
+          <span class="btn-text">切换显示</span>
+        </button>
+        <div class="toggle-status" id="toggle-status">双语对照</div>
+      </div>
+      
+      <button class="btn btn-secondary" id="btn-test">
+        <span class="btn-icon">🧪</span>
+        <span class="btn-text">测试连接</span>
+      </button>
+      
+      <button class="btn btn-secondary" id="btn-settings">
+        <span class="btn-icon">⚙️</span>
+        <span class="btn-text">设置</span>
+      </button>
+    </div>
+
+    <div class="api-status" id="api-status">
+      <div class="api-status-icon">⚠️</div>
+      <div class="api-status-text">API Key 未设置</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <span class="info-label">Provider:</span>
+        <span class="info-value" id="provider-name">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">模型:</span>
+        <span class="info-value" id="model-name">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">并行数:</span>
+        <span class="info-value" id="concurrency-value">-</span>
+      </div>
+      <div class="info-item" id="cache-info" style="display: none;">
+        <span class="info-label">已缓存:</span>
+        <span class="info-value" id="cache-count">0 段落</span>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>💡 功能特性</h3>
+      <ul>
+        <li>点击"翻译"开始双语对照阅读</li>
+        <li>使用"切换显示"在原文/译文间切换</li>
+        <li>鼠标悬停词汇可高亮对应位置</li>
+        <li>翻译结果自动缓存，切换无需重译</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Powered by Kimi AI</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

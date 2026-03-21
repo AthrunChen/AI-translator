@@ -119,18 +119,18 @@
 		916872DE2F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		916872E32F66BDC8007DEBE0 /* AI Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		916872E82F66BDC8007DEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		916873082F66BDCA007DEBE0 /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "../../../chrome/api-adapter.js"; sourceTree = "<group>"; };
-		916873092F66BDCA007DEBE0 /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = ../../../chrome/translator.css; sourceTree = "<group>"; };
-		9168730A2F66BDCA007DEBE0 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = ../../../chrome/popup.js; sourceTree = "<group>"; };
-		9168730B2F66BDCA007DEBE0 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = ../../../chrome/background.js; sourceTree = "<group>"; };
-		9168730C2F66BDCA007DEBE0 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = ../../../chrome/popup.html; sourceTree = "<group>"; };
-		9168730D2F66BDCA007DEBE0 /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = ../../../chrome/config.js; sourceTree = "<group>"; };
-		9168730E2F66BDCA007DEBE0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = ../../../chrome/icons; sourceTree = "<group>"; };
-		9168730F2F66BDCA007DEBE0 /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = ../../../chrome/welcome.html; sourceTree = "<group>"; };
-		916873102F66BDCA007DEBE0 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = ../../../chrome/manifest.json; sourceTree = "<group>"; };
-		916873112F66BDCA007DEBE0 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = ../../../chrome/popup.css; sourceTree = "<group>"; };
-		916873122F66BDCA007DEBE0 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = ../../../chrome/content.js; sourceTree = "<group>"; };
-		916873132F66BDCA007DEBE0 /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "../../../chrome/view-mapping.js"; sourceTree = "<group>"; };
+		916873082F66BDCA007DEBE0 /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "Resources/api-adapter.js"; sourceTree = "<group>"; };
+		916873092F66BDCA007DEBE0 /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = Resources/translator.css; sourceTree = "<group>"; };
+		9168730A2F66BDCA007DEBE0 /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = Resources/popup.js; sourceTree = "<group>"; };
+		9168730B2F66BDCA007DEBE0 /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
+		9168730C2F66BDCA007DEBE0 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
+		9168730D2F66BDCA007DEBE0 /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = Resources/config.js; sourceTree = "<group>"; };
+		9168730E2F66BDCA007DEBE0 /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
+		9168730F2F66BDCA007DEBE0 /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = Resources/welcome.html; sourceTree = "<group>"; };
+		916873102F66BDCA007DEBE0 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		916873112F66BDCA007DEBE0 /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = Resources/popup.css; sourceTree = "<group>"; };
+		916873122F66BDCA007DEBE0 /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = Resources/content.js; sourceTree = "<group>"; };
+		916873132F66BDCA007DEBE0 /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "Resources/view-mapping.js"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -695,7 +695,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
 				PRODUCT_NAME = "AI Translator Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -728,7 +728,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
 				PRODUCT_NAME = "AI Translator Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -770,7 +770,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
 				PRODUCT_NAME = "AI Translator";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -811,7 +811,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
 				PRODUCT_NAME = "AI Translator";
 				SDKROOT = iphoneos;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -830,9 +830,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 					PREFERS_CUSTOM_DRAWING = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
@@ -851,7 +851,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
 				PRODUCT_NAME = "AI Translator Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -868,9 +868,9 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 					PREFERS_CUSTOM_DRAWING = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
@@ -889,7 +889,7 @@
 					"-framework",
 					SafariServices,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator.Extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator.Extension";
 				PRODUCT_NAME = "AI Translator Extension";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -911,9 +911,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				CODE_SIGN_IDENTITY = "-";
 					DEVELOPMENT_TEAM = "";
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 					PREFERS_CUSTOM_DRAWING = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -935,7 +935,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
 				PRODUCT_NAME = "AI Translator";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
@@ -958,9 +958,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				CODE_SIGN_IDENTITY = "-";
 					DEVELOPMENT_TEAM = "";
-				ENABLE_APP_SANDBOX = YES;
+				ENABLE_APP_SANDBOX = NO;
 					PREFERS_CUSTOM_DRAWING = NO;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -982,7 +982,7 @@
 					"-framework",
 					WebKit,
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.athrun.ai-translator";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.chenyufan.ai-translator";
 				PRODUCT_NAME = "AI Translator";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
