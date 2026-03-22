@@ -3,6 +3,9 @@
  * 添加详细的日志记录和错误处理
  */
 
+// 确保 AITranslatorDebug 在全局作用域
+var AITranslatorDebug;
+
 // Safari 检测 - 使用 var 避免重复声明错误
 var isSafariDebug = typeof browser !== 'undefined' && browser.runtime;
 
@@ -174,8 +177,8 @@ var MessageBridge = {
   }
 };
 
-// 全局调试工具
-window.AITranslatorDebug = window.AITranslatorDebug || {
+// 全局调试工具 - 使用多种方式确保可访问
+var AITranslatorDebug = {
   D,
   LogStore,
   MessageBridge,
@@ -402,14 +405,37 @@ window.AITranslatorDebug = window.AITranslatorDebug || {
   }
 };
 
+// 挂载到 window 对象 - 使用多种方式确保可访问
+if (typeof window !== 'undefined') {
+  window.AITranslatorDebug = AITranslatorDebug;
+  // 同时挂载到 document 以便在控制台访问
+  if (document) {
+    document.AITranslatorDebug = AITranslatorDebug;
+  }
+}
+
 // 在页面加载时自动运行诊断
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     D.info('DOMContentLoaded - debug-config 已加载');
-    setTimeout(() => window.AITranslatorDebug?.diagnose(), 1000);
+    setTimeout(() => AITranslatorDebug?.diagnose(), 1000);
   });
 } else {
   D.info('debug-config 已加载 (DOM 已就绪)');
+}
+
+// 确保在全局作用域可访问
+try {
+  if (typeof window !== 'undefined') {
+    window.AITranslatorDebug = AITranslatorDebug;
+    // Safari 特定：也挂载到 globalThis
+    if (typeof globalThis !== 'undefined') {
+      globalThis.AITranslatorDebug = AITranslatorDebug;
+    }
+  }
+  D.info('✅ AITranslatorDebug 已挂载到全局');
+} catch (e) {
+  console.error('[AI Translator] 挂载失败:', e);
 }
 
 D.info('调试配置加载完成，可用命令:');
