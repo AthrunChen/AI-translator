@@ -1,12 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4299e1"/>
-      <stop offset="100%" style="stop-color:#3182ce"/>
+    <!-- 主渐变：蓝紫色系，Apple 风格 -->
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1"/>
+      <stop offset="50%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#A855F7"/>
     </linearGradient>
+    
+    <!-- 内部高光 -->
+    <linearGradient id="highlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+    </linearGradient>
+    
+    <!-- 柔和阴影 -->
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="0" dy="1" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <rect width="128" height="128" rx="20" fill="url(#grad)"/>
-  <text x="64" y="82" font-size="70" text-anchor="middle" fill="white" font-family="Arial">文</text>
-  <circle cx="100" cy="28" r="12" fill="#48bb78"/>
-  <text x="100" y="33" font-size="14" text-anchor="middle" fill="white" font-family="Arial">A</text>
+  
+  <!-- 背景：大圆角，Apple 风格 -->
+  <rect width="128" height="128" rx="28" ry="28" fill="url(#mainGrad)"/>
+  
+  <!-- 顶部高光 -->
+  <rect x="2" y="2" width="124" height="60" rx="26" ry="26" fill="url(#highlightGrad)"/>
+  
+  <!-- 翻译图标设计 -->
+  <g transform="translate(64, 62)">
+    <!-- 语言符号 A -->
+    <text x="-18" y="12" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif" 
+          font-size="32" font-weight="600" fill="white" text-anchor="middle" opacity="0.95">A</text>
+    
+    <!-- 语言符号 文 -->
+    <text x="18" y="12" font-family="-apple-system, PingFang SC, Hiragino Sans GB, sans-serif" 
+          font-size="28" font-weight="500" fill="white" text-anchor="middle" opacity="0.9">文</text>
+    
+    <!-- 连接箭头 -->
+    <path d="M -2,2 L 2,2" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  </g>
+  
+  <!-- AI 指示器 -->
+  <circle cx="100" cy="28" r="10" fill="#34D399"/>
+  <path d="M 96,28 L 99,31 L 104,25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(0, 0)"/>
 </svg>
