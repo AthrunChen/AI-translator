@@ -1,0 +1,1051 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91F250522F6F847100DFD38B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250512F6F847100DFD38B /* AppDelegate.swift */; };
+		91F250542F6F847100DFD38B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250532F6F847100DFD38B /* SceneDelegate.swift */; };
+		91F250572F6F847100DFD38B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F250552F6F847100DFD38B /* LaunchScreen.storyboard */; };
+		91F2505A2F6F847100DFD38B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F250582F6F847100DFD38B /* Main.storyboard */; };
+		91F250632F6F847100DFD38B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250622F6F847100DFD38B /* AppDelegate.swift */; };
+		91F250662F6F847100DFD38B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91F250642F6F847100DFD38B /* Main.storyboard */; };
+		91F2506D2F6F847100DFD38B /* AI Web Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 91F2506C2F6F847100DFD38B /* AI Web Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		91F250772F6F847100DFD38B /* AI Web Translator Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 91F250762F6F847100DFD38B /* AI Web Translator Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		91F2507C2F6F847100DFD38B /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F250412F6F847000DFD38B /* Main.html */; };
+		91F2507D2F6F847100DFD38B /* Main.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F250412F6F847000DFD38B /* Main.html */; };
+		91F2507E2F6F847100DFD38B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F250432F6F847000DFD38B /* Icon.png */; };
+		91F2507F2F6F847100DFD38B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F250432F6F847000DFD38B /* Icon.png */; };
+		91F250802F6F847100DFD38B /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F250442F6F847000DFD38B /* Style.css */; };
+		91F250812F6F847100DFD38B /* Style.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F250442F6F847000DFD38B /* Style.css */; };
+		91F250822F6F847100DFD38B /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250452F6F847000DFD38B /* Script.js */; };
+		91F250832F6F847100DFD38B /* Script.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250452F6F847000DFD38B /* Script.js */; };
+		91F250842F6F847100DFD38B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250462F6F847000DFD38B /* ViewController.swift */; };
+		91F250852F6F847100DFD38B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250462F6F847000DFD38B /* ViewController.swift */; };
+		91F250862F6F847100DFD38B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91F250472F6F847100DFD38B /* Assets.xcassets */; };
+		91F250872F6F847100DFD38B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91F250472F6F847100DFD38B /* Assets.xcassets */; };
+		91F250882F6F847100DFD38B /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250492F6F847100DFD38B /* SafariWebExtensionHandler.swift */; };
+		91F250892F6F847100DFD38B /* SafariWebExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F250492F6F847100DFD38B /* SafariWebExtensionHandler.swift */; };
+		91F250A92F6F847200DFD38B /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509B2F6F847200DFD38B /* api-adapter.js */; };
+		91F250AA2F6F847200DFD38B /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509C2F6F847200DFD38B /* translator.css */; };
+		91F250AB2F6F847200DFD38B /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509D2F6F847200DFD38B /* popup.js */; };
+		91F250AC2F6F847200DFD38B /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509E2F6F847200DFD38B /* background.js */; };
+		91F250AD2F6F847200DFD38B /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509F2F6F847200DFD38B /* popup.html */; };
+		91F250AE2F6F847200DFD38B /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A02F6F847200DFD38B /* config.js */; };
+		91F250AF2F6F847200DFD38B /* test-panel.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A12F6F847200DFD38B /* test-panel.js */; };
+		91F250B02F6F847200DFD38B /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A22F6F847200DFD38B /* icons */; };
+		91F250B12F6F847200DFD38B /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A32F6F847200DFD38B /* welcome.html */; };
+		91F250B22F6F847200DFD38B /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A42F6F847200DFD38B /* manifest.json */; };
+		91F250B32F6F847200DFD38B /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A52F6F847200DFD38B /* popup.css */; };
+		91F250B42F6F847200DFD38B /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A62F6F847200DFD38B /* content.js */; };
+		91F250B52F6F847200DFD38B /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A72F6F847200DFD38B /* view-mapping.js */; };
+		91F250B62F6F847200DFD38B /* debug-config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A82F6F847200DFD38B /* debug-config.js */; };
+		91F250B72F6F847200DFD38B /* api-adapter.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509B2F6F847200DFD38B /* api-adapter.js */; };
+		91F250B82F6F847200DFD38B /* translator.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509C2F6F847200DFD38B /* translator.css */; };
+		91F250B92F6F847200DFD38B /* popup.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509D2F6F847200DFD38B /* popup.js */; };
+		91F250BA2F6F847200DFD38B /* background.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509E2F6F847200DFD38B /* background.js */; };
+		91F250BB2F6F847200DFD38B /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F2509F2F6F847200DFD38B /* popup.html */; };
+		91F250BC2F6F847200DFD38B /* config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A02F6F847200DFD38B /* config.js */; };
+		91F250BD2F6F847200DFD38B /* test-panel.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A12F6F847200DFD38B /* test-panel.js */; };
+		91F250BE2F6F847200DFD38B /* icons in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A22F6F847200DFD38B /* icons */; };
+		91F250BF2F6F847200DFD38B /* welcome.html in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A32F6F847200DFD38B /* welcome.html */; };
+		91F250C02F6F847200DFD38B /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A42F6F847200DFD38B /* manifest.json */; };
+		91F250C12F6F847200DFD38B /* popup.css in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A52F6F847200DFD38B /* popup.css */; };
+		91F250C22F6F847200DFD38B /* content.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A62F6F847200DFD38B /* content.js */; };
+		91F250C32F6F847200DFD38B /* view-mapping.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A72F6F847200DFD38B /* view-mapping.js */; };
+		91F250C42F6F847200DFD38B /* debug-config.js in Resources */ = {isa = PBXBuildFile; fileRef = 91F250A82F6F847200DFD38B /* debug-config.js */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91F2506E2F6F847100DFD38B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F2503B2F6F847000DFD38B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91F2506B2F6F847100DFD38B;
+			remoteInfo = "AI Web Translator Extension (iOS)";
+		};
+		91F250782F6F847100DFD38B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F2503B2F6F847000DFD38B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91F250752F6F847100DFD38B;
+			remoteInfo = "AI Web Translator Extension (macOS)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91F2508F2F6F847100DFD38B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				91F2506D2F6F847100DFD38B /* AI Web Translator Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250962F6F847100DFD38B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				91F250772F6F847100DFD38B /* AI Web Translator Extension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		91F250422F6F847000DFD38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/Main.html; sourceTree = "<group>"; };
+		91F250432F6F847000DFD38B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		91F250442F6F847000DFD38B /* Style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = Style.css; sourceTree = "<group>"; };
+		91F250452F6F847000DFD38B /* Script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Script.js; sourceTree = "<group>"; };
+		91F250462F6F847000DFD38B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		91F250472F6F847100DFD38B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		91F250492F6F847100DFD38B /* SafariWebExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariWebExtensionHandler.swift; sourceTree = "<group>"; };
+		91F2504E2F6F847100DFD38B /* AI Web Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Web Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F250512F6F847100DFD38B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91F250532F6F847100DFD38B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		91F250562F6F847100DFD38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		91F250592F6F847100DFD38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91F2505B2F6F847100DFD38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F250602F6F847100DFD38B /* AI Web Translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AI Web Translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F250622F6F847100DFD38B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91F250652F6F847100DFD38B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		91F250672F6F847100DFD38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F2506C2F6F847100DFD38B /* AI Web Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Web Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F250712F6F847100DFD38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F250762F6F847100DFD38B /* AI Web Translator Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AI Web Translator Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91F2507B2F6F847100DFD38B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F2509B2F6F847200DFD38B /* api-adapter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "api-adapter.js"; path = "Resources/api-adapter.js"; sourceTree = "<group>"; };
+		91F2509C2F6F847200DFD38B /* translator.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = translator.css; path = Resources/translator.css; sourceTree = "<group>"; };
+		91F2509D2F6F847200DFD38B /* popup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = popup.js; path = Resources/popup.js; sourceTree = "<group>"; };
+		91F2509E2F6F847200DFD38B /* background.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = background.js; path = Resources/background.js; sourceTree = "<group>"; };
+		91F2509F2F6F847200DFD38B /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = popup.html; path = Resources/popup.html; sourceTree = "<group>"; };
+		91F250A02F6F847200DFD38B /* config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = config.js; path = Resources/config.js; sourceTree = "<group>"; };
+		91F250A12F6F847200DFD38B /* test-panel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "test-panel.js"; path = "Resources/test-panel.js"; sourceTree = "<group>"; };
+		91F250A22F6F847200DFD38B /* icons */ = {isa = PBXFileReference; lastKnownFileType = folder; name = icons; path = Resources/icons; sourceTree = "<group>"; };
+		91F250A32F6F847200DFD38B /* welcome.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = welcome.html; path = Resources/welcome.html; sourceTree = "<group>"; };
+		91F250A42F6F847200DFD38B /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = manifest.json; path = Resources/manifest.json; sourceTree = "<group>"; };
+		91F250A52F6F847200DFD38B /* popup.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = popup.css; path = Resources/popup.css; sourceTree = "<group>"; };
+		91F250A62F6F847200DFD38B /* content.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = content.js; path = Resources/content.js; sourceTree = "<group>"; };
+		91F250A72F6F847200DFD38B /* view-mapping.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "view-mapping.js"; path = "Resources/view-mapping.js"; sourceTree = "<group>"; };
+		91F250A82F6F847200DFD38B /* debug-config.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; name = "debug-config.js"; path = "Resources/debug-config.js"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91F2504B2F6F847100DFD38B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F2505D2F6F847100DFD38B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250692F6F847100DFD38B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250732F6F847100DFD38B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		91F2503A2F6F847000DFD38B = {
+			isa = PBXGroup;
+			children = (
+				91F2503F2F6F847000DFD38B /* Shared (App) */,
+				91F250482F6F847100DFD38B /* Shared (Extension) */,
+				91F250502F6F847100DFD38B /* iOS (App) */,
+				91F250612F6F847100DFD38B /* macOS (App) */,
+				91F250702F6F847100DFD38B /* iOS (Extension) */,
+				91F2507A2F6F847100DFD38B /* macOS (Extension) */,
+				91F2504F2F6F847100DFD38B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91F2503F2F6F847000DFD38B /* Shared (App) */ = {
+			isa = PBXGroup;
+			children = (
+				91F250462F6F847000DFD38B /* ViewController.swift */,
+				91F250472F6F847100DFD38B /* Assets.xcassets */,
+				91F250402F6F847000DFD38B /* Resources */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		91F250402F6F847000DFD38B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91F250412F6F847000DFD38B /* Main.html */,
+				91F250432F6F847000DFD38B /* Icon.png */,
+				91F250442F6F847000DFD38B /* Style.css */,
+				91F250452F6F847000DFD38B /* Script.js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		91F250482F6F847100DFD38B /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				91F2509A2F6F847200DFD38B /* Resources */,
+				91F250492F6F847100DFD38B /* SafariWebExtensionHandler.swift */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		91F2504F2F6F847100DFD38B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91F2504E2F6F847100DFD38B /* AI Web Translator.app */,
+				91F250602F6F847100DFD38B /* AI Web Translator.app */,
+				91F2506C2F6F847100DFD38B /* AI Web Translator Extension.appex */,
+				91F250762F6F847100DFD38B /* AI Web Translator Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91F250502F6F847100DFD38B /* iOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				91F250512F6F847100DFD38B /* AppDelegate.swift */,
+				91F250532F6F847100DFD38B /* SceneDelegate.swift */,
+				91F250552F6F847100DFD38B /* LaunchScreen.storyboard */,
+				91F250582F6F847100DFD38B /* Main.storyboard */,
+				91F2505B2F6F847100DFD38B /* Info.plist */,
+			);
+			path = "iOS (App)";
+			sourceTree = "<group>";
+		};
+		91F250612F6F847100DFD38B /* macOS (App) */ = {
+			isa = PBXGroup;
+			children = (
+				91F250622F6F847100DFD38B /* AppDelegate.swift */,
+				91F250642F6F847100DFD38B /* Main.storyboard */,
+				91F250672F6F847100DFD38B /* Info.plist */,
+			);
+			path = "macOS (App)";
+			sourceTree = "<group>";
+		};
+		91F250702F6F847100DFD38B /* iOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				91F250712F6F847100DFD38B /* Info.plist */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		91F2507A2F6F847100DFD38B /* macOS (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				91F2507B2F6F847100DFD38B /* Info.plist */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		91F2509A2F6F847200DFD38B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				91F2509B2F6F847200DFD38B /* api-adapter.js */,
+				91F2509C2F6F847200DFD38B /* translator.css */,
+				91F2509D2F6F847200DFD38B /* popup.js */,
+				91F2509E2F6F847200DFD38B /* background.js */,
+				91F2509F2F6F847200DFD38B /* popup.html */,
+				91F250A02F6F847200DFD38B /* config.js */,
+				91F250A12F6F847200DFD38B /* test-panel.js */,
+				91F250A22F6F847200DFD38B /* icons */,
+				91F250A32F6F847200DFD38B /* welcome.html */,
+				91F250A42F6F847200DFD38B /* manifest.json */,
+				91F250A52F6F847200DFD38B /* popup.css */,
+				91F250A62F6F847200DFD38B /* content.js */,
+				91F250A72F6F847200DFD38B /* view-mapping.js */,
+				91F250A82F6F847200DFD38B /* debug-config.js */,
+			);
+			name = Resources;
+			path = "Shared (Extension)";
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91F2504D2F6F847100DFD38B /* AI Web Translator (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F250902F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator (iOS)" */;
+			buildPhases = (
+				91F2504A2F6F847100DFD38B /* Sources */,
+				91F2504B2F6F847100DFD38B /* Frameworks */,
+				91F2504C2F6F847100DFD38B /* Resources */,
+				91F2508F2F6F847100DFD38B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91F2506F2F6F847100DFD38B /* PBXTargetDependency */,
+			);
+			name = "AI Web Translator (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Web Translator (iOS)";
+			productReference = 91F2504E2F6F847100DFD38B /* AI Web Translator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		91F2505F2F6F847100DFD38B /* AI Web Translator (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F250972F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator (macOS)" */;
+			buildPhases = (
+				91F2505C2F6F847100DFD38B /* Sources */,
+				91F2505D2F6F847100DFD38B /* Frameworks */,
+				91F2505E2F6F847100DFD38B /* Resources */,
+				91F250962F6F847100DFD38B /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91F250792F6F847100DFD38B /* PBXTargetDependency */,
+			);
+			name = "AI Web Translator (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Web Translator (macOS)";
+			productReference = 91F250602F6F847100DFD38B /* AI Web Translator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		91F2506B2F6F847100DFD38B /* AI Web Translator Extension (iOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F2508C2F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator Extension (iOS)" */;
+			buildPhases = (
+				91F250682F6F847100DFD38B /* Sources */,
+				91F250692F6F847100DFD38B /* Frameworks */,
+				91F2506A2F6F847100DFD38B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AI Web Translator Extension (iOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Web Translator Extension (iOS)";
+			productReference = 91F2506C2F6F847100DFD38B /* AI Web Translator Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		91F250752F6F847100DFD38B /* AI Web Translator Extension (macOS) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91F250932F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator Extension (macOS)" */;
+			buildPhases = (
+				91F250722F6F847100DFD38B /* Sources */,
+				91F250732F6F847100DFD38B /* Frameworks */,
+				91F250742F6F847100DFD38B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AI Web Translator Extension (macOS)";
+			packageProductDependencies = (
+			);
+			productName = "AI Web Translator Extension (macOS)";
+			productReference = 91F250762F6F847100DFD38B /* AI Web Translator Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91F2503B2F6F847000DFD38B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					91F2504D2F6F847100DFD38B = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					91F2505F2F6F847100DFD38B = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					91F2506B2F6F847100DFD38B = {
+						CreatedOnToolsVersion = 26.3;
+					};
+					91F250752F6F847100DFD38B = {
+						CreatedOnToolsVersion = 26.3;
+					};
+				};
+			};
+			buildConfigurationList = 91F2503E2F6F847000DFD38B /* Build configuration list for PBXProject "AI Web Translator" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 91F2503A2F6F847000DFD38B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 91F2504F2F6F847100DFD38B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91F2504D2F6F847100DFD38B /* AI Web Translator (iOS) */,
+				91F2505F2F6F847100DFD38B /* AI Web Translator (macOS) */,
+				91F2506B2F6F847100DFD38B /* AI Web Translator Extension (iOS) */,
+				91F250752F6F847100DFD38B /* AI Web Translator Extension (macOS) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91F2504C2F6F847100DFD38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F2507E2F6F847100DFD38B /* Icon.png in Resources */,
+				91F250572F6F847100DFD38B /* LaunchScreen.storyboard in Resources */,
+				91F2507C2F6F847100DFD38B /* Main.html in Resources */,
+				91F250822F6F847100DFD38B /* Script.js in Resources */,
+				91F250862F6F847100DFD38B /* Assets.xcassets in Resources */,
+				91F2505A2F6F847100DFD38B /* Main.storyboard in Resources */,
+				91F250802F6F847100DFD38B /* Style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F2505E2F6F847100DFD38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F2507F2F6F847100DFD38B /* Icon.png in Resources */,
+				91F250812F6F847100DFD38B /* Style.css in Resources */,
+				91F250662F6F847100DFD38B /* Main.storyboard in Resources */,
+				91F250832F6F847100DFD38B /* Script.js in Resources */,
+				91F250872F6F847100DFD38B /* Assets.xcassets in Resources */,
+				91F2507D2F6F847100DFD38B /* Main.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F2506A2F6F847100DFD38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250C42F6F847200DFD38B /* debug-config.js in Resources */,
+				91F250C22F6F847200DFD38B /* content.js in Resources */,
+				91F250C32F6F847200DFD38B /* view-mapping.js in Resources */,
+				91F250C12F6F847200DFD38B /* popup.css in Resources */,
+				91F250BC2F6F847200DFD38B /* config.js in Resources */,
+				91F250BE2F6F847200DFD38B /* icons in Resources */,
+				91F250C02F6F847200DFD38B /* manifest.json in Resources */,
+				91F250BA2F6F847200DFD38B /* background.js in Resources */,
+				91F250BB2F6F847200DFD38B /* popup.html in Resources */,
+				91F250B72F6F847200DFD38B /* api-adapter.js in Resources */,
+				91F250BD2F6F847200DFD38B /* test-panel.js in Resources */,
+				91F250BF2F6F847200DFD38B /* welcome.html in Resources */,
+				91F250B92F6F847200DFD38B /* popup.js in Resources */,
+				91F250B82F6F847200DFD38B /* translator.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250742F6F847100DFD38B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250B62F6F847200DFD38B /* debug-config.js in Resources */,
+				91F250B42F6F847200DFD38B /* content.js in Resources */,
+				91F250B52F6F847200DFD38B /* view-mapping.js in Resources */,
+				91F250B32F6F847200DFD38B /* popup.css in Resources */,
+				91F250AE2F6F847200DFD38B /* config.js in Resources */,
+				91F250B02F6F847200DFD38B /* icons in Resources */,
+				91F250B22F6F847200DFD38B /* manifest.json in Resources */,
+				91F250AC2F6F847200DFD38B /* background.js in Resources */,
+				91F250AD2F6F847200DFD38B /* popup.html in Resources */,
+				91F250A92F6F847200DFD38B /* api-adapter.js in Resources */,
+				91F250AF2F6F847200DFD38B /* test-panel.js in Resources */,
+				91F250B12F6F847200DFD38B /* welcome.html in Resources */,
+				91F250AB2F6F847200DFD38B /* popup.js in Resources */,
+				91F250AA2F6F847200DFD38B /* translator.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91F2504A2F6F847100DFD38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250842F6F847100DFD38B /* ViewController.swift in Sources */,
+				91F250522F6F847100DFD38B /* AppDelegate.swift in Sources */,
+				91F250542F6F847100DFD38B /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F2505C2F6F847100DFD38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250852F6F847100DFD38B /* ViewController.swift in Sources */,
+				91F250632F6F847100DFD38B /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250682F6F847100DFD38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250882F6F847100DFD38B /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91F250722F6F847100DFD38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91F250892F6F847100DFD38B /* SafariWebExtensionHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91F2506F2F6F847100DFD38B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91F2506B2F6F847100DFD38B /* AI Web Translator Extension (iOS) */;
+			targetProxy = 91F2506E2F6F847100DFD38B /* PBXContainerItemProxy */;
+		};
+		91F250792F6F847100DFD38B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91F250752F6F847100DFD38B /* AI Web Translator Extension (macOS) */;
+			targetProxy = 91F250782F6F847100DFD38B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		91F250412F6F847000DFD38B /* Main.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F250422F6F847000DFD38B /* Base */,
+			);
+			name = Main.html;
+			sourceTree = "<group>";
+		};
+		91F250552F6F847100DFD38B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F250562F6F847100DFD38B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		91F250582F6F847100DFD38B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F250592F6F847100DFD38B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		91F250642F6F847100DFD38B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91F250652F6F847100DFD38B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		91F2508A2F6F847100DFD38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Debug;
+		};
+		91F2508B2F6F847100DFD38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Release;
+		};
+		91F2508D2F6F847100DFD38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator.Extension";
+				PRODUCT_NAME = "AI Web Translator Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Debug;
+		};
+		91F2508E2F6F847100DFD38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator.Extension";
+				PRODUCT_NAME = "AI Web Translator Extension";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Release;
+		};
+		91F250912F6F847100DFD38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator";
+				PRODUCT_NAME = "AI Web Translator";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Debug;
+		};
+		91F250922F6F847100DFD38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator";
+				PRODUCT_NAME = "AI Web Translator";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Release;
+		};
+		91F250942F6F847100DFD38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator.Extension";
+				PRODUCT_NAME = "AI Web Translator Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Debug;
+		};
+		91F250952F6F847100DFD38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator.Extension";
+				PRODUCT_NAME = "AI Web Translator Extension";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Release;
+		};
+		91F250982F6F847100DFD38B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator";
+				PRODUCT_NAME = "AI Web Translator";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Debug;
+		};
+		91F250992F6F847100DFD38B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "AI Web Translator";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+					"-framework",
+					WebKit,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.ai-web-translator";
+				PRODUCT_NAME = "AI Web Translator";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				DEVELOPMENT_TEAM = VKFLZM4DMK;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91F2503E2F6F847000DFD38B /* Build configuration list for PBXProject "AI Web Translator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F2508A2F6F847100DFD38B /* Debug */,
+				91F2508B2F6F847100DFD38B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F2508C2F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator Extension (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F2508D2F6F847100DFD38B /* Debug */,
+				91F2508E2F6F847100DFD38B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F250902F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator (iOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F250912F6F847100DFD38B /* Debug */,
+				91F250922F6F847100DFD38B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F250932F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator Extension (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F250942F6F847100DFD38B /* Debug */,
+				91F250952F6F847100DFD38B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91F250972F6F847100DFD38B /* Build configuration list for PBXNativeTarget "AI Web Translator (macOS)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91F250982F6F847100DFD38B /* Debug */,
+				91F250992F6F847100DFD38B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91F2503B2F6F847000DFD38B /* Project object */;
+}

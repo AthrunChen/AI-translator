@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 网页翻译器</title>
+  <link rel="stylesheet" href="popup.css">
+  <style>
+    /* 设置面板样式 */
+    .settings-panel {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .settings-panel.active {
+      display: flex;
+    }
+    .settings-content {
+      background: white;
+      width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .settings-header {
+      background: #4299e1;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .settings-header h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+    .settings-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .settings-body {
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      color: #4a5568;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .form-group small {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #718096;
+    }
+    .settings-footer {
+      padding: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .btn-save {
+      background: #4299e1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-cancel {
+      background: #e2e8f0;
+      color: #4a5568;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">🌐</div>
+    <h1>AI 网页翻译器</h1>
+  </div>
+
+  <div class="content">
+    <div class="status-section">
+      <div class="status-indicator" id="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">准备就绪</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-translate">
+        <span class="btn-icon">📝</span>
+        <span class="btn-text">翻译当前页面</span>
+      </button>
+      
+      <div class="toggle-group" id="toggle-group" style="display: none;">
+        <button class="btn btn-secondary" id="btn-toggle">
+          <span class="btn-icon">👁</span>
+          <span class="btn-text">切换显示</span>
+        </button>
+        <div class="toggle-status" id="toggle-status">双语对照</div>
+      </div>
+      
+      <button class="btn btn-secondary" id="btn-test">
+        <span class="btn-icon">🧪</span>
+        <span class="btn-text">测试连接</span>
+      </button>
+      
+      <button class="btn btn-secondary" id="btn-settings">
+        <span class="btn-icon">⚙️</span>
+        <span class="btn-text">设置</span>
+      </button>
+    </div>
+
+    <div class="api-status" id="api-status">
+      <div class="api-status-icon">⚠️</div>
+      <div class="api-status-text">API Key 未设置</div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <span class="info-label">Provider:</span>
+        <span class="info-value" id="provider-name">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">模型:</span>
+        <span class="info-value" id="model-name">-</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">并行数:</span>
+        <span class="info-value" id="concurrency-value">-</span>
+      </div>
+      <div class="info-item" id="cache-info" style="display: none;">
+        <span class="info-label">已缓存:</span>
+        <span class="info-value" id="cache-count">0 段落</span>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h3>💡 功能特性</h3>
+      <ul>
+        <li>点击"翻译"开始双语对照阅读</li>
+        <li>使用"切换显示"在原文/译文间切换</li>
+        <li>鼠标悬停词汇可高亮对应位置</li>
+        <li>翻译结果自动缓存，切换无需重译</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Powered by Kimi AI</span>
+  </div>
+
+  <!-- 设置面板 -->
+  <div class="settings-panel" id="settings-panel">
+    <div class="settings-content">
+      <div class="settings-header">
+        <h2>⚙️ AI 翻译器设置</h2>
+        <button class="settings-close" id="settings-close">&times;</button>
+      </div>
+      <div class="settings-body">
+        <div class="form-group">
+          <label>API Provider</label>
+          <select id="setting-provider">
+            <option value="openai-compatible">OpenAI Compatible (Kimi/OpenAI)</option>
+            <option value="anthropic-messages">Anthropic Messages API</option>
+          </select>
+          <small>选择 API 格式类型</small>
+        </div>
+        <div class="form-group">
+          <label>API Key</label>
+          <input type="password" id="setting-api-key" placeholder="输入你的 API Key">
+          <small>你的 API 密钥</small>
+        </div>
+        <div class="form-group">
+          <label>API Base URL</label>
+          <input type="text" id="setting-api-url" placeholder="https://api.openai.com/v1">
+          <small>API 服务器地址</small>
+        </div>
+        <div class="form-group">
+          <label>模型</label>
+          <input type="text" id="setting-model" placeholder="gpt-3.5-turbo">
+          <small>如: gpt-3.5-turbo, kimi-latest</small>
+        </div>
+        <div class="form-group">
+          <label>并行线程数</label>
+          <input type="number" id="setting-concurrency" min="1" max="20" value="10">
+          <small>同时发送的 API 请求数 (1-20)</small>
+        </div>
+      </div>
+      <div class="settings-footer">
+        <button class="btn-cancel" id="settings-cancel">取消</button>
+        <button class="btn-save" id="settings-save">保存设置</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
