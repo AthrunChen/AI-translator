@@ -429,7 +429,7 @@ var _chrome = isSafari ? browser : chrome;
     
     // 解析词汇对应表
     // AI-Driven 语义分词：使用 AI 返回的对照表，支持 中文词组 -> 英文原文 格式
-    const wordMap = new Map(); // 标准化英文 -> {originals: Set, chinese: string[]}
+    const wordMap = new Map(); // 原始英文（小写） -> {original: string, chinese: string[]}
     const chineseToEnglish = new Map(); // 中文词组 -> 英文原文列表 (AI直接提供的映射)
     
     // ====== 尝试 1: 查找 [词汇对应] ... [/词汇对应] 块 (旧格式兼容) ======
@@ -443,21 +443,28 @@ var _chrome = isSafari ? browser : chrome;
         const parts = line.split('|').map(p => p.trim());
         if (parts.length >= 2 && parts[0] && parts[1]) {
           const englishOriginal = parts[0];
-          const englishNormalized = parts[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+          const englishKey = englishOriginal.toLowerCase();
           const chinese = parts[1];
           
-          if (englishNormalized.length >= 2) {
-            if (!wordMap.has(englishNormalized)) {
-              wordMap.set(englishNormalized, {
-                originals: new Set(),
+          if (englishKey.length >= 2) {
+            if (!wordMap.has(englishKey)) {
+              wordMap.set(englishKey, {
+                original: englishOriginal,
                 chinese: []
               });
             }
-            const entry = wordMap.get(englishNormalized);
-            entry.originals.add(englishOriginal.toLowerCase());
+            const entry = wordMap.get(englishKey);
             if (!entry.chinese.includes(chinese)) {
               entry.chinese.push(chinese);
             }
+          }
+          
+          // 同时构建反向映射
+          if (!chineseToEnglish.has(chinese)) {
+            chineseToEnglish.set(chinese, []);
+          }
+          if (!chineseToEnglish.get(chinese).includes(englishOriginal)) {
+            chineseToEnglish.get(chinese).push(englishOriginal);
           }
         }
       }
@@ -491,6 +498,8 @@ var _chrome = isSafari ? browser : chrome;
         console.log('[AI Translator] 检测到 AI-Driven 语义分词表格, 表头行:', tableStartIndex);
         // 解析表头确定列位置
         const headerParts = headerLine.split('|').map(p => p.trim()).filter(p => p);
+        console.log('[AI Translator] AI-Driven 表头列:', headerParts);
+        
         const chineseIndex = headerParts.findIndex(h => 
           h.includes('中文词组') || h.includes('词组') || h.includes('中文')
         );
@@ -501,7 +510,10 @@ var _chrome = isSafari ? browser : chrome;
         const chnCol = chineseIndex >= 0 ? chineseIndex : 1;
         const engCol = englishIndex >= 0 ? englishIndex : 2;
         
+        console.log(`[AI Translator] AI-Driven 列索引: 中文=${chineseIndex}(${chnCol}), 英文=${englishIndex}(${engCol})`);
+        
         // 从分隔行之后开始解析数据行
+        let parsedRows = 0;
         for (let i = tableStartIndex + 2; i < lines.length; i++) {
           const line = lines[i].trim();
           if (!line || !line.includes('|')) break; // 表格结束
@@ -511,19 +523,24 @@ var _chrome = isSafari ? browser : chrome;
             const chinese = parts[chnCol];
             const englishOriginal = parts[engCol];
             
+            // 调试：打印前几行解析结果
+            if (parsedRows < 3) {
+              console.log(`[AI Translator] AI-Driven 解析行[${i}]:`, {parts, chinese, englishOriginal, chnCol, engCol});
+            }
+            
             if (englishOriginal && chinese) {
-              const englishNormalized = englishOriginal.toLowerCase().replace(/[^a-z0-9]/g, '');
+              // 使用原始英文（小写，保留空格）作为 key
+              const englishKey = englishOriginal.toLowerCase();
               
-              // 保存到 wordMap (英文 -> 中文)
-              if (englishNormalized.length >= 1) {
-                if (!wordMap.has(englishNormalized)) {
-                  wordMap.set(englishNormalized, {
-                    originals: new Set(),
+              // 保存到 wordMap (英文 -> 中文)，使用原始英文作为 key
+              if (englishKey.length >= 1) {
+                if (!wordMap.has(englishKey)) {
+                  wordMap.set(englishKey, {
+                    original: englishOriginal,
                     chinese: []
                   });
                 }
-                const entry = wordMap.get(englishNormalized);
-                entry.originals.add(englishOriginal);
+                const entry = wordMap.get(englishKey);
                 if (!entry.chinese.includes(chinese)) {
                   entry.chinese.push(chinese);
                 }
@@ -538,9 +555,10 @@ var _chrome = isSafari ? browser : chrome;
               }
             }
           }
+          parsedRows++;
         }
         
-        console.log(`[AI Translator] AI-Driven 词汇表解析完成: ${wordMap.size} 个英文词, ${chineseToEnglish.size} 个中文词组`);
+        console.log(`[AI Translator] AI-Driven 词汇表解析完成: ${wordMap.size} 个英文词, ${chineseToEnglish.size} 个中文词组, ${parsedRows} 行数据`);
       }
     }
     
@@ -591,17 +609,17 @@ var _chrome = isSafari ? browser : chrome;
             const chinese = parts[chnCol];
             
             if (englishOriginal && chinese && englishOriginal !== chinese) {
-              const englishNormalized = englishOriginal.toLowerCase().replace(/[^a-z0-9]/g, '');
+              // 使用原始英文（小写）作为 key，不标准化
+              const englishKey = englishOriginal.toLowerCase();
               
-              if (englishNormalized.length >= 2) {
-                if (!wordMap.has(englishNormalized)) {
-                  wordMap.set(englishNormalized, {
-                    originals: new Set(),
+              if (englishKey.length >= 2) {
+                if (!wordMap.has(englishKey)) {
+                  wordMap.set(englishKey, {
+                    original: englishOriginal,
                     chinese: []
                   });
                 }
-                const entry = wordMap.get(englishNormalized);
-                entry.originals.add(englishOriginal.toLowerCase());
+                const entry = wordMap.get(englishKey);
                 if (!entry.chinese.includes(chinese)) {
                   entry.chinese.push(chinese);
                 }
@@ -612,15 +630,19 @@ var _chrome = isSafari ? browser : chrome;
       }
     }
     
-    // 构建反向映射：中文 -> 标准化英文（用于译文→原文高亮）
+    // 构建反向映射：中文 -> 原始英文（用于译文→原文高亮）
     // 注意：如果是 AI-Driven 格式，chineseToEnglish 已经在上面构建好了
     if (chineseToEnglish.size === 0) {
-      for (const [normalized, entry] of wordMap.entries()) {
+      for (const [engKey, entry] of wordMap.entries()) {
         for (const chn of entry.chinese) {
           if (!chineseToEnglish.has(chn)) {
             chineseToEnglish.set(chn, []);
           }
-          chineseToEnglish.get(chn).push(normalized);
+          // 使用 entry.original 或 engKey
+          const original = entry.original || engKey;
+          if (!chineseToEnglish.get(chn).includes(original)) {
+            chineseToEnglish.get(chn).push(original);
+          }
         }
       }
     }
@@ -633,7 +655,14 @@ var _chrome = isSafari ? browser : chrome;
     if (mappingIndex > 0) {
       translation = result.substring(0, mappingIndex).trim();
     }
-    // 尝试 2: 如果有 Markdown 表格，提取表格之前的内容
+    // 尝试 2: 检测 "【词汇对照表】" 或类似标记
+    else if (result.match(/【词汇/)) {
+      const match = result.match(/【词汇[\s\S]*/);
+      if (match) {
+        translation = result.substring(0, match.index).trim();
+      }
+    }
+    // 尝试 3: 如果有 Markdown 表格，提取表格之前的内容
     else if (result.match(/\n\|?[\s-:]+\|/)) {
       const tableSeparatorMatch = result.match(/\n\|?[\s-:]+\|/);
       if (tableSeparatorMatch) {
@@ -643,12 +672,20 @@ var _chrome = isSafari ? browser : chrome;
         const lines = beforeSeparator.split('\n');
         // 检查最后一行是否是表头
         const lastLine = lines[lines.length - 1].trim();
-        if (lastLine.includes('|') && (lastLine.includes('原文') || lastLine.includes('翻译'))) {
+        if (lastLine.includes('|') && (lastLine.includes('原文') || lastLine.includes('翻译') || lastLine.includes('词组'))) {
           lines.pop(); // 移除表头行
         }
         translation = lines.join('\n').trim();
       }
     }
+    
+    // 清理翻译文本中的各种标记
+    // 1. 移除 "中文翻译：" 或 "中文翻译:" 等标题
+    translation = translation.replace(/^\s*中文翻译[：:]\s*/i, '');
+    // 2. 移除 "【词汇对照表】" 等后续标记
+    translation = translation.replace(/【词汇[\s\S]*$/, '');
+    // 3. 移除 "词汇对照表" 等后续标记
+    translation = translation.replace(/词汇对照表[\s\S]*$/, '');
     
     // 清理翻译文本中的 "原文 | 译文" 格式
     const lines = translation.split('\n');
@@ -749,7 +786,7 @@ var _chrome = isSafari ? browser : chrome;
     highlightDebugStats.totalEnglishWords++;
     console.log(`[高亮Debug] 英文→中文: "${word}"`);
     
-    const wordNormalized = word.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const wordLower = word.toLowerCase();
     const transEl = sourceEl.nextElementSibling;
     if (!transEl) {
       console.log('[高亮Debug] ❌ 未找到译文元素');
@@ -761,31 +798,32 @@ var _chrome = isSafari ? browser : chrome;
     console.log(`[高亮Debug] mappingData:`, mappingData ? {wordMapSize: mappingData.wordMap?.size} : null);
     
     if (!mappingData || !mappingData.wordMap) {
-      console.log('[高亮Debug] ⚠️ 无词汇对应表，使用回退匹配');
-      const transWords = transEl.querySelectorAll('.ai-translator-word');
-      let found = false;
-      transWords.forEach(el => {
-        const text = el.textContent.toLowerCase().replace(/[^a-z0-9]/g, '');
-        if (text === wordNormalized) {
-          el.classList.add('highlight-source');
-          found = true;
-        }
-      });
-      if (found) {
-        highlightDebugStats.matchedEnglishWords++;
-      } else {
-        highlightDebugStats.unmatchedEnglishWords.push(word);
-      }
+      console.log('[高亮Debug] ⚠️ 无词汇对应表，无法高亮');
+      highlightDebugStats.unmatchedEnglishWords.push(word);
       return;
     }
     
     const { wordMap } = mappingData;
-    console.log(`[高亮Debug] wordMap 键:`, Array.from(wordMap.keys()).slice(0, 5));
+    console.log(`[高亮Debug] wordMap 键 (原始英文):`, Array.from(wordMap.keys()).slice(0, 5));
     
-    if (wordMap.has(wordNormalized)) {
-      const entry = wordMap.get(wordNormalized);
-      const targetChineseWords = entry.chinese;
-      console.log(`[高亮Debug] ✅ 找到对应: "${word}" → ${targetChineseWords.join(', ')}`);
+    // 查找：遍历 wordMap，检查查询词是否包含在某个英文词组中
+    let matchedEntry = null;
+    let matchedKey = null;
+    
+    for (const [engKey, entry] of wordMap.entries()) {
+      // 将英文 key 拆分为单词列表
+      const engWords = engKey.split(/\s+/).filter(w => w.length >= 2);
+      
+      if (engWords.includes(wordLower)) {
+        matchedEntry = entry;
+        matchedKey = engKey;
+        break;
+      }
+    }
+    
+    if (matchedEntry) {
+      const targetChineseWords = matchedEntry.chinese;
+      console.log(`[高亮Debug] ✅ 找到对应: "${word}" → "${matchedKey}" → ${targetChineseWords.join(', ')}`);
       
       const transWords = transEl.querySelectorAll('.ai-translator-word');
       console.log(`[高亮Debug] 译文词汇元素数: ${transWords.length}`);
@@ -813,13 +851,13 @@ var _chrome = isSafari ? browser : chrome;
         console.log(`[高亮Debug] 译文 DOM 前10个词:`, transWordTexts);
       }
     } else {
-      // 尝试部分匹配：如 "output" 匹配 "formatsoutput" 中的部分
+      // 尝试子串匹配：检查查询词是否是某个英文词组的子串
       let partialMatchFound = false;
-      for (const [normalized, entry] of wordMap.entries()) {
-        // 检查是否是子串关系
-        if (normalized.includes(wordNormalized) || wordNormalized.includes(normalized)) {
+      for (const [engKey, entry] of wordMap.entries()) {
+        // 检查是否是子串关系（如 "assistant" 在 "ai voice assistant" 中）
+        if (engKey.includes(wordLower) || wordLower.includes(engKey.replace(/\s+/g, ''))) {
           const targetChineseWords = entry.chinese;
-          console.log(`[高亮Debug] 🔍 部分匹配: "${word}" ~ "${Array.from(entry.originals).join('/')}" → ${targetChineseWords.join(', ')}`);
+          console.log(`[高亮Debug] 🔍 部分匹配: "${word}" ~ "${engKey}" → ${targetChineseWords.join(', ')}`);
           
           const transWords = transEl.querySelectorAll('.ai-translator-word');
           let found = false;
@@ -844,7 +882,7 @@ var _chrome = isSafari ? browser : chrome;
       
       if (!partialMatchFound) {
         highlightDebugStats.unmatchedEnglishWords.push(word);
-        console.log(`[高亮Debug] ❌ 未找到对应: "${word}" (标准化: ${wordNormalized})`);
+        console.log(`[高亮Debug] ❌ 未找到对应: "${word}"`);
         console.log(`[高亮Debug] wordMap 中的键示例:`, Array.from(wordMap.keys()).slice(0, 5));
       }
     }
@@ -897,24 +935,61 @@ var _chrome = isSafari ? browser : chrome;
           const sourceWords = sourceEl.querySelectorAll('.ai-source-word');
           console.log(`[高亮Debug] 原文词汇元素数: ${sourceWords.length}`);
           
-          for (const engNormalized of engList) {
-            const entry = wordMap.get(engNormalized);
-            if (!entry) {
-              console.log(`[高亮Debug] ⚠️ wordMap 中无: ${engNormalized}`);
+          for (const engOriginalFromAI of engList) {
+            // 直接使用 AI 返回的原始英文，按顺序匹配连续单词
+            // 如 "based on" -> 寻找连续的 "based" + "on"，而不是所有 "based" 和所有 "on"
+            const engWords = engOriginalFromAI.toLowerCase().split(/\s+/).filter(w => w.length >= 2);
+            
+            if (engWords.length === 0) {
+              console.log(`[高亮Debug] ⚠️ 英文词组拆分后为空: ${engOriginalFromAI}`);
               continue;
             }
             
-            for (const engOriginal of entry.originals) {
-              const engWords = engOriginal.toLowerCase().split(/\s+/);
+            console.log(`[高亮Debug] 连续匹配: "${engOriginalFromAI}" -> [${engWords.join(', ')}]`);
+            
+            // 将 NodeList 转为数组以便索引访问
+            const wordElements = Array.from(sourceWords);
+            let matchCount = 0;
+            
+            // 寻找连续的单词序列
+            for (let i = 0; i <= wordElements.length - engWords.length; i++) {
+              let isMatch = true;
               
-              sourceWords.forEach(el => {
-                const elWord = el.dataset.word;
-                if (engWords.includes(elWord) || elWord === engNormalized) {
-                  el.classList.add('highlight-translation');
-                  highlightCount++;
-                  console.log(`[高亮Debug] 🎨 高亮: "${el.textContent}"`);
+              // 检查从位置 i 开始的连续 engWords.length 个单词是否匹配
+              for (let j = 0; j < engWords.length; j++) {
+                const elWord = wordElements[i + j].dataset.word;
+                if (elWord !== engWords[j]) {
+                  isMatch = false;
+                  break;
                 }
-              });
+              }
+              
+              if (isMatch) {
+                // 高亮这个连续序列
+                for (let j = 0; j < engWords.length; j++) {
+                  wordElements[i + j].classList.add('highlight-translation');
+                  highlightCount++;
+                  matchCount++;
+                  console.log(`[高亮Debug] 🎨 高亮[${i}+${j}]: "${wordElements[i + j].textContent}"`);
+                }
+                console.log(`[高亮Debug] ✅ 连续序列匹配成功，位置 ${i}-${i + engWords.length - 1}`);
+                // 找到第一个匹配序列后继续查找其他可能的匹配（如重复出现的词组）
+              }
+            }
+            
+            if (matchCount === 0) {
+              console.log(`[高亮Debug] ⚠️ 未找到连续序列: [${engWords.join(', ')}]`);
+              // 回退：简单匹配单个单词（对于单字词组）
+              if (engWords.length === 1) {
+                wordElements.forEach(el => {
+                  if (el.dataset.word === engWords[0]) {
+                    el.classList.add('highlight-translation');
+                    highlightCount++;
+                    matchCount++;
+                    console.log(`[高亮Debug] 🎨 单字回退高亮: "${el.textContent}"`);
+                  }
+                });
+              }
             }
           }
           found = true;
@@ -925,26 +1000,36 @@ var _chrome = isSafari ? browser : chrome;
       console.log('[高亮Debug] ⚠️ chineseToEnglish 为空');
     }
     
-    // 方法2: 遍历 wordMap 查找
+    // 方法2: 遍历 wordMap 查找（使用原始英文 key）
     if (!found) {
       console.log('[高亮Debug] 方法1未找到，尝试遍历 wordMap...');
-      for (const [engNormalized, entry] of wordMap.entries()) {
+      for (const [engKey, entry] of wordMap.entries()) {
         for (const chn of entry.chinese) {
           if (chn === word || chn.includes(word) || word.includes(chn)) {
             console.log(`[高亮Debug] ✅ 遍历匹配: "${word}" → "${chn}"`);
             matchedPattern = `遍历: ${chn}`;
             
             const sourceWords = sourceEl.querySelectorAll('.ai-source-word');
-            for (const engOriginal of entry.originals) {
-              const engWords = engOriginal.toLowerCase().split(/\s+/);
-              
-              sourceWords.forEach(el => {
-                const elWord = el.dataset.word;
-                if (engWords.includes(elWord) || elWord === engNormalized) {
-                  el.classList.add('highlight-translation');
-                  highlightCount++;
+            const wordElements = Array.from(sourceWords);
+            
+            // 使用原始英文 key 拆分单词，进行连续序列匹配
+            const engWords = engKey.split(/\s+/).filter(w => w.length >= 2);
+            
+            for (let i = 0; i <= wordElements.length - engWords.length; i++) {
+              let isMatch = true;
+              for (let j = 0; j < engWords.length; j++) {
+                if (wordElements[i + j].dataset.word !== engWords[j]) {
+                  isMatch = false;
+                  break;
                 }
-              });
+              }
+              if (isMatch) {
+                for (let j = 0; j < engWords.length; j++) {
+                  wordElements[i + j].classList.add('highlight-translation');
+                  highlightCount++;
+                  console.log(`[高亮Debug] 🎨 遍历连续高亮[${i}+${j}]: "${wordElements[i + j].textContent}"`);
+                }
+              }
             }
             found = true;
             break;
@@ -992,8 +1077,8 @@ var _chrome = isSafari ? browser : chrome;
       // 从后向前处理，避免索引问题
       textNodes.reverse().forEach(textNode => {
         const text = textNode.textContent;
-        // 匹配英文单词（3个字母以上）
-        const regex = /\b([a-zA-Z]{3,})\b/g;
+        // 匹配英文单词（2个字母以上，包含 so, is, an 等短词）
+        const regex = /\b([a-zA-Z]{2,})\b/g;
         let match;
         let lastIndex = 0;
         const fragments = [];
@@ -1104,8 +1189,8 @@ var _chrome = isSafari ? browser : chrome;
             }
           }
         } else {
-          // 回退：使用简单的字符分割，但只匹配2字以上的中文
-          const regex = /([\u4e00-\u9fa5]{2,}|[a-zA-Z]{3,})/g;
+          // 回退：使用简单的字符分割，但只匹配2字以上的中文和2字母以上的英文
+          const regex = /([\u4e00-\u9fa5]{2,}|[a-zA-Z]{2,})/g;
           let match;
           let lastIndex = 0;
           
