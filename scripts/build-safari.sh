@@ -57,7 +57,7 @@ cat > "$TEMP_DIR/extension/manifest.json" << 'MANIFEST'
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["api-adapter.js", "config.js", "content.js"],
+      "js": ["debug-config.js", "api-adapter.js", "config.js", "content.js"],
       "css": ["translator.css"],
       "run_at": "document_end"
     }

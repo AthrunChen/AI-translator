@@ -1,28 +1,34 @@
-// Safari 兼容性
-const isSafari = typeof browser !== 'undefined' && browser.runtime;
-const _chrome = isSafari ? browser : chrome;
+// Safari 兼容性 - 使用 var 避免重复声明
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;
 
-// Safari 使用 localStorage 作为主要存储
-const storageAPI = {
+// Safari 使用 browser.storage.local 作为主要存储 (content script 和 popup 共享)
+var storageAPI = {
   async get(keys) {
     if (isSafari) {
-      // Safari: 使用 localStorage
-      const result = {};
-      if (typeof keys === 'string') {
-        keys = [keys];
+      // Safari: 使用 browser.storage.local (content script 和 popup 共享)
+      try {
+        return await browser.storage.local.get(keys);
+      } catch (e) {
+        console.error('[AI Translator] Safari storage get 失败:', e);
+        // 降级到 localStorage (仅作为后备)
+        const result = {};
+        if (typeof keys === 'string') {
+          keys = [keys];
+        }
+        if (Array.isArray(keys)) {
+          keys.forEach(key => {
+            const value = localStorage.getItem(key);
+            result[key] = value ? JSON.parse(value) : undefined;
+          });
+        } else if (typeof keys === 'object') {
+          Object.keys(keys).forEach(key => {
+            const value = localStorage.getItem(key);
+            result[key] = value ? JSON.parse(value) : keys[key];
+          });
+        }
+        return result;
       }
-      if (Array.isArray(keys)) {
-        keys.forEach(key => {
-          const value = localStorage.getItem(key);
-          result[key] = value ? JSON.parse(value) : undefined;
-        });
-      } else if (typeof keys === 'object') {
-        Object.keys(keys).forEach(key => {
-          const value = localStorage.getItem(key);
-          result[key] = value ? JSON.parse(value) : keys[key];
-        });
-      }
-      return result;
     } else {
       // Chrome: 使用 chrome.storage.sync
       return new Promise((resolve) => {
@@ -33,10 +39,20 @@ const storageAPI = {
   
   async set(items) {
     if (isSafari) {
-      // Safari: 使用 localStorage
-      Object.keys(items).forEach(key => {
-        localStorage.setItem(key, JSON.stringify(items[key]));
-      });
+      // Safari: 使用 browser.storage.local
+      try {
+        await browser.storage.local.set(items);
+        // 同时保存到 localStorage 作为后备
+        Object.keys(items).forEach(key => {
+          localStorage.setItem(key, JSON.stringify(items[key]));
+        });
+      } catch (e) {
+        console.error('[AI Translator] Safari storage set 失败:', e);
+        // 降级到 localStorage
+        Object.keys(items).forEach(key => {
+          localStorage.setItem(key, JSON.stringify(items[key]));
+        });
+      }
     } else {
       // Chrome: 使用 chrome.storage.sync
       return new Promise((resolve) => {
@@ -47,7 +63,7 @@ const storageAPI = {
 };
 
 // 默认配置
-const DEFAULT_CONFIG = {
+var DEFAULT_CONFIG = {
   // API 配置 - 从环境变量或这里配置
   // ⚠️ 注意：默认 API URL 为空，必须在设置面板中配置或注入配置
   api: {
@@ -91,7 +107,7 @@ const DEFAULT_CONFIG = {
   }
 };
 
-const ConfigManager = {
+var ConfigManager = {
   // 获取配置
   async getConfig() {
     let config = DEFAULT_CONFIG;

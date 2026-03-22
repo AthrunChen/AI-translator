@@ -7,9 +7,9 @@
 // 立即执行的标记
 console.log('[AI Translator] content.js 开始加载');
 
-// Safari 兼容性
-const isSafari = typeof browser !== 'undefined' && browser.runtime;
-const _chrome = isSafari ? browser : chrome;
+// Safari 兼容性 - 使用 var 避免重复声明
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;
 
 (function() {
   'use strict';
@@ -334,12 +334,54 @@ const _chrome = isSafari ? browser : chrome;
     return `${len}:${hash1.toString(16)}:${hash2.toString(16)}`;
   }
   
+  // 检测运行环境
+  function detectEnvironment() {
+    return {
+      isSafari: typeof browser !== 'undefined' && browser.runtime,
+      isChrome: typeof chrome !== 'undefined' && chrome.runtime,
+      userAgent: navigator.userAgent
+    };
+  }
+
+  // 发送消息到 background (兼容 Safari 和 Chrome)
+  async function sendMessageToBackground(message) {
+    const env = detectEnvironment();
+    console.log('[AI Translator] 发送消息 (环境:', env.isSafari ? 'Safari' : 'Chrome', '):', message.action);
+    
+    try {
+      if (env.isSafari) {
+        // Safari: browser.runtime.sendMessage 返回 Promise
+        const response = await browser.runtime.sendMessage(message);
+        console.log('[AI Translator] Safari 收到响应:', response);
+        return response;
+      } else {
+        // Chrome: 使用回调
+        return new Promise((resolve, reject) => {
+          chrome.runtime.sendMessage(message, (response) => {
+            if (chrome.runtime.lastError) {
+              console.error('[AI Translator] Chrome 消息错误:', chrome.runtime.lastError.message);
+              reject(new Error(chrome.runtime.lastError.message));
+              return;
+            }
+            console.log('[AI Translator] Chrome 收到响应:', response);
+            resolve(response);
+          });
+        });
+      }
+    } catch (error) {
+      console.error('[AI Translator] 发送消息失败:', error);
+      throw error;
+    }
+  }
+  
   // 调用 API 翻译
   async function translateWithAPI(text, context) {
+    console.log('[AI Translator] translateWithAPI 被调用');
+    
     // 检查缓存
     const hash = simpleHash(text);
     if (translationCache.has(hash)) {
-      console.log('使用缓存的翻译结果');
+      console.log('[AI Translator] 使用缓存的翻译结果');
       return translationCache.get(hash);
     }
     
@@ -348,27 +390,33 @@ const _chrome = isSafari ? browser : chrome;
       .replace('{url}', context.url)
       .replace('{summary}', context.summary)
       .replace('{text}', text);
+    
+    console.log('[AI Translator] 发送翻译请求, prompt长度:', prompt.length);
 
-    return new Promise((resolve, reject) => {
-      _chrome.runtime.sendMessage({
+    try {
+      const response = await sendMessageToBackground({
         action: 'translate',
         prompt: prompt,
         apiConfig: config.api
-      }, response => {
-        if (_chrome.runtime.lastError) {
-          reject(new Error(_chrome.runtime.lastError.message));
-          return;
-        }
-        if (response.error) {
-          reject(new Error(response.error));
-          return;
-        }
-        
-        // 缓存结果
-        translationCache.set(hash, response.result);
-        resolve(response.result);
       });
-    });
+      
+      if (!response) {
+        throw new Error('未收到响应，请检查后台脚本是否正常运行');
+      }
+      
+      if (response.error) {
+        throw new Error(response.error);
+      }
+      
+      // 缓存结果
+      translationCache.set(hash, response.result);
+      console.log('[AI Translator] 翻译成功，结果长度:', response.result?.length);
+      return response.result;
+      
+    } catch (error) {
+      console.error('[AI Translator] 翻译请求失败:', error);
+      throw error;
+    }
   }
   
   // 解析翻译结果并提取词汇对应表
@@ -1141,17 +1189,31 @@ const _chrome = isSafari ? browser : chrome;
   // ============ 事件处理 ============
   
   async function handleTranslateClick() {
-    console.log('[AI Translator] handleTranslateClick 被调用');
+    console.log('[AI Translator] ========== handleTranslateClick 开始 ==========');
+    console.log('[AI Translator] 当前环境:', detectEnvironment());
     
     if (isTranslating) {
+      console.log('[AI Translator] 翻译正在进行中，跳过');
       showError('翻译正在进行中...');
       return;
     }
     
     // 加载配置
     console.log('[AI Translator] 正在加载配置...');
-    config = await ConfigManager.getConfig();
-    console.log('[AI Translator] 配置加载完成:', config);
+    try {
+      config = await ConfigManager.getConfig();
+      console.log('[AI Translator] 配置加载完成:', {
+        hasApiKey: !!config.api?.apiKey,
+        apiKeyLength: config.api?.apiKey?.length,
+        baseUrl: config.api?.baseUrl,
+        model: config.api?.model,
+        provider: config.api?.provider
+      });
+    } catch (configError) {
+      console.error('[AI Translator] 配置加载失败:', configError);
+      showError('配置加载失败: ' + configError.message);
+      return;
+    }
     
     // 检查必要的配置项
     const missingConfig = [];
@@ -1160,8 +1222,20 @@ const _chrome = isSafari ? browser : chrome;
     if (!config.api.model) missingConfig.push('模型');
     
     if (missingConfig.length > 0) {
+      console.log('[AI Translator] 缺少配置:', missingConfig);
       showError(`请先完成设置: ${missingConfig.join(', ')}`);
       showSettingsPanel();
+      return;
+    }
+    
+    // 测试后台连接
+    console.log('[AI Translator] 测试后台连接...');
+    try {
+      const pingResponse = await sendMessageToBackground({ action: 'ping' });
+      console.log('[AI Translator] 后台连接正常:', pingResponse);
+    } catch (pingError) {
+      console.error('[AI Translator] 后台连接失败:', pingError);
+      showError('无法连接到后台脚本: ' + pingError.message);
       return;
     }
     

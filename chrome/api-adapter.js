@@ -3,13 +3,13 @@
  * 同时支持从环境变量读取配置
  */
 
-// 检测运行环境
-const isSafari = typeof browser !== 'undefined' && browser.runtime;
-const browserAPI = isSafari ? browser : chrome;
-const storageArea = isSafari ? browserAPI.storage.local : browserAPI.storage.sync;
+// 检测运行环境 - 使用 var 避免重复声明
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var browserAPI = isSafari ? browser : chrome;
+var storageArea = isSafari ? browserAPI.storage.local : browserAPI.storage.sync;
 
 // 统一的存储 API
-const StorageAPI = {
+var StorageAPI = {
   async get(keys) {
     if (isSafari) {
       return await storageArea.get(keys);
@@ -32,7 +32,7 @@ const StorageAPI = {
 };
 
 // 统一的运行时消息 API
-const RuntimeAPI = {
+var RuntimeAPI = {
   async sendMessage(message) {
     if (isSafari) {
       return await browserAPI.runtime.sendMessage(message);
@@ -64,7 +64,7 @@ const RuntimeAPI = {
 };
 
 // 统一的 Tabs API
-const TabsAPI = {
+var TabsAPI = {
   async query(queryInfo) {
     if (isSafari) {
       return await browserAPI.tabs.query(queryInfo);

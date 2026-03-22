@@ -3,9 +3,9 @@
  * 处理 API 调用和跨域请求
  */
 
-// Safari 兼容性
-const isSafari = typeof browser !== 'undefined' && browser.runtime;
-const _chrome = isSafari ? browser : chrome;
+// Safari 兼容性 - 使用 var 避免重复声明
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;
 
 // 处理来自 content script 的消息
 _chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {

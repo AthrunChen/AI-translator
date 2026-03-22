@@ -3,7 +3,7 @@
  */
 
 // 默认配置
-const DEFAULT_CONFIG = {
+var DEFAULT_CONFIG = {
   api: {
     baseUrl: 'https://api.openai.com/v1',
     apiKey: '',
@@ -16,11 +16,11 @@ const DEFAULT_CONFIG = {
 };
 
 // Safari 兼容性：使用 browser API 作为 chrome 的替代
-const isSafari = typeof browser !== 'undefined' && browser.runtime;
-const _chrome = isSafari ? browser : chrome;
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;
 
 // 包装 tabs API 以支持 Promise
-const chromeTabs = {
+var chromeTabs = {
   query: (queryInfo) => {
     return new Promise((resolve) => {
       _chrome.tabs.query(queryInfo, resolve);
@@ -40,7 +40,7 @@ const chromeTabs = {
 };
 
 // 包装 scripting API
-const chromeScripting = {
+var chromeScripting = {
   executeScript: (details) => {
     return new Promise((resolve) => {
       if (isSafari) {
@@ -68,38 +68,44 @@ const chromeScripting = {
   }
 };
 
-// 包装 storage API - Safari 使用 localStorage
-const chromeStorage = {
+// 包装 storage API - Safari 使用 browser.storage.local (content script 和 popup 共享)
+var chromeStorage = {
   sync: {
-    get: (keys) => {
+    get: async (keys) => {
       if (isSafari) {
-        // Safari: 使用 localStorage
-        return new Promise((resolve) => {
-          const result = {};
-          if (typeof keys === 'string') {
-            keys = [keys];
-          }
-          if (Array.isArray(keys)) {
-            keys.forEach(key => {
-              try {
-                const value = localStorage.getItem(key);
-                result[key] = value ? JSON.parse(value) : undefined;
-              } catch (e) {
-                result[key] = undefined;
-              }
-            });
-          } else if (typeof keys === 'object') {
-            Object.keys(keys).forEach(key => {
-              try {
-                const value = localStorage.getItem(key);
-                result[key] = value ? JSON.parse(value) : keys[key];
-              } catch (e) {
-                result[key] = keys[key];
-              }
-            });
-          }
-          resolve(result);
-        });
+        // Safari: 使用 browser.storage.local (content script 和 popup 共享)
+        try {
+          return await browser.storage.local.get(keys);
+        } catch (e) {
+          console.error('[AI Translator] Safari storage get 失败:', e);
+          // 降级到 localStorage
+          return new Promise((resolve) => {
+            const result = {};
+            if (typeof keys === 'string') {
+              keys = [keys];
+            }
+            if (Array.isArray(keys)) {
+              keys.forEach(key => {
+                try {
+                  const value = localStorage.getItem(key);
+                  result[key] = value ? JSON.parse(value) : undefined;
+                } catch (e) {
+                  result[key] = undefined;
+                }
+              });
+            } else if (typeof keys === 'object') {
+              Object.keys(keys).forEach(key => {
+                try {
+                  const value = localStorage.getItem(key);
+                  result[key] = value ? JSON.parse(value) : keys[key];
+                } catch (e) {
+                  result[key] = keys[key];
+                }
+              });
+            }
+            resolve(result);
+          });
+        }
       } else {
         // Chrome: 使用 chrome.storage.sync
         return new Promise((resolve) => {
@@ -107,19 +113,29 @@ const chromeStorage = {
         });
       }
     },
-    set: (items) => {
+    set: async (items) => {
       if (isSafari) {
-        // Safari: 使用 localStorage
-        return new Promise((resolve, reject) => {
-          try {
-            Object.keys(items).forEach(key => {
-              localStorage.setItem(key, JSON.stringify(items[key]));
-            });
-            resolve();
-          } catch (e) {
-            reject(e);
-          }
-        });
+        // Safari: 使用 browser.storage.local
+        try {
+          await browser.storage.local.set(items);
+          // 同时保存到 localStorage 作为后备
+          Object.keys(items).forEach(key => {
+            localStorage.setItem(key, JSON.stringify(items[key]));
+          });
+        } catch (e) {
+          console.error('[AI Translator] Safari storage set 失败:', e);
+          // 降级到 localStorage
+          return new Promise((resolve, reject) => {
+            try {
+              Object.keys(items).forEach(key => {
+                localStorage.setItem(key, JSON.stringify(items[key]));
+              });
+              resolve();
+            } catch (e) {
+              reject(e);
+            }
+          });
+        }
       } else {
         // Chrome: 使用 chrome.storage.sync
         return new Promise((resolve, reject) => {
@@ -137,7 +153,7 @@ const chromeStorage = {
 };
 
 // 包装 runtime API
-const chromeRuntime = {
+var chromeRuntime = {
   sendMessage: (message) => {
     return new Promise((resolve, reject) => {
       _chrome.runtime.sendMessage(message, (response) => {
