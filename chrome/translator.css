@@ -99,7 +99,7 @@
   height: 36px !important;
   border-radius: 50% !important;
   border: none !important;
-  background: #4299e1 !important;
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%) !important;
   color: white !important;
   cursor: pointer !important;
   display: flex !important;
@@ -107,11 +107,13 @@
   justify-content: center !important;
   font-size: 16px !important;
   transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3) !important;
 }
 
 .ai-translator-btn:hover {
-  background: #3182ce !important;
+  background: linear-gradient(135deg, #818CF8 0%, #A78BFA 50%, #C084FC 100%) !important;
   transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
 }
 
 .ai-translator-btn.active {

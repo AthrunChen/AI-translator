@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- Toolbar 使用更简洁的渐变 -->
+    <linearGradient id="toolbarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+    
+    <!-- 顶部高光 -->
+    <linearGradient id="toolbarHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景：大圆角 -->
+  <rect width="128" height="128" rx="28" ry="28" fill="url(#toolbarGrad)"/>
+  
+  <!-- 顶部高光 -->
+  <rect x="2" y="2" width="124" height="60" rx="26" ry="26" fill="url(#toolbarHighlight)"/>
+  
+  <!-- 翻译图标：双箭头循环符号（无 AI 指示器） -->
+  <g transform="translate(64, 64)">
+    <!-- 左上箭头（指向右下） -->
+    <path d="M -28,-12 L -8,8 L -16,8 L -16,16 L 0,16 L 0,0 L -8,0 L 8,-20" 
+          fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    
+    <!-- 右下箭头（指向左上） -->
+    <path d="M 28,12 L 8,-8 L 16,-8 L 16,-16 L 0,-16 L 0,0 L 8,0 L -8,20" 
+          fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    
+    <!-- 中心连接点 -->
+    <circle cx="0" cy="0" r="6" fill="white" opacity="0.9"/>
+  </g>
+</svg>

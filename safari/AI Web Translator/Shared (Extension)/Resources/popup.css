@@ -12,9 +12,9 @@ body {
   color: #2d3748;
 }
 
-/* 头部 */
+/* 头部 - 蓝紫渐变主题 */
 .header {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
   color: white;
   padding: 20px;
   text-align: center;
@@ -92,14 +92,15 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
   color: white;
-  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, #818CF8 0%, #A78BFA 50%, #C084FC 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.4);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
 }
 
 .btn-primary:active {

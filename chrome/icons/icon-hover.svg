@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- 悬浮状态：更亮的渐变 -->
+    <linearGradient id="hoverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#818CF8"/>
+      <stop offset="50%" style="stop-color:#A78BFA"/>
+      <stop offset="100%" style="stop-color:#C084FC"/>
+    </linearGradient>
+    
+    <!-- 更强的顶部高光 -->
+    <linearGradient id="hoverHighlightGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:white;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:white;stop-opacity:0"/>
+    </linearGradient>
+    
+    <!-- 外发光效果 -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景：大圆角，更亮 -->
+  <rect width="128" height="128" rx="28" ry="28" fill="url(#hoverGrad)"/>
+  
+  <!-- 更强的顶部高光 -->
+  <rect x="2" y="2" width="124" height="60" rx="26" ry="26" fill="url(#hoverHighlightGrad)"/>
+  
+  <!-- 翻译图标：带发光效果 -->
+  <g transform="translate(64, 64)" filter="url(#glow)">
+    <!-- 左上箭头（指向右下） -->
+    <path d="M -28,-12 L -8,8 L -16,8 L -16,16 L 0,16 L 0,0 L -8,0 L 8,-20" 
+          fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 右下箭头（指向左上） -->
+    <path d="M 28,12 L 8,-8 L 16,-8 L 16,-16 L 0,-16 L 0,0 L 8,0 L -8,20" 
+          fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 中心连接点 -->
+    <circle cx="0" cy="0" r="6" fill="white"/>
+  </g>
+  
+  <!-- AI 指示器（悬浮时更亮） -->
+  <circle cx="100" cy="28" r="10" fill="#4ADE80"/>
+  <path d="M 96,28 L 99,31 L 104,25" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
