@@ -420,14 +420,21 @@ var _chrome = isSafari ? browser : chrome;
   }
   
   // 解析翻译结果并提取词汇对应表
+  // 支持多种格式：
+  // 1. [词汇对应]...[/词汇对应] 标记格式
+  // 2. Markdown 表格格式 (英文原文 | 中文翻译 | 备注)
+  // 3. 简单管道格式 (原文 | 译文)
   function parseTranslationWithWordMap(result, sourceText) {
+    console.log('[AI Translator] 解析翻译结果, 原始长度:', result?.length);
+    
     // 解析词汇对应表
     // 改进：存储结构 { normalized: string, original: string, chinese: string[] }
     const wordMap = new Map(); // 标准化英文 -> {originals: Set, chinese: string[]}
     
-    // 查找 [词汇对应] ... [/词汇对应] 块
+    // ====== 尝试 1: 查找 [词汇对应] ... [/词汇对应] 块 ======
     const mappingMatch = result.match(/\[词汇对应\]([\s\S]*?)\[\/词汇对应\]/);
     if (mappingMatch) {
+      console.log('[AI Translator] 检测到 [词汇对应] 标记格式');
       const mappingText = mappingMatch[1].trim();
       const lines = mappingText.split('\n');
       
@@ -441,7 +448,7 @@ var _chrome = isSafari ? browser : chrome;
           if (englishNormalized.length >= 2) {
             if (!wordMap.has(englishNormalized)) {
               wordMap.set(englishNormalized, {
-                originals: new Set(),  // 存储所有原始形式
+                originals: new Set(),
                 chinese: []
               });
             }
@@ -449,6 +456,81 @@ var _chrome = isSafari ? browser : chrome;
             entry.originals.add(englishOriginal.toLowerCase());
             if (!entry.chinese.includes(chinese)) {
               entry.chinese.push(chinese);
+            }
+          }
+        }
+      }
+    }
+    
+    // ====== 尝试 2: 解析 Markdown 表格格式 ======
+    // 格式: 英文原文 | 中文翻译 | 备注
+    //       |---------|---------|------|
+    //       | word1   | 翻译1   |      |
+    if (wordMap.size === 0) {
+      // 查找 Markdown 表格（包含 |---| 分隔行）
+      const tableRegex = /([\s\S]*?)\n\|?\s*[-:]+\s*\|.*\n([\s\S]*)/;
+      const tableMatch = result.match(/([\s\S]*?)\n\|?[\s-:]+\|[\s\S]*?\n(([\s\S]*?)\n)?/);
+      
+      // 更精确的表格检测：查找表头行和分隔行
+      const lines = result.split('\n');
+      let tableStartIndex = -1;
+      let headerLine = '';
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        // 检测表头行（包含 "英文原文" 或 "原文" 和 "中文翻译" 或 "译文"）
+        if (line.includes('|') && 
+            (line.includes('英文原文') || line.includes('原文')) &&
+            (line.includes('中文翻译') || line.includes('翻译') || line.includes('译文'))) {
+          // 检查下一行是否是分隔行 |---|---|
+          if (i + 1 < lines.length && lines[i + 1].match(/\|?\s*[-:]+\s*\|/)) {
+            tableStartIndex = i;
+            headerLine = line;
+            break;
+          }
+        }
+      }
+      
+      if (tableStartIndex >= 0) {
+        console.log('[AI Translator] 检测到 Markdown 表格格式, 表头行:', tableStartIndex);
+        // 解析表头确定列位置
+        const headerParts = headerLine.split('|').map(p => p.trim()).filter(p => p);
+        const englishIndex = headerParts.findIndex(h => 
+          h.includes('英文原文') || h.includes('原文') || h.includes('English')
+        );
+        const chineseIndex = headerParts.findIndex(h => 
+          h.includes('中文翻译') || h.includes('翻译') || h.includes('译文') || h.includes('Chinese')
+        );
+        
+        const engCol = englishIndex >= 0 ? englishIndex : 0;
+        const chnCol = chineseIndex >= 0 ? chineseIndex : 1;
+        
+        // 从分隔行之后开始解析数据行
+        for (let i = tableStartIndex + 2; i < lines.length; i++) {
+          const line = lines[i].trim();
+          if (!line || !line.includes('|')) break; // 表格结束
+          
+          const parts = line.split('|').map(p => p.trim()).filter(p => p);
+          if (parts.length >= 2) {
+            const englishOriginal = parts[engCol];
+            const chinese = parts[chnCol];
+            
+            if (englishOriginal && chinese && englishOriginal !== chinese) {
+              const englishNormalized = englishOriginal.toLowerCase().replace(/[^a-z0-9]/g, '');
+              
+              if (englishNormalized.length >= 2) {
+                if (!wordMap.has(englishNormalized)) {
+                  wordMap.set(englishNormalized, {
+                    originals: new Set(),
+                    chinese: []
+                  });
+                }
+                const entry = wordMap.get(englishNormalized);
+                entry.originals.add(englishOriginal.toLowerCase());
+                if (!entry.chinese.includes(chinese)) {
+                  entry.chinese.push(chinese);
+                }
+              }
             }
           }
         }
@@ -466,32 +548,99 @@ var _chrome = isSafari ? browser : chrome;
       }
     }
     
-    // 提取翻译部分（在 [词汇对应] 之前的内容）
+    // ====== 提取翻译文本 ======
     let translation = result;
+    
+    // 尝试 1: 如果有 [词汇对应] 标记
     const mappingIndex = result.indexOf('[词汇对应]');
     if (mappingIndex > 0) {
       translation = result.substring(0, mappingIndex).trim();
-      // 移除开头的 "原文 | 译文" 格式中的原文部分，只保留译文
-      const pipeIndex = translation.indexOf('|');
-      if (pipeIndex > 0) {
-        translation = translation.substring(pipeIndex + 1).trim();
-      }
-    } else {
-      // 如果没有词汇对应表，尝试简单解析
-      const pipeIndex = result.indexOf('|');
-      if (pipeIndex > 0) {
-        translation = result.substring(pipeIndex + 1).trim();
+    }
+    // 尝试 2: 如果有 Markdown 表格，提取表格之前的内容
+    else if (result.match(/\n\|?[\s-:]+\|/)) {
+      const tableSeparatorMatch = result.match(/\n\|?[\s-:]+\|/);
+      if (tableSeparatorMatch) {
+        const tableIndex = tableSeparatorMatch.index;
+        // 找到表头行的开始
+        const beforeSeparator = result.substring(0, tableIndex);
+        const lines = beforeSeparator.split('\n');
+        // 检查最后一行是否是表头
+        const lastLine = lines[lines.length - 1].trim();
+        if (lastLine.includes('|') && (lastLine.includes('原文') || lastLine.includes('翻译'))) {
+          lines.pop(); // 移除表头行
+        }
+        translation = lines.join('\n').trim();
       }
     }
     
-    console.log('解析到词汇对应:', wordMap);
-    console.log('中文→英文反向映射:', chineseToEnglish);
+    // 清理翻译文本中的 "原文 | 译文" 格式
+    const lines = translation.split('\n');
+    const cleanedLines = lines.map(line => {
+      // 如果行包含 |，检查是否是原文|译文格式
+      if (line.includes('|')) {
+        const parts = line.split('|').map(p => p.trim());
+        // 如果第一部分看起来像原文（有英文），第二部分是译文
+        if (parts.length >= 2) {
+          const firstPart = parts[0];
+          const secondPart = parts[1];
+          // 如果第一部分包含英文，第二部分是中文，只返回译文
+          if (/[a-zA-Z]/.test(firstPart) && /[\u4e00-\u9fa5]/.test(secondPart)) {
+            return secondPart;
+          }
+        }
+      }
+      return line;
+    });
+    translation = cleanedLines.join('\n').trim();
+    
+    console.log('[AI Translator] 解析完成:', {
+      translationLength: translation?.length,
+      wordMapSize: wordMap.size,
+      sampleWords: Array.from(wordMap.keys()).slice(0, 5)
+    });
     
     return { translation, wordMap, chineseToEnglish };
   }
   
   // 全局词汇对应表（由 AI 返回）
   let globalWordMapping = new Map(); // 段落元素 -> {sourceWord -> [transWords]}
+  
+  // 高亮调试统计
+  const highlightDebugStats = {
+    totalChineseWords: 0,
+    matchedChineseWords: 0,
+    unmatchedChineseWords: [],
+    totalEnglishWords: 0,
+    matchedEnglishWords: 0,
+    unmatchedEnglishWords: [],
+    wordMapCoverage: {}, // 每个段落的词汇覆盖情况
+    
+    reset() {
+      this.totalChineseWords = 0;
+      this.matchedChineseWords = 0;
+      this.unmatchedChineseWords = [];
+      this.totalEnglishWords = 0;
+      this.matchedEnglishWords = 0;
+      this.unmatchedEnglishWords = [];
+      this.wordMapCoverage = {};
+    },
+    
+    log() {
+      console.log('[AI Translator] ========== 高亮统计 ==========');
+      console.log(`中文词汇: ${this.matchedChineseWords}/${this.totalChineseWords} (${(this.matchedChineseWords/this.totalChineseWords*100).toFixed(1)}%)`);
+      console.log(`英文词汇: ${this.matchedEnglishWords}/${this.totalEnglishWords} (${(this.matchedEnglishWords/this.totalEnglishWords*100).toFixed(1)}%)`);
+      if (this.unmatchedChineseWords.length > 0) {
+        console.log('未匹配中文词汇:', [...new Set(this.unmatchedChineseWords)].slice(0, 20));
+      }
+      if (this.unmatchedEnglishWords.length > 0) {
+        console.log('未匹配英文词汇:', [...new Set(this.unmatchedEnglishWords)].slice(0, 20));
+      }
+      console.log('[AI Translator] =================================');
+    }
+  };
+  
+  // 全局调试开关
+  window.HIGHLIGHT_DEBUG = false; // 设置为 true 开启详细调试
   
   // 高亮对应的译文段落
   function highlightTranslationForElement(sourceEl) {
@@ -520,22 +669,34 @@ var _chrome = isSafari ? browser : chrome;
   function highlightTranslationWord(sourceEl, word) {
     if (!word || word.length < 2) return;
     
+    highlightDebugStats.totalEnglishWords++;
+    
     // 支持多词短语：保留空格，但统一小写
     const wordNormalized = word.toLowerCase().replace(/[^a-z0-9]/g, '');
     const transEl = sourceEl.nextElementSibling;
-    if (!transEl) return;
+    if (!transEl) {
+      highlightDebugStats.unmatchedEnglishWords.push(word);
+      return;
+    }
     
     // 获取该段落的词汇对应表（新结构）
     const mappingData = globalWordMapping.get(sourceEl);
     if (!mappingData || !mappingData.wordMap) {
       // 回退：尝试匹配相同的英文单词
       const transWords = transEl.querySelectorAll('.ai-translator-word');
+      let found = false;
       transWords.forEach(el => {
         const text = el.textContent.toLowerCase().replace(/[^a-z0-9]/g, '');
         if (text === wordNormalized) {
           el.classList.add('highlight-source');
+          found = true;
         }
       });
+      if (found) {
+        highlightDebugStats.matchedEnglishWords++;
+      } else {
+        highlightDebugStats.unmatchedEnglishWords.push(word);
+      }
       return;
     }
     
@@ -546,9 +707,12 @@ var _chrome = isSafari ? browser : chrome;
       const entry = wordMap.get(wordNormalized);
       const targetChineseWords = entry.chinese;
       
-      console.log(`🔍 原文→译文: "${word}" (标准化: ${wordNormalized}) → ${targetChineseWords.join(', ')}`);
+      if (window.HIGHLIGHT_DEBUG) {
+        console.log(`🔍 原文→译文: "${word}" → ${targetChineseWords.join(', ')}`);
+      }
       
       const transWords = transEl.querySelectorAll('.ai-translator-word');
+      let found = false;
       
       transWords.forEach(el => {
         const text = el.textContent;
@@ -556,13 +720,52 @@ var _chrome = isSafari ? browser : chrome;
         for (const target of targetChineseWords) {
           if (text.includes(target)) {
             el.classList.add('highlight-source');
-            console.log(`  ✅ 高亮译文词汇: "${text}"`);
+            found = true;
+            if (window.HIGHLIGHT_DEBUG) {
+              console.log(`  ✅ 高亮译文词汇: "${text}"`);
+            }
             break;
           }
         }
       });
+      
+      if (found) {
+        highlightDebugStats.matchedEnglishWords++;
+      } else {
+        // 中文词汇在 DOM 中未找到，可能是分词问题
+        highlightDebugStats.unmatchedEnglishWords.push(word);
+        if (window.HIGHLIGHT_DEBUG) {
+          console.log(`  ⚠️ 中文词汇在 DOM 中未找到: ${targetChineseWords.join(', ')}`);
+        }
+      }
     } else {
-      console.log(`⚠️ 未找到对应: "${word}" (标准化: ${wordNormalized})`);
+      highlightDebugStats.unmatchedEnglishWords.push(word);
+      if (window.HIGHLIGHT_DEBUG) {
+        console.log(`⚠️ 未找到对应: "${word}"`);
+      }
+      
+      // 尝试部分匹配：检查是否有包含该词的多词短语
+      for (const [normalized, entry] of wordMap.entries()) {
+        if (normalized.includes(wordNormalized) || wordNormalized.includes(normalized)) {
+          if (window.HIGHLIGHT_DEBUG) {
+            console.log(`  🔍 尝试部分匹配: "${word}" ~ "${Array.from(entry.originals).join(', ')}"`);
+          }
+          const targetChineseWords = entry.chinese;
+          const transWords = transEl.querySelectorAll('.ai-translator-word');
+          
+          transWords.forEach(el => {
+            const text = el.textContent;
+            for (const target of targetChineseWords) {
+              if (text.includes(target)) {
+                el.classList.add('highlight-source');
+                if (window.HIGHLIGHT_DEBUG) {
+                  console.log(`  ✅ 部分匹配高亮: "${text}"`);
+                }
+              }
+            }
+          });
+        }
+      }
     }
   }
   
@@ -570,19 +773,28 @@ var _chrome = isSafari ? browser : chrome;
   function highlightSourceWord(transEl, word) {
     if (!word || word.length < 1) return;
     
-    console.log('🔍 查找中文词汇对应:', word);
+    highlightDebugStats.totalChineseWords++;
+    
+    if (window.HIGHLIGHT_DEBUG) {
+      console.log('🔍 查找中文词汇对应:', word);
+    }
     
     const sourceEl = transEl.previousElementSibling;
     if (!sourceEl) {
-      console.log('❌ 未找到原文元素');
+      if (window.HIGHLIGHT_DEBUG) console.log('❌ 未找到原文元素');
+      highlightDebugStats.unmatchedChineseWords.push(word);
       return;
     }
     
     const mappingData = globalWordMapping.get(sourceEl);
-    console.log('📋 词汇对应表:', mappingData);
+    
+    if (window.HIGHLIGHT_DEBUG) {
+      console.log('📋 词汇对应表大小:', mappingData?.wordMap?.size || 0);
+    }
     
     if (!mappingData || !mappingData.wordMap) {
-      console.log('❌ 该段落无词汇对应表');
+      if (window.HIGHLIGHT_DEBUG) console.log('❌ 该段落无词汇对应表');
+      highlightDebugStats.unmatchedChineseWords.push(word);
       return;
     }
     
@@ -591,13 +803,17 @@ var _chrome = isSafari ? browser : chrome;
     // 使用反向映射查找：中文 -> 标准化英文
     let found = false;
     let highlightCount = 0;
+    let matchedPattern = null; // 记录匹配的模式
     
     // 方法1: 直接查找中文对应的标准化英文
     if (chineseToEnglish) {
       for (const [chn, engList] of chineseToEnglish.entries()) {
         // 检查中文是否匹配（完全匹配或包含）
         if (chn === word || chn.includes(word) || word.includes(chn)) {
-          console.log(`  ✅ 中文匹配: "${word}" → "${chn}" → 英文: ${engList.join(', ')}`);
+          if (window.HIGHLIGHT_DEBUG) {
+            console.log(`  ✅ 中文匹配: "${word}" → "${chn}" → 英文: ${engList.join(', ')}`);
+          }
+          matchedPattern = `反向映射: ${chn}`;
           
           // 高亮所有对应的英文形式（包括多词短语）
           const sourceWords = sourceEl.querySelectorAll('.ai-source-word');
@@ -617,7 +833,9 @@ var _chrome = isSafari ? browser : chrome;
                 if (engWords.includes(elWord) || elWord === engNormalized) {
                   el.classList.add('highlight-translation');
                   highlightCount++;
-                  console.log(`  🎨 高亮原文词汇: "${el.textContent}" (匹配: ${engOriginal})`);
+                  if (window.HIGHLIGHT_DEBUG) {
+                    console.log(`  🎨 高亮原文词汇: "${el.textContent}" (匹配: ${engOriginal})`);
+                  }
                 }
               });
             }
@@ -629,11 +847,14 @@ var _chrome = isSafari ? browser : chrome;
     
     // 方法2: 如果反向映射没找到，遍历 wordMap 查找
     if (!found) {
-      console.log('  尝试遍历 wordMap 查找...');
+      if (window.HIGHLIGHT_DEBUG) console.log('  尝试遍历 wordMap 查找...');
       for (const [engNormalized, entry] of wordMap.entries()) {
         for (const chn of entry.chinese) {
           if (chn === word || chn.includes(word) || word.includes(chn)) {
-            console.log(`  ✅ 遍历匹配: "${word}" → "${chn}" → ${engNormalized}`);
+            if (window.HIGHLIGHT_DEBUG) {
+              console.log(`  ✅ 遍历匹配: "${word}" → "${chn}" → ${engNormalized}`);
+            }
+            matchedPattern = `遍历: ${chn}`;
             
             const sourceWords = sourceEl.querySelectorAll('.ai-source-word');
             for (const engOriginal of entry.originals) {
@@ -655,10 +876,48 @@ var _chrome = isSafari ? browser : chrome;
       }
     }
     
-    console.log(`  总计高亮 ${highlightCount} 个原文词汇`);
+    // 方法3: 模糊匹配 - 处理变体（如"歌手"匹配"说唱歌手"）
+    if (!found && word.length >= 2) {
+      for (const [chn, engList] of chineseToEnglish.entries()) {
+        // 计算相似度：如果词汇是子串或者高度相似
+        if (chn.length >= 2 && (chn.includes(word) || word.includes(chn))) {
+          if (window.HIGHLIGHT_DEBUG) {
+            console.log(`  ✅ 模糊匹配: "${word}" ~ "${chn}"`);
+          }
+          matchedPattern = `模糊: ${chn}`;
+          
+          const sourceWords = sourceEl.querySelectorAll('.ai-source-word');
+          for (const engNormalized of engList) {
+            const entry = wordMap.get(engNormalized);
+            if (!entry) continue;
+            
+            for (const engOriginal of entry.originals) {
+              const engWords = engOriginal.toLowerCase().split(/\s+/);
+              sourceWords.forEach(el => {
+                const elWord = el.dataset.word;
+                if (engWords.includes(elWord) || elWord === engNormalized) {
+                  el.classList.add('highlight-translation');
+                  highlightCount++;
+                }
+              });
+            }
+          }
+          found = true;
+        }
+      }
+    }
     
-    if (!found) {
-      console.log('  ⚠️ 未找到对应关系');
+    if (found) {
+      highlightDebugStats.matchedChineseWords++;
+    } else {
+      highlightDebugStats.unmatchedChineseWords.push(word);
+      if (window.HIGHLIGHT_DEBUG) {
+        console.log(`  ⚠️ 未找到对应: "${word}"`);
+      }
+    }
+    
+    if (window.HIGHLIGHT_DEBUG) {
+      console.log(`  总计高亮 ${highlightCount} 个原文词汇`);
     }
   }
   
@@ -846,35 +1105,73 @@ var _chrome = isSafari ? browser : chrome;
     }
   }
 
+  // 常用中文词汇表（用于补充 AI 返回的词汇）
+  const COMMON_CHINESE_WORDS = [
+    '的', '了', '在', '是', '我', '有', '和', '就', '不', '人', '都', '一', '一个', '上', '也', '很', '到', '说', '要', '去',
+    '你', '会', '着', '没有', '看', '好', '自己', '这', '那', '这些', '那些', '这个', '那个', '这里', '那里', '这样', '那样',
+    '可以', '可能', '但是', '因为', '所以', '如果', '虽然', '而且', '或者', '还是', '应该', '能够', '需要', '进行', '开始',
+    '时间', '现在', '今天', '明天', '昨天', '时候', '年', '月', '日', '天', '小时', '分钟', '秒钟', '之前', '之后', '以前',
+    '工作', '生活', '问题', '事情', '地方', '世界', '国家', '政府', '公司', '学校', '家庭', '朋友', '人们', '学生', '老师',
+    '认为', '觉得', '知道', '了解', '希望', '喜欢', '想', '觉得', '看到', '听到', '说到', '做到', '感到', '成为', '使用',
+    '非常', '已经', '正在', '曾经', '一直', '一定', '比较', '最', '更', '太', '特别', '真的', '很多', '一些', '一点',
+    '通过', '对于', '关于', '根据', '按照', '随着', '向着', '为了', '作为', '除了', '由于', '关于', '至于'
+  ];
+  
   // 从 AI 返回的 wordMap 构建中文分词器
   function buildChineseTokenizer(wordMap) {
-    if (!wordMap || wordMap.size === 0) return null;
+    if (!wordMap || wordMap.size === 0) {
+      // 如果没有 wordMap，使用常用词汇表
+      const commonPattern = COMMON_CHINESE_WORDS
+        .sort((a, b) => b.length - a.length)
+        .map(w => escapeRegExp(w))
+        .join('|');
+      try {
+        return new RegExp(`(${commonPattern})`, 'g');
+      } catch (e) {
+        return null;
+      }
+    }
     
-    // 收集所有中文词汇，按长度降序（优先匹配长词）
-    // 注意：新结构中 wordMap 的值是 {originals, chinese} 对象
-    const chineseWords = [];
+    // 收集所有中文词汇
+    const chineseWords = new Set();
+    
+    // 1. 从 AI 返回的 wordMap 收集
     for (const entry of wordMap.values()) {
       if (entry && entry.chinese) {
         for (const chn of entry.chinese) {
           if (chn && chn.length >= 1) {
-            chineseWords.push(chn);
+            chineseWords.add(chn);
+            // 同时添加子串（如果长度>2）
+            if (chn.length > 2) {
+              for (let i = 0; i < chn.length - 1; i++) {
+                for (let j = i + 2; j <= chn.length; j++) {
+                  const sub = chn.substring(i, j);
+                  if (sub.length >= 2) {
+                    chineseWords.add(sub);
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
     
-    // 去重并排序（长的优先，避免短词干扰）
-    const uniqueWords = [...new Set(chineseWords)].sort((a, b) => b.length - a.length);
+    // 2. 添加常用词汇
+    COMMON_CHINESE_WORDS.forEach(w => chineseWords.add(w));
+    
+    // 转换为数组并排序（长的优先）
+    const uniqueWords = [...chineseWords].sort((a, b) => b.length - a.length);
     
     if (uniqueWords.length === 0) return null;
     
-    // 构建正则：转义特殊字符，按长度降序排列
+    // 构建正则
     const pattern = uniqueWords.map(w => escapeRegExp(w)).join('|');
     
     try {
       return new RegExp(`(${pattern})`, 'g');
     } catch (e) {
-      console.error('构建分词器失败:', e);
+      console.error('[AI Translator] 构建分词器失败:', e);
       return null;
     }
   }
@@ -943,6 +1240,18 @@ var _chrome = isSafari ? browser : chrome;
         wordMap,
         chineseToEnglish
       });
+      
+      // 记录词汇覆盖统计
+      if (wordMap.size > 0) {
+        highlightDebugStats.wordMapCoverage[element.id || 'unknown'] = {
+          wordCount: wordMap.size,
+          chineseWords: chineseToEnglish ? chineseToEnglish.size : 0,
+          sample: Array.from(wordMap.entries()).slice(0, 3).map(([k, v]) => ({
+            eng: k,
+            chn: v.chinese
+          }))
+        };
+      }
     }
     
     // 保存原文到 dataset（用于原文/译文切换）
@@ -968,6 +1277,15 @@ var _chrome = isSafari ? browser : chrome;
     // 标记已翻译
     element.dataset.aiTranslated = 'true';
     translatedElements.add(element);
+    
+    // 输出词汇对应统计
+    if (window.HIGHLIGHT_DEBUG) {
+      console.log('[AI Translator] 段落翻译完成:', {
+        wordMapSize: wordMap?.size || 0,
+        chineseToEnglishSize: chineseToEnglish?.size || 0,
+        sampleWords: wordMap ? Array.from(wordMap.keys()).slice(0, 5) : []
+      });
+    }
   }
 
   // 批量翻译处理 - 并行处理但保证顺序

@@ -174,8 +174,8 @@ var MessageBridge = {
   }
 };
 
-// 全局调试工具
-window.AITranslatorDebug = window.AITranslatorDebug || {
+// 全局调试工具 - 使用多种方式确保可访问
+var AITranslatorDebug = {
   D,
   LogStore,
   MessageBridge,
@@ -273,6 +273,86 @@ window.AITranslatorDebug = window.AITranslatorDebug || {
     }
   },
 
+  // 开启高亮调试模式
+  enableHighlightDebug() {
+    window.HIGHLIGHT_DEBUG = true;
+    D.info('✅ 高亮调试模式已开启');
+    D.info('现在悬停词汇时会输出详细匹配日志');
+    return '高亮调试已开启';
+  },
+  
+  // 关闭高亮调试模式
+  disableHighlightDebug() {
+    window.HIGHLIGHT_DEBUG = false;
+    D.info('⛔ 高亮调试模式已关闭');
+    return '高亮调试已关闭';
+  },
+  
+  // 获取高亮统计
+  getHighlightStats() {
+    if (typeof highlightDebugStats !== 'undefined') {
+      highlightDebugStats.log();
+      return {
+        ...highlightDebugStats,
+        chineseMatchRate: highlightDebugStats.totalChineseWords > 0 
+          ? (highlightDebugStats.matchedChineseWords / highlightDebugStats.totalChineseWords * 100).toFixed(1) + '%'
+          : 'N/A',
+        englishMatchRate: highlightDebugStats.totalEnglishWords > 0
+          ? (highlightDebugStats.matchedEnglishWords / highlightDebugStats.totalEnglishWords * 100).toFixed(1) + '%'
+          : 'N/A'
+      };
+    } else {
+      D.error('highlightDebugStats 未找到，请先在页面上进行一些高亮操作');
+      return null;
+    }
+  },
+  
+  // 重置高亮统计
+  resetHighlightStats() {
+    if (typeof highlightDebugStats !== 'undefined') {
+      highlightDebugStats.reset();
+      D.info('✅ 高亮统计已重置');
+    } else {
+      D.error('highlightDebugStats 未找到');
+    }
+  },
+  
+  // 分析词汇对应表
+  analyzeWordMapping() {
+    if (typeof globalWordMapping === 'undefined' || globalWordMapping.size === 0) {
+      D.error('没有找到词汇对应表，请先翻译页面');
+      return null;
+    }
+    
+    const stats = {
+      totalParagraphs: globalWordMapping.size,
+      totalWords: 0,
+      sampleMappings: []
+    };
+    
+    let count = 0;
+    for (const [el, data] of globalWordMapping.entries()) {
+      if (data.wordMap) {
+        stats.totalWords += data.wordMap.size;
+        if (count < 3) {
+          const samples = [];
+          for (const [eng, entry] of data.wordMap.entries()) {
+            samples.push({
+              english: Array.from(entry.originals).join('/'),
+              chinese: entry.chinese
+            });
+            if (samples.length >= 5) break;
+          }
+          stats.sampleMappings.push(samples);
+          count++;
+        }
+      }
+    }
+    
+    D.info('词汇对应表分析:', stats);
+    return stats;
+  },
+
   // 完整的诊断
   async diagnose() {
     D.info('========== 开始诊断 ==========');
@@ -340,3 +420,10 @@ D.info('- AITranslatorDebug.testStorage() - 测试存储');
 D.info('- AITranslatorDebug.testTranslate() - 测试翻译');
 D.info('- AITranslatorDebug.showLogs() - 显示所有日志');
 D.info('- AITranslatorDebug.exportLogs() - 导出日志');
+D.info('');
+D.info('高亮调试命令:');
+D.info('- AITranslatorDebug.enableHighlightDebug() - 开启高亮调试');
+D.info('- AITranslatorDebug.disableHighlightDebug() - 关闭高亮调试');
+D.info('- AITranslatorDebug.getHighlightStats() - 获取高亮统计');
+D.info('- AITranslatorDebug.resetHighlightStats() - 重置统计');
+D.info('- AITranslatorDebug.analyzeWordMapping() - 分析词汇对应表');
