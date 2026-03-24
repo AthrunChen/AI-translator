@@ -63,3 +63,451 @@
             <li>7. 部署与构建</li>
         </ul>
     </div>
+    
+    <div class="content">
+        <h1>1. 概述</h1>
+        
+        <h2>1.1 项目简介</h2>
+        <p>AI Web Translator 是一款基于 AI 大模型的智能网页翻译浏览器扩展，支持 Chrome 和 Safari 双平台。该扩展采用先进的语义理解技术，实现高质量的英中翻译，并提供独创的双向词汇高亮对应功能。</p>
+        
+        <h2>1.2 核心特性</h2>
+        <ul>
+            <li><strong>AI 驱动翻译</strong>：基于 Kimi AI 大模型，翻译质量高，理解上下文</li>
+            <li><strong>双语对照显示</strong>：保留英文原文，中文翻译显示在原文下方</li>
+            <li><strong>双向词汇高亮</strong>：鼠标悬停词汇时，AI 自动识别对应关系，原文与译文双向高亮</li>
+            <li><strong>专业术语保留</strong>：智能识别技术词汇、专有名词，保持不翻译</li>
+            <li><strong>双平台支持</strong>：同时支持 Chrome 和 Safari 浏览器</li>
+        </ul>
+        
+        <h2>1.3 技术栈</h2>
+        <table>
+            <thead>
+                <tr><th>层级</th><th>技术</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>前端框架</td><td>原生 JavaScript</td><td>无框架依赖，轻量级实现</td></tr>
+                <tr><td>样式方案</td><td>原生 CSS</td><td>支持深色模式</td></tr>
+                <tr><td>AI 服务</td><td>OpenAI Compatible API</td><td>支持 Kimi、OpenAI、Azure 等</td></tr>
+                <tr><td>存储方案</td><td>chrome.storage / browser.storage</td><td>跨平台存储适配</td></tr>
+                <tr><td>构建工具</td><td>Xcode / 原生加载</td><td>Safari 需 Xcode 构建</td></tr>
+            </tbody>
+        </table>
+        
+        <h1>2. 系统架构</h1>
+        
+        <h2>2.1 整体架构</h2>
+        <p>AI Web Translator 采用典型的浏览器扩展架构，由三个核心脚本组成：</p>
+        <ul>
+            <li><strong>Background Script（后台脚本）</strong>：处理 API 调用、跨域请求</li>
+            <li><strong>Content Script（内容脚本）</strong>：注入网页，处理 DOM 操作和翻译展示</li>
+            <li><strong>Popup（弹出窗口）</strong>：用户界面，配置管理</li>
+        </ul>
+        
+        <h2>2.2 架构层次</h2>
+        <pre><code>┌─────────────────────────────────────────────────────────────┐
+│                        用户界面层                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │   Popup      │  │  控制栏      │  │  设置面板    │      │
+│  │  (popup.html)│  │  (浮动按钮)  │  │  (配置页)    │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+├─────────────────────────────────────────────────────────────┤
+│                        业务逻辑层                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │   Content    │  │   翻译引擎   │  │   高亮系统   │      │
+│  │   Script     │  │   (AI驱动)   │  │   (双向)     │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+├─────────────────────────────────────────────────────────────┤
+│                        服务层                                │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  Background  │  │  API 适配器  │  │   存储管理   │      │
+│  │   Script     │  │ (多Provider) │  │ (跨平台)     │      │
+│  └──────────────┘  └──────────────┘  └──────────────┘      │
+├─────────────────────────────────────────────────────────────┤
+│                        外部服务                              │
+│              Kimi AI / OpenAI / Azure API                    │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+        
+        <h2>2.3 项目结构</h2>
+        <pre><code>web-translator/
+├── chrome/                    # Chrome 扩展目录
+│   ├── manifest.json          # 扩展配置清单
+│   ├── background.js          # 后台脚本（API调用）
+│   ├── content.js             # 内容脚本（DOM操作）
+│   ├── config.js              # 配置管理模块
+│   ├── api-adapter.js         # API 适配器
+│   ├── popup.html             # 弹出窗口UI
+│   ├── popup.js               # 弹出窗口逻辑
+│   ├── translator.css         # 翻译结果样式
+│   └── icons/                 # 图标资源
+│
+├── safari/                    # Safari 扩展目录
+│   └── AI Web Translator/     # Xcode 项目
+│       ├── Shared (Extension)/# 共享扩展代码
+│       └── Shared (App)/      # macOS/iOS App
+│
+└── scripts/                   # 构建脚本
+    ├── build-safari.sh
+    └── sync-to-safari.sh</code></pre>
+        
+        <h1>3. 核心模块设计</h1>
+        
+        <h2>3.1 Background Script（后台脚本）</h2>
+        <p>后台脚本作为扩展的服务端，主要负责处理与 AI API 的通信。</p>
+        
+        <h3>3.1.1 核心职责</h3>
+        <ul>
+            <li>接收来自 Content Script 的翻译请求</li>
+            <li>调用 AI API 进行翻译</li>
+            <li>支持多种 API Provider（OpenAI、Anthropic、Kimi）</li>
+            <li>处理 API 认证和错误</li>
+        </ul>
+        
+        <h3>3.1.2 主要函数</h3>
+        <table>
+            <thead>
+                <tr><th>函数名</th><th>功能</th><th>参数</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>handleTranslation</td><td>处理翻译请求</td><td>prompt, apiConfig</td></tr>
+                <tr><td>callOpenAICompatibleAPI</td><td>调用 OpenAI 兼容 API</td><td>prompt, config</td></tr>
+                <tr><td>callAnthropicAPI</td><td>调用 Anthropic API</td><td>prompt, config</td></tr>
+                <tr><td>testAPIConnection</td><td>测试 API 连接</td><td>apiConfig</td></tr>
+            </tbody>
+        </table>
+        
+        <h2>3.2 Content Script（内容脚本）</h2>
+        <p>内容脚本是扩展的核心，直接注入到网页中执行，负责页面文本提取、翻译结果显示和词汇高亮交互。</p>
+        
+        <h3>3.2.1 模块划分</h3>
+        <pre><code>Content Script 架构
+├── 文本提取模块
+│   ├── 元素过滤（跳过代码、脚本）
+│   ├── 图片说明识别
+│   └── 段落分块
+│
+├── 翻译处理模块
+│   ├── 批量翻译队列
+│   ├── 并行控制（10线程）
+│   └── 缓存管理
+│
+├── DOM 操作模块
+│   ├── 翻译插入
+│   ├── 原文/译文切换
+│   └── 段落高亮
+│
+└── 词汇高亮模块（核心特性）
+    ├── AI-Driven 映射表解析
+    ├── 双向词汇匹配
+    ├── 连续序列匹配算法
+    └── 交互事件处理</code></pre>
+        
+        <h3>3.2.2 词汇高亮系统</h3>
+        <p>词汇高亮是本扩展的独家功能，采用 AI-Driven 映射方案：</p>
+        
+        <h4>数据结构</h4>
+        <pre><code>// 英文 -> 中文 映射（原始英文，非标准化）
+wordMap: Map&lt;原始英文, {
+    original: string,      // 原始英文词组
+    chinese: string[]      // 对应中文词组列表
+}&gt;
+
+// 中文 -> 英文 反向映射
+chineseToEnglish: Map&lt;中文词组, 英文原文[]&gt;</code></pre>
+        
+        <h4>匹配算法</h4>
+        <p>采用连续序列匹配算法，避免全局匹配导致的误高亮：</p>
+        <pre><code>// 查找连续的单词序列
+for (let i = 0; i &lt;= wordElements.length - engWords.length; i++) {
+    let isMatch = true;
+    for (let j = 0; j &lt; engWords.length; j++) {
+        if (wordElements[i + j].dataset.word !== engWords[j]) {
+            isMatch = false;
+            break;
+        }
+    }
+    if (isMatch) {
+        // 高亮连续序列 wordElements[i] 到 [i + length - 1]
+    }
+}</code></pre>
+        
+        <h2>3.3 Config Manager（配置管理）</h2>
+        <p>配置管理模块负责处理多种配置来源，支持优先级覆盖。</p>
+        
+        <h3>3.3.1 配置优先级（从高到低）</h3>
+        <ol>
+            <li>浏览器存储（用户设置）</li>
+            <li>window.openclaw（脚本注入）</li>
+            <li>window.KIMI_CODING_API_CONFIG（兼容格式）</li>
+            <li>localStorage（后备存储）</li>
+            <li>DEFAULT_CONFIG（默认配置）</li>
+        </ol>
+        
+        <h3>3.3.2 默认配置结构</h3>
+        <pre><code>DEFAULT_CONFIG = {
+  api: {
+    baseUrl: '',
+    apiKey: '',
+    model: '',
+    provider: 'openai-compatible'
+  },
+  prompt: '...',  // AI 翻译提示词
+  display: {
+    showOriginal: true,
+    highlightTerms: true
+  },
+  behavior: {
+    concurrency: 10,
+    cacheResults: true
+  }
+}</code></pre>
+        
+        <h1>4. 数据流与交互</h1>
+        
+        <h2>4.1 翻译流程</h2>
+        <pre><code>用户点击翻译
+    │
+    ▼
+┌─────────────────────────┐
+│ 1. 提取页面文本块        │
+│   - 过滤不可翻译元素     │
+│   - 识别图片说明         │
+│   - 段落分块             │
+└───────────┬─────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ 2. 构建 Prompt          │
+│   - 页面上下文           │
+│   - 待翻译文本           │
+│   - AI-Driven 词汇表要求 │
+└───────────┬─────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ 3. 并行翻译请求          │
+│   - 10线程并发           │
+│   - 实时进度更新         │
+└───────────┬─────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ 4. 解析翻译结果          │
+│   - 提取中文译文         │
+│   - 解析词汇对照表       │
+│   - 构建 wordMap         │
+└───────────┬─────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│ 5. 插入 DOM             │
+│   - 保留原文结构         │
+│   - 译文显示在下方       │
+│   - 添加词汇交互         │
+└─────────────────────────┘</code></pre>
+        
+        <h2>4.2 词汇高亮交互流程</h2>
+        <pre><code>用户悬停英文词汇
+    │
+    ▼
+查找 wordMap
+    │
+    ├── 遍历所有英文 key
+    │   └── 拆分对比单词列表
+    │
+    └── 匹配成功
+        │
+        ▼
+    获取对应中文词组
+        │
+        ▼
+    在译文中查找并高亮
+        │
+        └── 连续序列匹配</code></pre>
+        
+        <h2>4.3 存储方案对比</h2>
+        <table>
+            <thead>
+                <tr><th>平台</th><th>API</th><th>用途</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Chrome</td><td>chrome.storage.sync</td><td>配置持久化</td><td>跨设备同步</td></tr>
+                <tr><td>Safari</td><td>browser.storage.local</td><td>配置持久化</td><td>本地存储</td></tr>
+                <tr><td>Safari</td><td>localStorage</td><td>后备存储</td><td>降级方案</td></tr>
+                <tr><td>通用</td><td>Map (内存)</td><td>运行时数据</td><td>词汇映射表</td></tr>
+            </tbody>
+        </table>
+        
+        <h1>5. 关键技术实现</h1>
+        
+        <h2>5.1 AI-Driven 词汇映射</h2>
+        <p>传统的规则映射方法依赖算法分词，准确率有限。本扩展采用 AI-Driven 方案：</p>
+        
+        <h3>提示词设计</h3>
+        <p>要求 AI 返回结构化的词汇对照表：</p>
+        <pre><code>| 序号 | 中文词组 | 对应英文原文 |
+|-----|---------|------------|
+| 1 | Amical | Amical |
+| 2 | 的强大之处 | The power of |
+| 3 | 上下文感知能力 | context awareness |</code></pre>
+        
+        <h3>优势</h3>
+        <ul>
+            <li>语义准确：AI 理解上下文，按语义划分词组</li>
+            <li>覆盖率高：逐词对应，覆盖几乎所有文字</li>
+            <li>无需算法：省去复杂的中文分词逻辑</li>
+        </ul>
+        
+        <h2>5.2 并行翻译控制</h2>
+        <p>采用队列 + 并发控制模式，最大化翻译效率：</p>
+        <pre><code>const queue = [...blocks];
+const executing = [];
+const concurrency = 10;
+
+while (queue.length > 0 || executing.length > 0) {
+    while (executing.length < concurrency && queue.length > 0) {
+        const block = queue.shift();
+        const promise = processBlock(block).finally(() => {
+            executing.splice(executing.indexOf(promise), 1);
+        });
+        executing.push(promise);
+    }
+    if (executing.length > 0) {
+        await Promise.race(executing);
+    }
+}</code></pre>
+        
+        <h2>5.3 Safari 兼容性处理</h2>
+        <p>Safari 扩展与 Chrome 存在重要差异，需要特别处理：</p>
+        
+        <h3>变量声明</h3>
+        <p>Safari 内容脚本共享全局命名空间，必须使用 <code>var</code>：</p>
+        <pre><code>// Chrome - 正常
+const isSafari = typeof browser !== 'undefined';
+
+// Safari - 必须使用 var
+var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;</code></pre>
+        
+        <h3>存储 API 适配</h3>
+        <pre><code>var storageAPI = {
+    async get(keys) {
+        if (isSafari) {
+            return await browser.storage.local.get(keys);
+        } else {
+            return new Promise((resolve) => {
+                chrome.storage.sync.get(keys, resolve);
+            });
+        }
+    }
+};</code></pre>
+        
+        <h1>6. 跨平台适配</h1>
+        
+        <h2>6.1 Chrome vs Safari 差异对比</h2>
+        <table>
+            <thead>
+                <tr><th>特性</th><th>Chrome</th><th>Safari</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Manifest 版本</td><td>V2/V3</td><td>V2</td></tr>
+                <tr><td>变量作用域</td><td>隔离</td><td>共享</td></tr>
+                <tr><td>存储 API</td><td>chrome.storage</td><td>browser.storage</td></tr>
+                <tr><td>加载方式</td><td>开发者模式</td><td>Xcode 构建</td></tr>
+                <tr><td>调试工具</td><td>DevTools</td><td>Safari DevTools</td></tr>
+                <tr><td>代码签名</td><td>不需要</td><td>需要（免费账号可）</td></tr>
+            </tbody>
+        </table>
+        
+        <h2>6.2 代码共享策略</h2>
+        <p>Chrome 和 Safari 共享 95% 以上的代码，通过条件编译和适配层实现跨平台：</p>
+        
+        <h3>文件同步流程</h3>
+        <pre><code>修改 chrome/ 目录
+    │
+    ▼
+运行 sync-to-safari.sh
+    │
+    ▼
+复制到 safari/AI Web Translator/Shared (Extension)/Resources/
+    │
+    ▼
+Xcode 构建运行</code></pre>
+        
+        <h3>平台检测</h3>
+        <pre><code>var isSafari = typeof browser !== 'undefined' && browser.runtime;
+var _chrome = isSafari ? browser : chrome;</code></pre>
+        
+        <h1>7. 部署与构建</h1>
+        
+        <h2>7.1 Chrome 部署</h2>
+        <h3>开发者模式</h3>
+        <ol>
+            <li>打开 chrome://extensions/</li>
+            <li>开启「开发者模式」</li>
+            <li>点击「加载已解压的扩展程序」</li>
+            <li>选择 chrome/ 文件夹</li>
+        </ol>
+        
+        <h3>发布到 Web Store</h3>
+        <ol>
+            <li>打包扩展为 .zip</li>
+            <li>登录 Chrome Web Store Developer Dashboard</li>
+            <li>上传并提交审核</li>
+        </ol>
+        
+        <h2>7.2 Safari 构建</h2>
+        <h3>环境要求</h3>
+        <ul>
+            <li>macOS 12.0+</li>
+            <li>Xcode 14.0+</li>
+            <li>Apple Developer Account（免费即可）</li>
+        </ul>
+        
+        <h3>构建步骤</h3>
+        <ol>
+            <li>配置代码签名（Team ID）</li>
+            <li>运行 ./quick-build.sh 或 Xcode 构建</li>
+            <li>在 Safari 中启用扩展</li>
+            <li>授予网站访问权限</li>
+        </ol>
+        
+        <h3>一键构建脚本</h3>
+        <pre><code>#!/bin/bash
+# quick-build.sh
+
+# 1. 同步代码到 Safari 项目
+./scripts/sync-to-safari.sh
+
+# 2. Xcode 构建
+xcodebuild -project safari/AI\ Web\ Translator/*.xcodeproj \
+    -scheme "AI Web Translator (macOS)" \
+    -destination "platform=macOS" \
+    build
+
+# 3. 运行应用
+open safari/AI\ Web\ Translator/build/DerivedData/...</code></pre>
+        
+        <h2>7.3 图标资源</h2>
+        <table>
+            <thead>
+                <tr><th>类型</th><th>尺寸</th><th>用途</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>扩展图标</td><td>16x16, 48x48, 128x128</td><td>工具栏、商店</td></tr>
+                <tr><td>App 图标</td><td>16-1024 全尺寸</td><td>macOS App</td></tr>
+                <tr><td>Toolbar 图标</td><td>16, 19, 32, 38, 48, 72</td><td>Safari 工具栏</td></tr>
+            </tbody>
+        </table>
+        
+        <h2>7.4 未来扩展</h2>
+        <ul>
+            <li>支持更多浏览器（Firefox、Edge）</li>
+            <li>Manifest V3 升级</li>
+            <li>多语言支持（日、韩、德等）</li>
+            <li>离线翻译能力</li>
+            <li>Mac App Store 上架</li>
+        </ul>
+        
+    </div>
+</body>
+</html>
