@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Web Translator 软件架构文档</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Serif SC", Georgia, serif; font-size: 11pt; line-height: 1.8; color: #333; text-align: justify; }
+        @page { size: A4; margin: 2.5cm 2cm 2.5cm 2cm; @bottom-center { content: counter(page); font-size: 10pt; } }
+        @page :first { margin: 0; }
+        .cover { width: 210mm; height: 297mm; margin: 0; position: relative; overflow: hidden; page-break-after: always; background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%); }
+        .cover::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cover-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; z-index: 10; width: 80%; }
+        .cover-title { font-size: 32pt; font-weight: 700; margin-bottom: 15px; letter-spacing: 2px; }
+        .cover-subtitle { font-size: 14pt; font-weight: 400; opacity: 0.9; margin-bottom: 60px; }
+        .cover-meta { font-size: 11pt; opacity: 0.8; line-height: 2; }
+        .toc { page-break-after: always; padding: 3cm; }
+        .toc-title { font-size: 22pt; font-weight: 700; text-align: center; margin-bottom: 40px; color: #333; }
+        .toc-list { list-style: none; }
+        .toc-list li { margin: 10px 0; }
+        .toc-list a { color: #333; text-decoration: none; }
+        h1 { font-size: 20pt; font-weight: 700; color: #333; margin: 30px 0 15px; page-break-after: avoid; border-bottom: 2px solid #6366F1; padding-bottom: 8px; }
+        h2 { font-size: 15pt; font-weight: 600; color: #444; margin: 25px 0 12px; page-break-after: avoid; }
+        h3 { font-size: 12pt; font-weight: 600; color: #555; margin: 18px 0 10px; page-break-after: avoid; }
+        p { margin: 10px 0; text-indent: 2em; }
+        ul, ol { margin: 12px 0; padding-left: 2em; }
+        li { margin: 6px 0; }
+        code { font-family: Consolas, Monaco, monospace; font-size: 9.5pt; background: #f5f5f5; padding: 1px 5px; border-radius: 3px; }
+        pre { background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 5px; padding: 12px; margin: 12px 0; overflow-x: auto; font-size: 9pt; line-height: 1.5; }
+        pre code { background: none; padding: 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        thead { border-top: 2px solid #333; border-bottom: 1px solid #333; }
+        tbody { border-bottom: 2px solid #333; }
+        th, td { padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { font-weight: 600; background: #fafafa; }
+        tr:nth-child(even) { background: #fafafa; }
+        .content { padding: 0 1cm; }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <div class="cover-content">
+            <div style="font-size: 60pt; margin-bottom: 30px;">🌐</div>
+            <h1 class="cover-title">AI Web Translator</h1>
+            <p class="cover-subtitle">软件架构设计文档</p>
+            <div class="cover-meta">
+                <p>版本 1.0.0</p>
+                <p>2026年3月</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="toc">
+        <h2 class="toc-title">目 录</h2>
+        <ul class="toc-list">
+            <li>1. 概述</li>
+            <li>2. 系统架构</li>
+            <li>3. 核心模块设计</li>
+            <li>4. 数据流与交互</li>
+            <li>5. 关键技术实现</li>
+            <li>6. 跨平台适配</li>
+            <li>7. 部署与构建</li>
+        </ul>
+    </div>
