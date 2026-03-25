@@ -201,7 +201,7 @@ Safari 版本需要 macOS 和 Xcode 来构建和安装。
 ## 📁 项目结构
 
 ```
-web-translator/
+AI-Web-Translator/
 ├── chrome/                    # Chrome 扩展
 │   ├── manifest.json          # 扩展配置
 │   ├── background.js          # 后台脚本（API 调用）
@@ -211,35 +211,27 @@ web-translator/
 │   ├── popup.js               # 弹出窗口逻辑
 │   ├── popup.css              # 弹出窗口样式
 │   ├── translator.css         # 翻译结果显示样式
+│   ├── api-adapter.js         # API 适配器
+│   ├── view-mapping.js        # 词汇映射处理
 │   ├── welcome.html           # 欢迎页面
 │   └── icons/                 # 图标资源
-│       ├── icon.svg           # 矢量源文件
-│       ├── icon16.png
-│       ├── icon48.png
-│       ├── icon128.png
-│       ├── AppIcon.iconset/   # macOS App 图标
-│       └── toolbar/           # Safari 工具栏图标
 │
 ├── safari/                    # Safari 扩展（macOS/iOS）
-│   └── AI Web Translator/     # Xcode 项目
-│       ├── AI Web Translator.xcodeproj
-│       ├── Shared (App)/      # macOS/iOS 应用代码
-│       │   └── Resources/
-│       │       └── Icon.png   # App 图标
-│       └── Shared (Extension)/# 扩展代码
-│           └── Resources/
-│               ├── manifest.json
-│               ├── background.js
-│               ├── content.js
-│               ├── config.js
-│               ├── popup.html
-│               ├── translator.css
-│               └── icons/     # 扩展图标
+│   ├── AI Translator/         # Xcode 项目（主要）
+│   │   ├── AI Translator.xcodeproj
+│   │   ├── Shared (App)/      # macOS/iOS 应用代码
+│   │   └── Shared (Extension)/# 扩展代码
+│   │       └── Resources/     # 扩展资源（与 Chrome 共享）
+│   └── AI Web Translator/     # 备选 Xcode 项目
 │
-├── safari-conversion.md       # Safari 转换技术文档
 ├── scripts/                   # 构建脚本
-│   └── build-safari.sh
+│   ├── build-safari.sh        # Safari 构建脚本
+│   ├── fix-safari-signing.sh  # 签名修复脚本
+│   └── fix-signing.sh
+│
 ├── quick-build.sh             # 快速构建脚本
+├── install-chrome.sh          # Chrome 安装脚本
+├── safari-conversion.md       # Safari 转换技术文档
 └── README.md                  # 本文件
 ```
 
