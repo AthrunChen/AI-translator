@@ -158,44 +158,6 @@ Safari 版本需要 macOS 和 Xcode 来构建和安装。
 | OpenAI | `https://api.openai.com/v1` | `gpt-4` 或 `gpt-3.5-turbo` |
 | 自定义 | 你的 API 地址 | 你的模型名称 |
 
-### 方式二：通过 OpenClaw 格式配置（推荐用于脚本注入）
-
-支持标准的 OpenClaw 配置格式：
-
-```javascript
-// 在网页 Console 中执行，或在外部脚本中注入
-window.openclaw = {
-  "provider": "anthropic-messages",
-  "baseUrl": "https://api.kimi.com/coding",
-  "apiKey": "sk-kimi-your-api-key",
-  "model": "kimi-for-coding"
-};
-```
-
-或使用 `KIMI_CODING_API_CONFIG` 包装：
-
-```javascript
-window.KIMI_CODING_API_CONFIG = {
-  "openclaw": {
-    "provider": "anthropic-messages",
-    "baseUrl": "https://api.kimi.com/coding",
-    "apiKey": "sk-kimi-your-api-key",
-    "model": "kimi-for-coding"
-  }
-};
-```
-
-### 方式三：localStorage
-
-```javascript
-localStorage.setItem('openclaw', JSON.stringify({
-  "provider": "anthropic-messages",
-  "baseUrl": "https://api.kimi.com/coding",
-  "apiKey": "sk-kimi-your-api-key",
-  "model": "kimi-for-coding"
-}));
-```
-
 ### 获取 API Key
 
 1. 访问 [Moonshot AI 开放平台](https://platform.moonshot.cn/)
